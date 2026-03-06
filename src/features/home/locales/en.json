@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "bestSelling": "Best selling",
+    "offers": "Exclusive Offers",
+    "featuredCategories": "Featured categories",
+    "authors": "Discover authors",
+    "newArrivals": "New Arrivals"
+  },
+  "promo": {
+    "badge": "Limited Time Offer",
+    "title_part1": "Discount up to",
+    "discount": "50%",
+    "title_part2": "on all Religious Books",
+    "description": "Enjoy a spiritual journey with the best religious editions at unbeatable prices.",
+    "button": "Shop Now"
+  }
+}

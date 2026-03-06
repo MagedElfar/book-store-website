@@ -1,0 +1,60 @@
+@reference "../../../app/globals.css";
+
+.heroContainer {
+    @apply relative w-full aspect-[16/9] overflow-hidden;
+}
+
+@media (min-width: 768px) {
+    .heroContainer {
+        @apply aspect-[21/8];
+    }
+}
+
+@media (min-width: 1024px) {
+    .heroContainer {
+        @apply aspect-[21/7];
+    }
+}
+
+.heroContainer :global(.swiper-button-next),
+.heroContainer :global(.swiper-button-prev) {
+    @apply hidden text-white transition-all duration-300 bg-black/10 backdrop-blur-md w-[40px] h-[40px] rounded-full !opacity-0;
+}
+
+.heroContainer :global(.swiper-button-next svg),
+.heroContainer :global(.swiper-button-prev svg) {
+    @apply w-[auto] h-[auto] flex items-center justify-center;
+}
+
+
+@media (min-width: 768px) {
+
+    .heroContainer :global(.swiper-button-next),
+    .heroContainer :global(.swiper-button-prev) {
+        @apply !flex;
+    }
+}
+
+.heroContainer:hover :global(.swiper-button-next),
+.heroContainer:hover :global(.swiper-button-prev) {
+    @apply !opacity-100;
+}
+
+.heroContainer :global(.swiper-button-next:hover),
+.heroContainer :global(.swiper-button-prev:hover) {
+    @apply scale-110 bg-black/30;
+}
+
+.heroContainer :global(.swiper-button-next:after),
+.heroContainer :global(.swiper-button-prev:after) {
+    @apply text-[20px] font-bold;
+}
+
+.heroContainer :global(.swiper-pagination-bullet) {
+    @apply bg-white/50
+}
+
+.heroContainer :global(.swiper-pagination-bullet-active) {
+    /* لاحظ: ! قبل bg وقبل rounded-full */
+    @apply !bg-white w-[24px] !rounded-full;
+}

@@ -1,0 +1,25 @@
+{
+  "welcome": "Welcome to our store",
+  "search": "Search for books...",
+  "cart": "Cart",
+  "nav": {
+    "home": "Home",
+    "shope": "Shop",
+    "aboutUs": "About us",
+    "contactUs": "Contact us",
+    "allCategories": "Categories",
+    "offers": "Offers",
+    "searchPlaceholder": "Search for books, authors, or genres....",
+    "menuTitle": "Bookstore",
+    "searchTitle": "Find your book",
+    "sectionsTitle": "Navigation & Categories",
+    "settingsTitle": "Settings",
+    "language": "Language",
+    "appearance": "Appearance"
+  },
+  "common": {
+    "login": "Login",
+    "my_profile": "My profile",
+    "logout": "Logout"
+  }
+}

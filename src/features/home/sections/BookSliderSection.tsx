@@ -1,0 +1,111 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react"; // ضفنا دول
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Book } from "@/features/books/types";
+import { BookCard } from "@/features/books";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+import styles from "./../styles/book-slider.module.css";
+import { SectionTitle } from "@/shared/components";
+
+interface BestSellersSectionProps {
+    books: Book[];
+    title: string;
+}
+
+export const BookSliderSection = ({ books, title }: BestSellersSectionProps) => {
+    const [mounted, setMounted] = useState(false);
+    const prevRef = useRef<HTMLButtonElement>(null);
+    const nextRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+    return (
+        <section className={`${styles.section} dark:bg-[#09090b] main-sec-space `}>
+            <div className="container mx-auto px-4">
+
+                <div className="flex items-center justify-between mb-8">
+                    <SectionTitle title={title} />
+
+                    <div className="hidden md:flex items-center gap-2">
+                        <button
+                            ref={prevRef}
+                            className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-gray-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white transition-all shadow-sm disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+                        <button
+                            ref={nextRef}
+                            className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-gray-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white transition-all shadow-sm disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed"
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+                    </div>
+                </div>
+
+                <div className={styles.sliderContainer}>
+                    {
+                        mounted ?
+                            <Swiper
+                                modules={[Navigation, Pagination, Autoplay]}
+                                spaceBetween={20}
+                                slidesPerView={1.3}
+                                onBeforeInit={(swiper) => {
+                                    // @ts-ignore - نربط الأسهم يدوياً قبل الـ Initialization
+                                    swiper.params.navigation.prevEl = prevRef.current;
+                                    // @ts-ignore
+                                    swiper.params.navigation.nextEl = nextRef.current;
+                                }}
+                                navigation={{
+                                    prevEl: prevRef.current,
+                                    nextEl: nextRef.current,
+                                }}
+                                pagination={{
+                                    clickable: true,
+                                    el: `.${styles.pagination}`,
+                                }}
+                                breakpoints={{
+                                    640: { slidesPerView: 2 },
+                                    1024: { slidesPerView: 4 },
+                                    1280: { slidesPerView: 5 },
+                                }}
+                                className="!overflow-visible"
+                                autoplay={{
+                                    delay: 3000,
+                                    disableOnInteraction: false,
+                                    pauseOnMouseEnter: true,
+                                }}
+                            >
+                                {books.map((book) => (
+                                    <SwiperSlide key={book.id} className={styles.swiperSlide}>
+                                        <BookCard book={book} />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            :
+                            <div className="flex flex-nowrap gap-5 sm:overflow-hidden">
+                                {books.slice(0, 8).map((book) => (
+                                    <div
+                                        key={book.id}
+                                        className="shrink-0 w-[calc(100%/1.3-16px)] sm:w-[calc(100%/2.5-16px)] lg:w-[calc(100%/4-16px)] xl:w-[calc(100%/5-16px)]"
+                                    >
+                                        <BookCard book={book} />
+                                    </div>
+                                ))}
+                            </div>
+                    }
+
+                    <div className={styles.pagination} />
+                </div>
+            </div>
+        </section>
+    );
+};
