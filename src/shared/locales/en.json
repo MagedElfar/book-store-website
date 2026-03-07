@@ -17,6 +17,26 @@
     "language": "Language",
     "appearance": "Appearance"
   },
+  "footer": {
+    "description": "Your premier destination for discovering the world's best books and local masterpieces, all in one place.",
+    "quickLinks": "Quick Links",
+    "allBooks": "Browse Books",
+    "authors": "Authors",
+    "offers": "Special Offers",
+    "categories": "Categories",
+    "support": "Support & Help",
+    "about": "About Us",
+    "contactUs": "Contact us",
+    "shipping": "Shipping Policy",
+    "refund": "Refund Policy",
+    "terms": "Terms & Conditions",
+    "contact": "Contact Us",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "address": "Headquarters",
+    "addressValue": "Alexandria, Egypt",
+    "copyRight": "All rights reserved."
+  },
   "common": {
     "login": "Login",
     "my_profile": "My profile",

@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react"; // ضفنا دول
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Book } from "@/features/books/types";
 import { BookCard } from "@/features/books";
@@ -13,6 +13,7 @@ import "swiper/css/pagination";
 
 import styles from "./../styles/book-slider.module.css";
 import { SectionTitle } from "@/shared/components";
+import { useAppTranslation } from "@/shared/hooks";
 
 interface BestSellersSectionProps {
     books: Book[];
@@ -23,6 +24,7 @@ export const BookSliderSection = ({ books, title }: BestSellersSectionProps) => 
     const [mounted, setMounted] = useState(false);
     const prevRef = useRef<HTMLButtonElement>(null);
     const nextRef = useRef<HTMLButtonElement>(null);
+    const { dir } = useAppTranslation()
 
     useEffect(() => {
         setMounted(true);
@@ -39,13 +41,13 @@ export const BookSliderSection = ({ books, title }: BestSellersSectionProps) => 
                             ref={prevRef}
                             className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-gray-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white transition-all shadow-sm disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed"
                         >
-                            <ChevronLeft size={20} />
+                            {dir === "rtl" ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
                         </button>
                         <button
                             ref={nextRef}
                             className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-gray-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white transition-all shadow-sm disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed"
                         >
-                            <ChevronRight size={20} />
+                            {dir === "rtl" ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
                         </button>
                     </div>
                 </div>
@@ -54,7 +56,7 @@ export const BookSliderSection = ({ books, title }: BestSellersSectionProps) => 
                     {
                         mounted ?
                             <Swiper
-                                modules={[Navigation, Pagination, Autoplay]}
+                                modules={[Navigation, Pagination]}
                                 spaceBetween={20}
                                 slidesPerView={1.3}
                                 onBeforeInit={(swiper) => {
@@ -77,11 +79,7 @@ export const BookSliderSection = ({ books, title }: BestSellersSectionProps) => 
                                     1280: { slidesPerView: 5 },
                                 }}
                                 className="!overflow-visible"
-                                autoplay={{
-                                    delay: 3000,
-                                    disableOnInteraction: false,
-                                    pauseOnMouseEnter: true,
-                                }}
+                                autoplay={false}
                             >
                                 {books.map((book) => (
                                     <SwiperSlide key={book.id} className={styles.swiperSlide}>

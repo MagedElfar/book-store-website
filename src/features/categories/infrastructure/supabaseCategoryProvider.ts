@@ -15,6 +15,10 @@ export const supabaseCategoryProvider: CategoryApiProvider = {
             lang = 'en'
         } = params;
 
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+
+
         const queryParams: Record<string, string | number | boolean | undefined> = {
             is_active: "eq.true",
             select: "*",
@@ -41,23 +45,15 @@ export const supabaseCategoryProvider: CategoryApiProvider = {
 
         queryParams.order = order;
 
-        const from = (page - 1) * limit;
-        const to = from + limit - 1;
-
-        const response = await supabaseFetch<{ data: Category[]; count: number }>("categories", {
+        return await supabaseFetch<GetManyResponse<Category>>("categories", {
             params: queryParams,
             headers: {
                 "Range": `${from}-${to}`,
                 "Prefer": "count=exact"
             },
             tags: ["categories"],
-            revalidate: 3600
+            revalidate: 86400
         });
-
-        return {
-            items: response.data,
-            total: response.count,
-        };
     },
 
     getCategoryBySlug: async function (slug: string): Promise<Category> {
@@ -68,7 +64,7 @@ export const supabaseCategoryProvider: CategoryApiProvider = {
                 select: "*"
             },
             tags: [`category-${slug}`],
-            revalidate: 86400 // كاش يوم كامل للأقسام
+            revalidate: 86400
         });
 
         if (!data || data.length === 0) {

@@ -1,5 +1,6 @@
 import { Category } from "@/features/categories";
 import { MobileMenu, StoreHeader } from "./sections";
+import { Footer } from "./sections/Footer";
 
 interface StoreLayoutProps {
     children: React.ReactNode
@@ -14,6 +15,7 @@ export function StoreLayout({ children, navCategories }: StoreLayoutProps) {
                 {children}
             </main>
             <MobileMenu categories={navCategories} />
+            <Footer />
         </div>
     );
 }

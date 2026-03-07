@@ -12,7 +12,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
     return {
         locale: locale as (typeof routing.locales)[number],
         messages: messagesData[locale as keyof typeof messagesData],
-        timeZone: 'Africa/Cairo',
-        now: new Date()
+        timeZone: 'Africa/Cairo'
     };
 });

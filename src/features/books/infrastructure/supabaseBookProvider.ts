@@ -5,9 +5,7 @@ import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/supabase/fetc
 export const supabaseBookProvider: BookApiProvider = {
 
     getBooks: async function (params: BookParams): Promise<GetManyResponse<Book>> {
-        const page = params?.page || 1;
-        const pageSize = params?.limit || 10;
-        const from = (page - 1) * pageSize;
+
 
         const select = `
             *,
@@ -24,8 +22,6 @@ export const supabaseBookProvider: BookApiProvider = {
 
         const queryParams: Record<string, string | number | boolean | undefined> = {
             select,
-            offset: from,
-            limit: pageSize,
             is_active: "eq.true",
         };
 
@@ -57,16 +53,24 @@ export const supabaseBookProvider: BookApiProvider = {
             }
         }
 
-        const response = await supabaseFetch<{ data: any[]; count: number }>("books", {
+        const page = params?.page || 1;
+        const limit = params?.limit || 10;
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+
+        const response = await supabaseFetch<GetManyResponse<any>>("books", {
             params: queryParams,
-            headers: { "Prefer": "count=exact" },
+            headers: {
+                "Prefer": "count=exact",
+                "Range": `${from}-${to}`,
+            },
             revalidate: 3600,
             tags: ["books-list"]
         });
 
 
 
-        const items = (response.data || []).map(b => ({
+        const items = (response.items || []).map(b => ({
             ...b,
             authors: b.book_authors?.map((bc: any) => bc.authors).filter(Boolean) || [],
             tags: b.book_tags?.map((bt: any) => bt.tags).filter(Boolean) || [],
@@ -74,7 +78,7 @@ export const supabaseBookProvider: BookApiProvider = {
 
         return {
             items,
-            total: response.count || 0
+            total: response.total || 0
         };
     },
 

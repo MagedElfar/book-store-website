@@ -1,19 +1,19 @@
 import { supabaseFetch } from "@/shared/utils";
 import { AuthorApiProvider, AuthorsParams, Author } from "../types";
+import { API_RECORDED_LIMIT } from "@/shared/config";
+import { GetManyResponse } from "@/shared/types";
 
 export const supabaseAuthorProvider: AuthorApiProvider = {
 
-    getAuthors: async function (params: AuthorsParams) {
-        const limit = params?.limit || 10
+    getAuthors: async function (params?: AuthorsParams) {
+
+        const limit = params?.limit || API_RECORDED_LIMIT
         const page = params?.page || 1;
         const from = (page - 1) * limit;
         const to = from + limit - 1;
-
         const queryParams: Record<string, string | number | boolean | undefined> = {
-            select: "*",
+            select: "*, count:id",
             is_active: "eq.true",
-            offset: from,
-            limit,
         };
 
         if (params?.search) {
@@ -25,6 +25,7 @@ export const supabaseAuthorProvider: AuthorApiProvider = {
         }
 
         const currentLang = params?.lang || "en";
+
         let orderString = "";
         switch (params?.sortBy) {
             case "oldest": orderString = "created_at.asc"; break;
@@ -35,19 +36,18 @@ export const supabaseAuthorProvider: AuthorApiProvider = {
         }
         queryParams.order = `${orderString},id.desc`;
 
-        const response = await supabaseFetch<{ data: Author[]; count: number }>("authors_with_counts", {
+
+
+
+        return await supabaseFetch<GetManyResponse<Author>>("authors_with_counts", {
             params: queryParams,
             headers: {
-                "Prefer": "count=exact",
+                "Range": `${from}-${to}`,
+                "Prefer": "count=exact"
             },
-            revalidate: 3600,
-            tags: ["authors_with_counts"]
+            revalidate: 43200,
+            tags: ["authors"]
         });
-
-        return {
-            items: response.data || [],
-            total: response.count || 0
-        };
     },
 
     getAuthorBySlug: async function (slug: string) {

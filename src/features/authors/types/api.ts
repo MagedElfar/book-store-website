@@ -5,5 +5,5 @@ import type { AuthorsParams } from "./request";
 
 export interface AuthorApiProvider {
     getAuthorBySlug: (slug: string) => Promise<Author>;
-    getAuthors: (params: AuthorsParams) => Promise<GetManyResponse<Author>>;
+    getAuthors: (params?: AuthorsParams) => Promise<GetManyResponse<Author>>;
 }

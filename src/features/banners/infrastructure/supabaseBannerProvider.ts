@@ -4,6 +4,7 @@ import type {
     BannerApiProvider,
     BannersParams
 } from "../types";
+import { GetManyResponse } from "@/shared/types";
 
 export const supabaseBannerProvider: BannerApiProvider = {
     getBanners: async function (params?: BannersParams) {
@@ -14,18 +15,13 @@ export const supabaseBannerProvider: BannerApiProvider = {
         };
 
 
-        const result = await supabaseFetch<{ data: Banner[]; count: number }>("banners", {
+        return await supabaseFetch<GetManyResponse<Banner>>("banners", {
             params: queryParams,
             headers: {
                 "Prefer": "count=exact",
             },
             tags: ["banners"],
-            revalidate: 3600,
-        });
-
-        return {
-            items: result.data || [],
-            total: result.count || 0,
-        };
+            revalidate: 86400,
+        })
     }
 };
