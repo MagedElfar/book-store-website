@@ -96,6 +96,7 @@ export const BookFilters = () => {
                             fetchFn={getCategoriesClient}
                             activeIds={getActiveIds("category_ids")}
                             onSelect={(id) => updateParams("category_ids", id, true)}
+                            onClear={() => updateParams("category_ids", "")}
                             placeholder={t("filters.search")}
                             multiSelect={true}
                         />
@@ -110,6 +111,7 @@ export const BookFilters = () => {
                             fetchFn={getAuthorsClient}
                             activeIds={getActiveIds("author_ids")}
                             onSelect={(id) => updateParams("author_ids", id, true)}
+                            onClear={() => updateParams("author_ids", "")}
                             placeholder={t("filters.search")}
                             multiSelect={true}
                         />
@@ -124,6 +126,7 @@ export const BookFilters = () => {
                             fetchFn={getTagsClient}
                             activeIds={getActiveIds("tag_ids")}
                             onSelect={(id) => updateParams("tag_ids", id, true)}
+                            onClear={() => updateParams("tag_ids", "")}
                             placeholder={t("filters.search")}
                             multiSelect={true}
                         />

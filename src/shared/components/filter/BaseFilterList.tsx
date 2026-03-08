@@ -18,10 +18,11 @@ interface BaseFilterListProps<T> {
         limit: number;
         sortBy: any
     }) => Promise<GetManyResponse<T>>;
-    activeIds: string[]; // مصفوفة للتعامل مع المجموعات
+    activeIds: string[];
     onSelect: (id: string) => void;
     placeholder: string;
-    multiSelect?: boolean; // خاصية للتبديل بين النوعين
+    multiSelect?: boolean;
+    onClear: () => void;
 }
 
 export function BaseFilterList<T>({
@@ -31,7 +32,8 @@ export function BaseFilterList<T>({
     activeIds,
     onSelect,
     placeholder,
-    multiSelect = false
+    multiSelect = false,
+    onClear
 }: BaseFilterListProps<T>) {
     const { t, getLocalizedValue } = useAppTranslation("common");
     const [searchTerm, setSearchTerm] = useState("");
@@ -64,14 +66,27 @@ export function BaseFilterList<T>({
     return (
         <div className="space-y-4">
             <div className="flex items-center justify-between px-1">
-                <h4 className="font-bold text-xs text-slate-400 dark:text-zinc-500 uppercase tracking-[0.15em]">
-                    {title}
-                </h4>
+                <div className="flex items-center gap-2">
+                    <h4 className="font-bold text-xs text-slate-400 dark:text-zinc-500 uppercase tracking-[0.15em]">
+                        {title}
+                    </h4>
+                    {activeIds.length > 0 && (
+                        <span className="flex items-center justify-center bg-blue-500 text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full shadow-sm shadow-blue-500/20 animate-in zoom-in duration-300">
+                            {activeIds.length}
+                        </span>
+                    )}
+                </div>
 
                 {activeIds.length > 0 && (
-                    <span className="flex items-center justify-center bg-blue-500 text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full shadow-sm shadow-blue-500/20 animate-in zoom-in duration-300">
-                        {activeIds.length}
-                    </span>
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            onClear();
+                        }}
+                        className="text-[10px] cursor-pointer font-bold text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
+                    >
+                        {t("common.clear")}
+                    </button>
                 )}
             </div>
             {/* Search Input */}
@@ -102,7 +117,7 @@ export function BaseFilterList<T>({
                             <button
                                 key={item.id}
                                 onClick={() => onSelect(String(item.id))}
-                                className={`flex items-center gap-3 px-2 py-2 rounded-xl text-sm transition-all group ${isSelected
+                                className={`flex items-center gap-3 px-2 py-2 rounded-xl text-sm transition-all cursor-pointer group ${isSelected
                                     ? "text-blue-600 dark:text-blue-400 font-semibold"
                                     : "hover:bg-slate-100 dark:hover:bg-zinc-800/50 text-slate-600 dark:text-zinc-400"
                                     }`}

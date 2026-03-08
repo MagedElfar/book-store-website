@@ -53,7 +53,8 @@
     "my_profile": "My profile",
     "logout": "Logout",
     "noResults": "No results found",
-    "loadMore": "LOAD MORE"
+    "loadMore": "LOAD MORE",
+    "clear": "Clear"
   },
   "sort": {
     "newest": "Newest First",
