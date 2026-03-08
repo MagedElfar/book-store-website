@@ -136,7 +136,7 @@ export function BaseFilterList<T>({
                 <button
                     onClick={() => fetchNextPage()}
                     disabled={isFetchingNextPage}
-                    className="w-full py-2 text-[10px] font-bold text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10 rounded-xl transition-all flex items-center justify-center gap-1 border border-dashed border-slate-200 dark:border-zinc-800"
+                    className="w-full cursor-pointer py-2 text-[10px] font-bold text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10 rounded-xl transition-all flex items-center justify-center gap-1 border border-dashed border-slate-200 dark:border-zinc-800"
                 >
                     {isFetchingNextPage ? (
                         <Loader2 className="animate-spin" size={12} />

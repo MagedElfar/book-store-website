@@ -5,20 +5,23 @@ import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/supabase/fetc
 export const supabaseBookProvider: BookApiProvider = {
 
     getBooks: async function (params: BookParams): Promise<GetManyResponse<Book>> {
-
+        console.log("params = ", params)
+        const hasCategoryFilter = !!(params?.category_id || (params?.category_ids && params.category_ids.length > 0));
+        const hasAuthorFilter = !!(params?.author_id || (params?.author_ids && params.author_ids.length > 0));
+        const hasTagFilter = !!(params?.tagId || (params?.tagIds && params.tagIds.length > 0));
 
         const select = `
-            *,
-            book_categories${params?.category_id ? '!inner' : ''}(category_id),
-            book_authors${params?.author_id ? '!inner' : ''}(
+        *,
+        book_categories${hasCategoryFilter ? '!inner' : ''}(category_id),
+        book_authors${hasAuthorFilter ? '!inner' : ''}(
             author_id,
             authors(id, name_en, name_ar)
-            ),
-            book_tags${params?.tagId ? '!inner' : ''}(
-                tag_id,
-                tags(id, name_en, name_ar, slug, color, is_pained)
-            )
-        `.replace(/\s+/g, "");
+        ),
+        book_tags${hasTagFilter ? '!inner' : ''}(
+            tag_id,
+            tags(id, name_en, name_ar, slug, color, is_pained)
+        )
+    `.replace(/\s+/g, "");
 
         const queryParams: Record<string, string | number | boolean | undefined> = {
             select,
@@ -28,25 +31,47 @@ export const supabaseBookProvider: BookApiProvider = {
         if (params?.search) {
             queryParams.or = `(title_en.ilike.%${params.search}%,title_ar.ilike.%${params.search}%)`;
         }
-        if (params?.author_id) queryParams["book_authors.author_id"] = `eq.${params.author_id}`;
-        if (params?.category_id) queryParams["book_categories.category_id"] = `eq.${params.category_id}`;
-        if (params?.tagId) queryParams["book_tags.tag_id"] = `eq.${params.tagId}`;
+
+        if (params?.category_ids && params.category_ids.length > 0) {
+            queryParams["book_categories.category_id"] = `in.(${params.category_ids.join(",")})`;
+        } else if (params?.category_id) {
+            queryParams["book_categories.category_id"] = `eq.${params.category_id}`;
+        }
+
+        if (params?.author_ids && params.author_ids.length > 0) {
+            queryParams["book_authors.author_id"] = `in.(${params.author_ids.join(",")})`;
+        } else if (params?.author_id) {
+            queryParams["book_authors.author_id"] = `eq.${params.author_id}`;
+        }
+
+        if (params?.tagIds && params.tagIds.length > 0) {
+            queryParams["book_tags.tag_id"] = `in.(${params.tagIds.join(",")})`;
+        } else if (params?.tagId) {
+            queryParams["book_tags.tag_id"] = `eq.${params.tagId}`;
+        }
+
         if (params?.minPrice) queryParams.price = `gte.${params.minPrice}`;
-        if (params?.maxPrice) queryParams.price = `lte.${params.maxPrice}`;
+        if (params?.maxPrice) {
+            if (queryParams.price) queryParams.price = `${queryParams.price},lte.${params.maxPrice}`;
+            else queryParams.price = `lte.${params.maxPrice}`;
+        }
+
         const currentLang = params?.lang || "en";
         let orderString = "";
         switch (params?.sortBy) {
-            case "sales_count": orderString = "sales_count.desc.nullslast"; break;
             case "oldest": orderString = "created_at.asc"; break;
             case "price_high": orderString = "price.desc"; break;
             case "price_low": orderString = "price.asc"; break;
             case "stock_high": orderString = "stock.desc"; break;
             case "stock_low": orderString = "stock.asc"; break;
             case "alpha": orderString = `title_${currentLang}.asc`; break;
-            case "newest":
-            default: orderString = "created_at.desc"; break;
+            case "newest": orderString = "created_at.desc"; break;
+            case "sales_count":
+            default:
+                orderString = "sales_count.desc.nullslast"; break;
         }
         queryParams.order = `${orderString},id.desc`;
+
         if (params?.isOffers) {
             queryParams.sale_price = "gt.0";
             if (!params?.sortBy) {
@@ -69,13 +94,11 @@ export const supabaseBookProvider: BookApiProvider = {
             tags: ["books-list"]
         });
 
-
-
         const items = (response.items || []).map(b => ({
             ...b,
-            authors: b.book_authors?.map((bc: any) => bc.authors).filter(Boolean) || [],
+            authors: b.book_authors?.map((ba: any) => ba.authors).filter(Boolean) || [],
             tags: b.book_tags?.map((bt: any) => bt.tags).filter(Boolean) || [],
-        }))
+        }));
 
         return {
             items,
@@ -86,7 +109,7 @@ export const supabaseBookProvider: BookApiProvider = {
 
     getBookBySlug: async function (slug: string): Promise<Book | null> {
         const queryParams = {
-            slug: `eq.${slug}`, // الفلتر بالـ slug
+            slug: `eq.${slug}`,
             select: `
             *,
             book_images(id, book_id, image_url, display_order),

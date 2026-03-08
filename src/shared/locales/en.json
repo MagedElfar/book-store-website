@@ -54,5 +54,13 @@
     "logout": "Logout",
     "noResults": "No results found",
     "loadMore": "LOAD MORE"
+  },
+  "sort": {
+    "newest": "Newest First",
+    "oldest": "Oldest First",
+    "alphabetical": "Alphabetical",
+    "priceHigh": "Price: High to Low",
+    "priceLow": "Price: Low to High",
+    "mostPopular": "Most Popular"
   }
 }

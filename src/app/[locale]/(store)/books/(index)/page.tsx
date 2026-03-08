@@ -1,17 +1,39 @@
-import { getBooKsApi } from "@/features/books";
+import { BookCard, getBooKsApi } from "@/features/books";
 import { prefetchInfiniteCategory } from "@/features/categories";
-import { GlobalLoadingIndicator, SectionHeader } from "@/shared/components";
+import { GlobalLoadingIndicator, Pagination, SectionHeader, SortingFilter } from "@/shared/components";
 import { BookFilters } from "@/shared/components";
 import { getAppTranslation } from "@/shared/lib";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const ensureArray = (value: any) => {
+    if (!value) return [];
+    if (Array.isArray(value)) return value;
+    return value.split(","); // لو كانت String مفصول بفاصلة أو قيمة واحدة
+};
+
 export default async function BooksPage({ searchParams }: { searchParams: any }) {
     const { t } = await getAppTranslation("books");
     // await delay(3000);
 
     const params = await searchParams;
-    const books = await getBooKsApi(params);
+    const currentPage = Number(params.page) || 1;
+    const limit = 12;
+
+    const formattedParams = {
+        ...params,
+        category_ids: ensureArray(params.category_ids),
+        author_ids: ensureArray(params.author_ids),
+        tagIds: ensureArray(params.tagIds),
+        page: Number(params.page) || 1,
+        minPrice: params.min_price ? Number(params.min_price) : undefined,
+        maxPrice: params.max_price ? Number(params.max_price) : undefined,
+        limit
+    };
+
+    const books = await getBooKsApi(formattedParams);
+
+    const totalPages = Math.ceil((books.total || 0) / limit);
+
     return (
         <div className="min-h-screen">
             <div className="container mx-auto px-4">
@@ -24,10 +46,7 @@ export default async function BooksPage({ searchParams }: { searchParams: any })
                         description={t("title.booksDesc")}
                     />
 
-                    {/* Placeholder for Sorting/Layout Switcher */}
-                    <div className="h-10 w-48 bg-slate-100 dark:bg-zinc-900 rounded-xl animate-pulse flex items-center justify-center text-xs text-slate-400">
-                        Sorting Placeholder
-                    </div>
+                    <SortingFilter />
                 </header>
 
                 <div className="flex flex-col lg:flex-row gap-8">
@@ -38,26 +57,20 @@ export default async function BooksPage({ searchParams }: { searchParams: any })
                     {/* 3. Main Content (Books Grid Placeholder) */}
                     <main className="flex-1">
                         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                            {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <div
-                                    key={i}
-                                    className="aspect-[3/4] w-full bg-slate-50 dark:bg-zinc-900 rounded-3xl border border-slate-100 dark:border-zinc-800 flex items-center justify-center animate-pulse"
-                                >
-                                    <span className="text-slate-300 dark:text-zinc-700 font-medium">Book Card {i}</span>
-                                </div>
+                            {books.items?.map((b) => (
+                                <BookCard book={b} key={b.id} />
                             ))}
                         </div>
 
-                        {/* Pagination Placeholder */}
-                        <div className="mt-12 h-12 w-64 mx-auto bg-slate-100 dark:bg-zinc-900 rounded-2xl animate-pulse" />
+                        <div className="mt-12">
+                            <Pagination
+                                totalPages={totalPages}
+                                currentPage={currentPage}
+                            />
+                        </div>
                     </main>
-
                 </div>
             </div>
         </div>
     );
 }
-function getBooks(params: any) {
-    throw new Error("Function not implemented.");
-}
-

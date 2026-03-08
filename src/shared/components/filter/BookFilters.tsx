@@ -54,6 +54,7 @@ export const BookFilters = () => {
     };
 
     const handleReset = () => {
+        setIsUpdating(true)
         router.push(pathname, { scroll: false });
     };
 
@@ -77,7 +78,7 @@ export const BookFilters = () => {
                     {hasActiveFilters && (
                         <button
                             onClick={handleReset}
-                            className="group flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-red-500 transition-all duration-200"
+                            className="group cursor-pointer flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-red-500 transition-all duration-200"
                         >
                             <RotateCcw size={14} className="group-hover:-rotate-45 transition-transform" />
                             {t("filters.reset")}
