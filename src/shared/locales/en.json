@@ -37,9 +37,22 @@
     "addressValue": "Alexandria, Egypt",
     "copyRight": "All rights reserved."
   },
+  "filters": {
+    "title": "Filters",
+    "search": "Search...",
+    "reset": "Reset filters",
+    "categories": "Categories",
+    "authors": "Authors",
+    "tags": "Tags",
+    "min": "Min",
+    "max": "Max",
+    "price": "Price"
+  },
   "common": {
     "login": "Login",
     "my_profile": "My profile",
-    "logout": "Logout"
+    "logout": "Logout",
+    "noResults": "No results found",
+    "loadMore": "LOAD MORE"
   }
 }

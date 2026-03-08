@@ -2,6 +2,7 @@ import { supabaseFetch } from "@/shared/utils/supabase/fetch-client";
 import { CategoriesParams, Category, CategoryApiProvider } from "../types";
 import { GetManyResponse } from "@/shared/types";
 import { API_RECORDED_LIMIT } from "@/shared/config";
+import { supabaseClient } from "@/shared/lib/supabase";
 
 export const supabaseCategoryProvider: CategoryApiProvider = {
     getCategories: async function (params: CategoriesParams): Promise<GetManyResponse<Category>> {
@@ -55,6 +56,61 @@ export const supabaseCategoryProvider: CategoryApiProvider = {
             revalidate: 86400
         });
     },
+
+    getCategoriesClient: async function (params: CategoriesParams) {
+        const {
+            search,
+            sortBy = "newest",
+            page = 1,
+            limit = 10,
+            is_in_nav,
+            is_featured
+        } = params;
+
+        let query = supabaseClient
+            .from("categories")
+            .select("*", { count: "exact" });
+
+        query = query.eq("is_active", true);
+
+        if (search) {
+            query = query.or(`name_ar.ilike.%${search}%,name_en.ilike.%${search}%,slug.ilike.%${search}%`);
+        }
+
+        if (is_in_nav) {
+            query = query.eq("is_in_nav", true);
+        }
+
+        if (is_featured) {
+            query = query.eq("is_featured", true);
+        }
+
+        if (sortBy === "newest") {
+            query = query.order("created_at", { ascending: false });
+        } else if (sortBy === "oldest") {
+            query = query.order("created_at", { ascending: true });
+        } else if (sortBy === "alpha") {
+            const currentLang = params.lang || "en";
+            query = query.order(`name_${currentLang}`, { ascending: true });
+        }
+
+        query = query.order("id", { ascending: false });
+
+        // Pagination
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+        query = query.range(from, to);
+
+        const { data, error, count } = await query;
+
+        if (error) throw new Error(error.message);
+
+        return {
+            items: (data || []) as Category[],
+            total: count || 0,
+        };
+    },
+
 
     getCategoryBySlug: async function (slug: string): Promise<Category> {
         const data = await supabaseFetch<Category[]>("categories", {

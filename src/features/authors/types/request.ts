@@ -9,4 +9,4 @@ export type AuthorsParams = {
     limit?: number;
     page?: number;
     lang?: SupportedLang
-}
+} 

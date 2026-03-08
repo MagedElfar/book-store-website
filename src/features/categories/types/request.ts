@@ -9,4 +9,5 @@ export type CategoriesParams = {
     lang?: SupportedLang
     is_in_nav?: boolean
     is_featured?: boolean
+    ids?: string[]
 }

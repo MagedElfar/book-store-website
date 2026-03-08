@@ -31,7 +31,8 @@ export const supabaseBookProvider: BookApiProvider = {
         if (params?.author_id) queryParams["book_authors.author_id"] = `eq.${params.author_id}`;
         if (params?.category_id) queryParams["book_categories.category_id"] = `eq.${params.category_id}`;
         if (params?.tagId) queryParams["book_tags.tag_id"] = `eq.${params.tagId}`;
-
+        if (params?.minPrice) queryParams.price = `gte.${params.minPrice}`;
+        if (params?.maxPrice) queryParams.price = `lte.${params.maxPrice}`;
         const currentLang = params?.lang || "en";
         let orderString = "";
         switch (params?.sortBy) {

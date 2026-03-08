@@ -5,5 +5,5 @@ import type { Tag } from "./tag";
 
 
 export interface TagApiProvider {
-    getTags: (params: TagsParams) => Promise<GetManyResponse<Tag>>;
+    getTagsClient: (params: TagsParams) => Promise<GetManyResponse<Tag>>;
 }

@@ -4,5 +4,6 @@ import { Category } from "./category";
 
 export interface CategoryApiProvider {
     getCategories: (params: CategoriesParams) => Promise<GetManyResponse<Category>>;
+    getCategoriesClient: (params: CategoriesParams) => Promise<GetManyResponse<Category>>;
     getCategoryBySlug: (slug: string) => Promise<Category>;
 }

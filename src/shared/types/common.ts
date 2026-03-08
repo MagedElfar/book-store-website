@@ -5,3 +5,5 @@ export type DialogState<T> =
     | { type: null };
 
 export type SupportedLang = "ar" | "en"
+
+

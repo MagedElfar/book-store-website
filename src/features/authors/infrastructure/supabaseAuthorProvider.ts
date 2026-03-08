@@ -2,6 +2,7 @@ import { supabaseFetch } from "@/shared/utils";
 import { AuthorApiProvider, AuthorsParams, Author } from "../types";
 import { API_RECORDED_LIMIT } from "@/shared/config";
 import { GetManyResponse } from "@/shared/types";
+import { supabaseClient } from "@/shared/lib/supabase";
 
 export const supabaseAuthorProvider: AuthorApiProvider = {
 
@@ -48,6 +49,56 @@ export const supabaseAuthorProvider: AuthorApiProvider = {
             revalidate: 43200,
             tags: ["authors"]
         });
+    },
+
+    getAuthorsClient: async function (params: AuthorsParams = {}) {
+        const {
+            search,
+            is_active,
+            sortBy = "newest",
+            page = 1,
+            limit = 10
+        } = params;
+
+        let query = supabaseClient
+            .from("authors")
+            .select("*", { count: "exact" });
+
+        query = query.eq("is_active", true);
+
+        if (search) {
+            query = query.or(`name_ar.ilike.%${search}%,name_en.ilike.%${search}%,slug.ilike.%${search}%`);
+        }
+
+        if (sortBy === "newest") {
+            query = query.order("created_at", { ascending: false });
+        } else if (sortBy === "oldest") {
+            query = query.order("created_at", { ascending: true });
+        } else if (sortBy === "most_books") {
+            query = query.order("books_count", { ascending: false });
+        } else if (sortBy === "alpha") {
+            const currentLang = params.lang || "en";
+            query = query.order(`name_${currentLang}`, { ascending: true });
+        }
+
+        query = query.order("id", { ascending: false });
+
+
+        // Pagination
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+        query = query.range(from, to);
+
+        const { data, error, count } = await query;
+
+        console.log("count = ", count)
+
+        if (error) throw new Error(error.message);
+
+        return {
+            items: (data || []) as Author[],
+            total: count || 0,
+        };
     },
 
     getAuthorBySlug: async function (slug: string) {
