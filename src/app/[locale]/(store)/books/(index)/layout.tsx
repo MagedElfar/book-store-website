@@ -3,6 +3,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query
 import { prefetchInfiniteCategory } from "@/features/categories";
 import { prefetchInfiniteAuthors } from "@/features/authors";
 import { prefetchInfiniteTags } from "@/features/tags";
+import { GlobalLoadingProvider } from "@/providers/GlobalLoaderProvider";
 
 export default async function BooksLayout({ children }: { children: React.ReactNode }) {
     const queryClient = new QueryClient();
@@ -14,8 +15,10 @@ export default async function BooksLayout({ children }: { children: React.ReactN
     ])
 
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
-            {children}
-        </HydrationBoundary>
+        <GlobalLoadingProvider>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                {children}
+            </HydrationBoundary>
+        </GlobalLoadingProvider>
     );
 }

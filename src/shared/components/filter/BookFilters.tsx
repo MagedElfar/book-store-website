@@ -9,14 +9,17 @@ import { CATEGORY_INFINITE_QUERY, getCategoriesClient } from "@/features/categor
 import { AUTHOR_INFINITE_QUERY, getAuthorsClient } from "@/features/authors";
 import { getTagsClient, TAG_INFINITE_QUERY } from "@/features/tags";
 import { PriceFilter } from "./PriceFilter";
+import { useLoaderContext } from "@/shared/context";
 
 export const BookFilters = () => {
     const { t } = useAppTranslation("common");
+    const { setIsUpdating } = useLoaderContext()
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
     const updateParams = (key: string, id: string, multi: boolean = false) => {
+        setIsUpdating(true)
         const params = new URLSearchParams(searchParams.toString());
         const currentRaw = params.get(key);
         let currentIds = currentRaw ? currentRaw.split(",") : [];

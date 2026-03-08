@@ -11,11 +11,9 @@ export default async function BooksPage({ searchParams }: { searchParams: any })
     // await delay(3000);
 
     const params = await searchParams;
-    // هنا بتنادي الـ API الحقيقي بتاعك
     const books = await getBooKsApi(params);
     return (
         <div className="min-h-screen">
-            <GlobalLoadingIndicator />
             <div className="container mx-auto px-4">
 
                 {/* 1. Header Section */}
