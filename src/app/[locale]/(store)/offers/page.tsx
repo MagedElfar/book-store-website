@@ -3,10 +3,26 @@ import { BookListSection } from "@/features/books/components/BookListSection";
 import { PageLayout, SectionHeader } from "@/shared/components";
 import { getAppTranslation } from "@/shared/lib";
 import { calcTotalPages } from "@/shared/utils";
+import { Metadata } from "next";
 
+export async function generateMetadata(): Promise<Metadata> {
+    const { t } = await getAppTranslation("common");
 
+    return {
+        title: t("offers.title"),
+        description: t("offers.description"),
+        openGraph: {
+            title: t("offers.title"),
+            description: t("offers.description"),
+            type: "website",
+        },
+        alternates: {
+            canonical: "/offers",
+        }
+    };
+}
 
-export default async function BooksPage({ searchParams }: { searchParams: Record<string, string> }) {
+export default async function OffersPage({ searchParams }: { searchParams: Record<string, string> }) {
     const { t } = await getAppTranslation("common");
 
     const params = await searchParams;
@@ -23,7 +39,6 @@ export default async function BooksPage({ searchParams }: { searchParams: Record
 
     return (
         <PageLayout>
-            {/* 1. Header Section */}
             <SectionHeader
                 title={t("offers.title")}
                 description={t("offers.description")}

@@ -4,9 +4,31 @@ import { getBooKsApi } from "@/features/books";
 import { getCategories } from "@/features/categories";
 import { BookSliderSection, HeroSection, FeaturedCategoriesSection, SpecialPromoSection, AuthorsSection } from "@/features/home/sections";
 import { getAppTranslation } from "@/shared/lib";
+import { Metadata } from "next";
 import Image from "next/image";
 
-// export const dynamic = "force-static"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getAppTranslation("home");
+
+  return {
+    title: t("welcome"),
+    description: t("welcome_sub"),
+    openGraph: {
+      title: t("welcome"),
+      description: t("welcome_sub"),
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: t("welcome"),
+        },
+      ],
+    },
+  };
+}
+
 export const revalidate = 3600
 
 export default async function Home() {
