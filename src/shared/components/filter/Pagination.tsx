@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { useLoaderContext } from "@/shared/context";
+import { useAppTranslation } from "@/shared/hooks";
 
 interface PaginationProps {
     totalPages: number;
@@ -10,6 +11,7 @@ interface PaginationProps {
 }
 
 export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
+    const { dir } = useAppTranslation()
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -28,7 +30,6 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
         router.push(`${pathname}?${params.toString()}`, { scroll: true });
     };
 
-    // Logic لتوليد أرقام الصفحات (مثلاً: 1 2 ... 10)
     const getVisiblePages = () => {
         const pages = [];
         if (totalPages <= 5) {
@@ -50,9 +51,12 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="p-2 cursor-pointer rounded-xl border border-slate-200 dark:border-zinc-800 disabled:opacity-30 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all"
+                className="p-2 rounded-full cursor-pointer rounded-xl border border-slate-200 dark:border-zinc-800 disabled:opacity-30 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all"
             >
-                <ChevronLeft size={18} />
+                {
+                    dir === "rtl" ? <ChevronRight size={18} /> : <ChevronLeft size={18} />
+                }
+
             </button>
 
             {/* أرقام الصفحات */}
@@ -64,7 +68,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
                         <button
                             key={index}
                             onClick={() => handlePageChange(Number(page))}
-                            className={`min-w-[40px] h-[40px] text-xs font-bold rounded-xl transition-all ${currentPage === page
+                            className={`min-w-[40px] h-[40px] text-xs font-bold rounded-full transition-all ${currentPage === page
                                 ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
                                 : "bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:border-blue-500 cursor-pointer"
                                 }`}
@@ -79,9 +83,11 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
             <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="p-2 rounded-xl border border-slate-200 dark:border-zinc-800 disabled:opacity-30 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all"
+                className="p-2 rounded-full border border-slate-200 dark:border-zinc-800 disabled:opacity-30 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all"
             >
-                <ChevronRight size={18} />
+                {
+                    dir === "rtl" ? <ChevronLeft size={18} /> : <ChevronRight size={18} />
+                }
             </button>
         </div>
     );

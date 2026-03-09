@@ -50,6 +50,7 @@ export const Footer = () => {
                         </h4>
                         <ul className="space-y-4">
                             <FooterLink href={paths.books.root}>{t("footer.allBooks")}</FooterLink>
+                            <FooterLink href={paths.offers}>{t("footer.offers")}</FooterLink>
                             <FooterLink href={paths.authors.root}>{t("footer.authors")}</FooterLink>
                             <FooterLink href={paths.categories.root}>{t("footer.categories")}</FooterLink>
                         </ul>

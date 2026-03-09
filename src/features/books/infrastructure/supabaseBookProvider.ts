@@ -5,10 +5,9 @@ import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/supabase/fetc
 export const supabaseBookProvider: BookApiProvider = {
 
     getBooks: async function (params: BookParams): Promise<GetManyResponse<Book>> {
-        console.log("params = ", params)
         const hasCategoryFilter = !!(params?.category_id || (params?.category_ids && params.category_ids.length > 0));
         const hasAuthorFilter = !!(params?.author_id || (params?.author_ids && params.author_ids.length > 0));
-        const hasTagFilter = !!(params?.tagId || (params?.tagIds && params.tagIds.length > 0));
+        const hasTagFilter = !!(params?.tagId || (params?.tag_ids && params.tag_ids.length > 0));
 
         const select = `
         *,
@@ -44,16 +43,20 @@ export const supabaseBookProvider: BookApiProvider = {
             queryParams["book_authors.author_id"] = `eq.${params.author_id}`;
         }
 
-        if (params?.tagIds && params.tagIds.length > 0) {
-            queryParams["book_tags.tag_id"] = `in.(${params.tagIds.join(",")})`;
+        if (params?.tag_ids && params.tag_ids.length > 0) {
+            queryParams["book_tags.tag_id"] = `in.(${params.tag_ids.join(",")})`;
         } else if (params?.tagId) {
             queryParams["book_tags.tag_id"] = `eq.${params.tagId}`;
         }
 
-        if (params?.minPrice) queryParams.price = `gte.${params.minPrice}`;
-        if (params?.maxPrice) {
-            if (queryParams.price) queryParams.price = `${queryParams.price},lte.${params.maxPrice}`;
-            else queryParams.price = `lte.${params.maxPrice}`;
+        if (params?.minPrice && params?.maxPrice) {
+
+            delete queryParams.price;
+            queryParams.and = `(price.gte.${params.minPrice},price.lte.${params.maxPrice})`;
+        } else if (params?.minPrice) {
+            queryParams.price = `gte.${params.minPrice}`;
+        } else if (params?.maxPrice) {
+            queryParams.price = `lte.${params.maxPrice}`;
         }
 
         const currentLang = params?.lang || "en";

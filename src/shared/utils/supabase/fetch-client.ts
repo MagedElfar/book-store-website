@@ -9,24 +9,24 @@ interface FetchOptions extends RequestInit {
 }
 
 export async function supabaseFetch<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
-    const { tags, revalidate, params, ...restOptions } = options;
-    const url = new URL(`${env.supabaseUrl}/rest/v1/${endpoint}`);
+    try {
+        const { tags, revalidate, params, ...restOptions } = options;
+        const url = new URL(`${env.supabaseUrl}/rest/v1/${endpoint}`);
 
-    if (params) {
-        Object.entries(params).forEach(([key, value]) => {
-            if (value !== undefined && value !== null) {
-                url.searchParams.append(key, String(value));
-            }
-        });
-    }
+        if (params) {
+            Object.entries(params).forEach(([key, value]) => {
+                if (value !== undefined && value !== null) {
+                    url.searchParams.append(key, String(value));
+                }
+            });
+        }
 
-    const headers = (restOptions.headers || {}) as Record<string, string>;
-    const next = { tags, revalidate };
+        const headers = (restOptions.headers || {}) as Record<string, string>;
+        const next = { tags, revalidate };
+        const shouldFetchCount = headers["Prefer"]?.includes("count");
 
-    const shouldFetchCount = headers["Prefer"]?.includes("count");
-
-    const promises = [
-        fetch(url.toString(), {
+        // إعداد الـ Promises
+        const dataPromise = fetch(url.toString(), {
             ...restOptions,
             headers: {
                 "apikey": env.supabaseKey,
@@ -36,45 +36,54 @@ export async function supabaseFetch<T>(endpoint: string, options: FetchOptions =
                 "Prefer": headers["Prefer"]?.replace(/count=(exact|planned|estimated),?/, "") || ""
             },
             next
-        })
-    ];
+        });
 
-    if (shouldFetchCount) {
-        promises.push(
-            fetch(url.toString(), {
-                method: 'HEAD',
-                headers: {
-                    "apikey": env.supabaseKey,
-                    "Authorization": `Bearer ${env.supabaseKey}`,
-                    "Prefer": "count=exact",
-                },
-                next
-            })
-        );
+        const promises: Promise<Response>[] = [dataPromise];
+
+        if (shouldFetchCount) {
+            promises.push(
+                fetch(url.toString(), {
+                    method: 'HEAD',
+                    headers: {
+                        "apikey": env.supabaseKey,
+                        "Authorization": `Bearer ${env.supabaseKey}`,
+                        "Prefer": "count=exact",
+                    },
+                    next
+                })
+            );
+        }
+
+        const responses = await Promise.all(promises);
+        const [dataRes, countRes] = responses;
+
+        // التحقق من حالة الـ Response
+        if (!dataRes.ok || (countRes && !countRes.ok)) {
+            const errorRes = !dataRes.ok ? dataRes : countRes;
+            console.error(`Supabase HTTP Error: ${errorRes.status}`);
+            return { items: [], total: 0 } as T; // رجع داتا فاضية بدل Error
+        }
+
+        const data = await dataRes.json();
+        let totalCount = 0;
+
+        if (countRes) {
+            const contentRange = countRes.headers.get("content-range");
+            totalCount = contentRange ? parseInt(contentRange.split("/")?.[1] || "0") : 0;
+        }
+
+        return {
+            items: data || [],
+            total: totalCount
+        } as T;
+
+    } catch (error: any) {
+        console.error("Supabase Network/Fetch Error:", error.message);
+        return {
+            items: [],
+            total: 0
+        } as T;
     }
-
-    const [dataRes, countRes] = await Promise.all(promises);
-
-    if (!dataRes.ok || (countRes && !countRes.ok)) {
-        const errorRes = !dataRes.ok ? dataRes : countRes;
-        const errorBody = await errorRes.json().catch(() => ({}));
-        throw new Error(
-            `Supabase Fetch Error: ${errorBody.message || errorRes.statusText} (${errorRes.status})`
-        );
-    }
-
-    const data = await dataRes.json();
-    let totalCount = 0;
-
-    if (countRes) {
-        const contentRange = countRes.headers.get("content-range");
-        totalCount = contentRange ? parseInt(contentRange.split("/")?.[1] || "0") : 0;
-    }
-
-    return {
-        items: data || [],
-        total: totalCount
-    } as T;
 }
 export async function supabaseFetchSingle<T>(endpoint: string, options: FetchOptions = {}): Promise<T | null> {
     const headers = (options.headers || {}) as Record<string, string>;

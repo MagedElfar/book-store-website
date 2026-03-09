@@ -40,8 +40,6 @@ export const SpecialPromoSection = () => {
                         <span className="text-yellow-400 drop-shadow-md">
                             {t("promo.discount")}
                         </span>{" "}
-                        <br className="hidden sm:block" />
-                        {t("promo.title_part2")}
                     </h1>
 
                     {/* Description - Slighly smaller for better hierarchy */}
@@ -52,7 +50,7 @@ export const SpecialPromoSection = () => {
                     {/* Button */}
                     <div className="pt-4">
                         <Link
-                            href={paths.books.filter("isOffers=true")}
+                            href={paths.offers}
                             className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-white text-blue-900 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-yellow-400 hover:scale-105 active:scale-95 shadow-xl group/btn"
                         >
                             {t("promo.button")}

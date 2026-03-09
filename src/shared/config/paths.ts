@@ -9,6 +9,7 @@ export const paths = {
     aboutUs: "/about-us",
     checkout: "/checkout",
     wishlist: "/wishlist",
+    offers: "/offers",
 
     account: {
         root: "/account",

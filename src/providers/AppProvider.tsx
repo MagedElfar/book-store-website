@@ -14,7 +14,7 @@ interface ProvidersProps {
 
 export function AppProvider({ children, locale, messages }: ProvidersProps) {
     return (
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider timeZone="Africa/Cairo" locale={locale} messages={messages}>
             <ReactQueryProvider>
                 <ThemeProvider
                     attribute="class"

@@ -41,6 +41,12 @@ export const NavItems = ({ categories, isMobile, onClick }: NavItemsProps) => {
             isMobile
         })),
         {
+            href: paths.offers,
+            text: t("nav.offers"),
+            onClick: onClick,
+            isMobile
+        },
+        {
             href: paths.aboutUs,
             text: t("nav.aboutUs"),
             onClick: onClick,

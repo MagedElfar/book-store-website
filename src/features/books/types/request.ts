@@ -7,7 +7,7 @@ export interface BookParams {
     author_id?: string | null;
     author_ids?: string[];
     tagId?: string | null,
-    tagIds?: string[];
+    tag_ids?: string[];
     is_active?: string;
     sortBy?: "newest" | "oldest" | "price_high" | "price_low" | "alpha" | "stock_high" | "stock_low" | "sales_count";
     page?: number;

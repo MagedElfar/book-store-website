@@ -1,3 +1,3 @@
 export * from "./supabase"
 
-export * from "./numbers"
+export * from "./helper"
