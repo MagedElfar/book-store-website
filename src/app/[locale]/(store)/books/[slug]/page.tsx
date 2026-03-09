@@ -16,15 +16,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!book) return { title: "Book Not Found" };
 
     const title = getLocalizedValue(book, "title");
-    const description = getLocalizedValue(book, "description")
+    const rawDescription = getLocalizedValue(book, "description") || "";
+
+    // 1. تنظيف النص من الـ HTML Tags
+    // Regex: /<[^>]*>/g بيشيل أي حاجة بين < >
+    const plainDescription = rawDescription
+        .replace(/<[^>]*>/g, '') // حذف وسوم HTML
+        .replace(/\s+/g, ' ')    // تحويل المسافات المتعددة لمسافة واحدة
+        .trim();
+
+    // 2. قص النص ليكون 160 حرف (الأفضل للـ SEO)
+    const truncatedDescription = plainDescription.length > 160
+        ? plainDescription.slice(0, 157) + "..."
+        : plainDescription;
 
     return {
         title,
-        description: description?.slice(0, 160),
+        description: truncatedDescription,
         openGraph: {
             type: 'website',
             title,
-            description: description || "",
+            description: truncatedDescription,
             images: [book.cover_image || ""],
             locale: lang
         }
@@ -37,6 +49,7 @@ export default async function SingleBookPage({ params }: Props) {
     const book = await getBooBySlugApi(slug);
 
     if (!book) notFound();
+
 
     return (
         <PageLayout>
