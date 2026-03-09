@@ -10,7 +10,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const { t, getLocalizedValue } = await getAppTranslation("books")
+    const { t, getLocalizedValue, lang } = await getAppTranslation("books")
     const book = await getBooBySlugApi(slug);
 
     if (!book) return { title: "Book Not Found" };
@@ -22,9 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title,
         description: description?.slice(0, 160),
         openGraph: {
+            type: 'website',
             title,
             description: description || "",
             images: [book.cover_image || ""],
+            locale: lang
         }
     };
 }
