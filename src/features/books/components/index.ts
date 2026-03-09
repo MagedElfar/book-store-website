@@ -1,1 +1,7 @@
 export * from "./BookCard"
+export * from "./BookHeaderActions"
+export * from "./BookTitleSection"
+export * from "./BookDetails"
+export * from "./BookSpecifications"
+export * from "./BookActions"
+export * from "./BookFooter"

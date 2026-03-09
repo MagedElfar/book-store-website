@@ -2,5 +2,30 @@
   "title": {
     "books": "Browse Books",
     "booksDesc": "Your premier destination for discovering the world's best books and local masterpieces, all in one place."
+  },
+  "details": {
+    "categories": "Categories",
+    "defaultCategory": "General Category",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "share": "Share book",
+    "addToWishlist": "Add to wishlist",
+    "authorBy": "Author",
+    "reviews": "reviews",
+    "currency": "EGP",
+    "savingsText": "You saved {amount} EGP",
+    "discount": "Discount",
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "shippingInfo": "Fast delivery within 48 hours",
+    "returnPolicy": "Flexible 14-day return policy",
+    "specifications": "Book Specifications",
+    "isbn": "ISBN Number",
+    "publisher": "Publisher",
+    "publishedYear": "Published year",
+    "pages": "Pages",
+    "pageUnit": "Page",
+    "sku": "SKU",
+    "available": "Available"
   }
 }

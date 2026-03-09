@@ -1,0 +1,67 @@
+@reference "../../../app/globals.css";
+
+.book-gallery :global(.swiper-button-next),
+.book-gallery :global(.swiper-button-prev) {
+    cursor: pointer;
+    @apply hidden text-blue-600 transition-all duration-300 bg-white/90 backdrop-blur-md w-[30px] h-[30px] rounded-full !opacity-0 shadow-sm border border-slate-200/50;
+}
+
+:global(.dark) .book-gallery :global(.swiper-button-next),
+:global(.dark) .book-gallery :global(.swiper-button-prev) {
+    @apply bg-zinc-800/90 text-blue-400 border-zinc-700/50 shadow-black/50;
+}
+
+.book-gallery :global(.swiper-button-next:hover),
+.book-gallery :global(.swiper-button-prev:hover) {
+    @apply scale-110 bg-white text-blue-700 shadow-md;
+}
+
+:global(.dark) .book-gallery :global(.swiper-button-next:hover),
+:global(.dark) .book-gallery :global(.swiper-button-prev:hover) {
+    @apply bg-zinc-700 text-blue-300;
+}
+
+.book-gallery :global(.swiper-button-next svg),
+.book-gallery :global(.swiper-button-prev svg) {
+    @apply w-[12px] h-[12px] flex items-center justify-center;
+    stroke: currentColor;
+}
+
+@media (min-width: 768px) {
+
+    .book-gallery :global(.swiper-button-next),
+    .book-gallery :global(.swiper-button-prev) {
+        @apply !flex;
+    }
+}
+
+.book-gallery:hover :global(.swiper-button-next:not(.swiper-button-disabled)),
+.book-gallery:hover :global(.swiper-button-prev:not(.swiper-button-disabled)) {
+    @apply !opacity-100;
+}
+
+.book-gallery :global(.swiper-button-next:after),
+.book-gallery :global(.swiper-button-prev:after) {
+    @apply text-[16px] font-black;
+}
+
+.book-gallery :global(.swiper-pagination-bullet) {
+    @apply bg-slate-300;
+}
+
+:global(.dark) .book-gallery :global(.swiper-pagination-bullet) {
+    @apply bg-zinc-600;
+}
+
+.book-gallery :global(.swiper-pagination-bullet-active) {
+    @apply !bg-blue-600 w-[24px] !rounded-full transition-all duration-300;
+}
+
+.book-gallery :global(.swiper-button-disabled) {
+    @apply !opacity-20 cursor-not-allowed pointer-events-none shadow-none scale-100;
+    @apply text-slate-400 bg-slate-100/50;
+}
+
+:global(.dark) .book-gallery :global(.swiper-button-disabled) {
+    @apply text-zinc-500 bg-zinc-800/30;
+}

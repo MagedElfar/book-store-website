@@ -2,5 +2,30 @@
   "title": {
     "books": "تصفح الكتب",
     "booksDesc": "وجهتك الأولى لاكتشاف أفضل الكتب العالمية والروائع المحلية، كل ذلك في مكان واحد."
+  },
+  "details": {
+    "categories": "التصنيفات",
+    "defaultCategory": "قسم عام",
+    "inStock": "متوفر في المخزون",
+    "outOfStock": "نفد من المخزون",
+    "share": "مشاركة الكتاب",
+    "addToWishlist": "إضافة للمفضلة",
+    "authorBy": "المؤلف",
+    "reviews": "مراجعة",
+    "currency": "ج.م",
+    "savingsText": "لقد وفرت {amount} ج.م",
+    "discount": "خصم",
+    "addToCart": "إضافة إلى السلة",
+    "buyNow": "شراء الآن",
+    "shippingInfo": "توصيل سريع خلال 48 ساعة",
+    "returnPolicy": "سياسة استرجاع مرنة خلال 14 يوماً",
+    "specifications": "مواصفات الكتاب",
+    "isbn": "رقم الـ ISBN",
+    "publisher": "دار النشر",
+    "publishedYear": "سنة النشر",
+    "pages": "عدد الصفحات",
+    "pageUnit": "صفحة",
+    "sku": "رمز المنتج",
+    "available": "متوفر"
   }
 }

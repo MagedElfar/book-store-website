@@ -116,21 +116,20 @@ export const supabaseBookProvider: BookApiProvider = {
             select: `
             *,
             book_images(id, book_id, image_url, display_order),
-            book_categories(categories(id, name_en, name_ar)),
-            book_authors(authors(id, name_en, name_ar)),
-            book_tags(tags(id, name_en, name_ar))
+            book_categories(categories(id, name_en, name_ar, slug)),
+            book_authors(authors(id, name_en, name_ar, slug)),
+            book_tags(tags(id, name_en, name_ar , color))
         `.replace(/\s+/g, ""),
             "book_images.order": "display_order.asc"
         };
 
         const bookRaw = await supabaseFetchSingle<any>("books", {
             params: queryParams,
-            revalidate: 60,
+            revalidate: 3600,
             tags: [`book-${slug}`]
         });
 
         if (!bookRaw) return null;
-
 
         return {
             ...bookRaw,

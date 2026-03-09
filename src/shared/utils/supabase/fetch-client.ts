@@ -88,16 +88,29 @@ export async function supabaseFetch<T>(endpoint: string, options: FetchOptions =
 export async function supabaseFetchSingle<T>(endpoint: string, options: FetchOptions = {}): Promise<T | null> {
     const headers = (options.headers || {}) as Record<string, string>;
 
-    return supabaseFetch<T>(endpoint, {
-        ...options,
-        headers: {
-            ...headers,
-            "Accept": "application/vnd.pgrst.object+json",
-        },
-    }).catch((error) => {
-        if (error.message.includes("406") || error.message.includes("404")) {
+    try {
+        const result = await supabaseFetch<any>(endpoint, {
+            ...options,
+            headers: {
+                ...headers,
+                "Accept": "application/vnd.pgrst.object+json",
+            },
+        });
+
+        if (!result || !result.items || (Array.isArray(result.items) && result.items.length === 0)) {
             return null;
         }
-        throw error;
-    });
+
+        const data = Array.isArray(result.items) ? result.items[0] : result.items;
+
+        if (data && Object.keys(data).length === 0) return null;
+
+        return data as T;
+
+    } catch (error: any) {
+        if (error.message?.includes("406") || error.message?.includes("404")) {
+            return null;
+        }
+        return null;
+    }
 }

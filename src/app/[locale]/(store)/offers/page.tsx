@@ -1,5 +1,4 @@
-import { getBooKsApi, mapQuerySearchParamsToBookSearchParams } from "@/features/books";
-import { BookListSection } from "@/features/books/components/BookListSection";
+import { BookListSection, getBooKsApi, mapQuerySearchParamsToBookSearchParams } from "@/features/books";
 import { PageLayout, SectionHeader } from "@/shared/components";
 import { getAppTranslation } from "@/shared/lib";
 import { calcTotalPages } from "@/shared/utils";
