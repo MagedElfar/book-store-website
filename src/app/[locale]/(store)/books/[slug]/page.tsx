@@ -18,17 +18,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = getLocalizedValue(book, "title");
     const rawDescription = getLocalizedValue(book, "description") || "";
 
-    // 1. تنظيف النص من الـ HTML Tags
-    // Regex: /<[^>]*>/g بيشيل أي حاجة بين < >
-    const plainDescription = rawDescription
-        .replace(/<[^>]*>/g, '') // حذف وسوم HTML
-        .replace(/\s+/g, ' ')    // تحويل المسافات المتعددة لمسافة واحدة
+    const cleanDescription = rawDescription
+        .replace(/<[^>]*>/g, '')
+        .replace(/\s+/g, ' ')
         .trim();
 
-    // 2. قص النص ليكون 160 حرف (الأفضل للـ SEO)
-    const truncatedDescription = plainDescription.length > 160
-        ? plainDescription.slice(0, 157) + "..."
-        : plainDescription;
+    // 3. تحديد طول النص بـ 160 حرف (المثالي لمحركات البحث)
+    const truncatedDescription = cleanDescription.length > 160
+        ? cleanDescription.substring(0, 157) + "..."
+        : cleanDescription;
 
     return {
         title,
