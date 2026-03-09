@@ -20,14 +20,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const cleanDescription = rawDescription
         .replace(/<[^>]*>/g, '')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&[a-z0-9]+;/gi, '')
         .replace(/\s+/g, ' ')
         .trim();
 
-    // 3. تحديد طول النص بـ 160 حرف (المثالي لمحركات البحث)
+    // 2. قص النص لـ 160 حرف
     const truncatedDescription = cleanDescription.length > 160
         ? cleanDescription.substring(0, 157) + "..."
         : cleanDescription;
-
     return {
         title,
         description: truncatedDescription,
