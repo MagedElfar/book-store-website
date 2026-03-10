@@ -28,7 +28,6 @@ export default async function CategoryDetailsPage({ params, searchParams }: Prop
 
     const books = await getBooKsApi({
         ...bookParams,
-        isOffers: true,
         category_id: category.id
     });
 
