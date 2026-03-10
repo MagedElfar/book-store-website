@@ -1,8 +1,5 @@
 // app/[locale]/books/layout.tsx
-import { QueryClient } from "@tanstack/react-query";
 
-import { prefetchInfiniteAuthors } from "@/features/authors";
-import { prefetchInfiniteTags } from "@/features/tags";
 import { GlobalLoadingProvider } from "@/providers/GlobalLoaderProvider";
 
 interface Props {
@@ -10,16 +7,11 @@ interface Props {
 }
 
 export default async function CategoriesLayout({ children }: Props) {
-    const queryClient = new QueryClient();
 
-    await Promise.all([
-        prefetchInfiniteAuthors(queryClient),
-        prefetchInfiniteTags(queryClient)
-    ])
 
     return (
         <GlobalLoadingProvider>
             {children}
-            ]        </GlobalLoadingProvider>
+        </GlobalLoadingProvider>
     );
 }
