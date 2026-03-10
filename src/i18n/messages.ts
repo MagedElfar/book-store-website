@@ -1,3 +1,5 @@
+import authorsAr from "@/features/authors/locales/ar.json"
+import authorsEN from "@/features/authors/locales/en.json"
 import booksAr from "@/features/books/locales/ar.json"
 import booksEn from "@/features/books/locales/en.json"
 import categoriesAr from "@/features/categories/locales/ar.json"
@@ -12,12 +14,14 @@ export const messagesData = {
         common: CommonEn,
         home: homeEn,
         books: booksEn,
-        categories: categoriesEN
+        categories: categoriesEN,
+        authors: authorsEN
     },
     ar: {
         common: CommonAr,
         home: homeAr,
         books: booksAr,
-        categories: categoriesAr
+        categories: categoriesAr,
+        authors: authorsAr
     },
 } as const;

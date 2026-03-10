@@ -1,7 +1,7 @@
 import { API_RECORDED_LIMIT } from "@/shared/config";
 import { supabaseClient } from "@/shared/lib/supabase";
 import { GetManyResponse } from "@/shared/types";
-import { supabaseFetch } from "@/shared/utils";
+import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils";
 
 import { AuthorApiProvider, AuthorsParams, Author } from "../types";
 
@@ -108,16 +108,14 @@ export const supabaseAuthorProvider: AuthorApiProvider = {
             limit: 1
         };
 
-        const response = await supabaseFetch<Author[]>("authors_with_counts", {
+        const response = await supabaseFetchSingle<Author>("authors_with_counts", {
             params: queryParams,
             revalidate: 3600,
             tags: [`author-${slug}`]
         });
 
-        if (!response || response.length === 0) {
-            throw new Error("Author not found");
-        }
+        if (!response) return null
 
-        return response[0];
+        return response;
     },
 };

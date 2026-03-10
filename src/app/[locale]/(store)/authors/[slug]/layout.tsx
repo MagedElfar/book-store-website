@@ -1,18 +1,18 @@
 // app/[locale]/books/layout.tsx
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-import { prefetchInfiniteAuthors } from "@/features/authors";
+import { prefetchInfiniteCategory } from "@/features/categories";
 import { prefetchInfiniteTags } from "@/features/tags";
 
 interface Props {
     children: React.ReactNode
 }
 
-export default async function CategoryLayout({ children }: Props) {
+export default async function AuthorLayout({ children }: Props) {
     const queryClient = new QueryClient();
 
     await Promise.all([
-        prefetchInfiniteAuthors(queryClient),
+        prefetchInfiniteCategory(queryClient),
         prefetchInfiniteTags(queryClient)
     ])
 
