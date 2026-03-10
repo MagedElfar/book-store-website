@@ -1,13 +1,13 @@
+import { GetManyResponse } from "@/shared/types";
 import { supabaseFetch } from "@/shared/utils/supabase";
+
 import type {
     Banner,
-    BannerApiProvider,
-    BannersParams
+    BannerApiProvider
 } from "../types";
-import { GetManyResponse } from "@/shared/types";
 
 export const supabaseBannerProvider: BannerApiProvider = {
-    getBanners: async function (params?: BannersParams) {
+    getBanners: async function () {
         const queryParams: Record<string, string> = {
             select: "*",
             order: "priority",

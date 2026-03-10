@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Category } from "@/features/categories/types";
+
 import { paths } from "@/shared/config";
 import { useAppTranslation } from "@/shared/hooks";
+
 import { Author } from "../types";
 
 interface AuthorCardProps {

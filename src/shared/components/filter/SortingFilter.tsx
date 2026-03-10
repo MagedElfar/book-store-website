@@ -1,9 +1,10 @@
 "use client";
 
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
-import { useAppTranslation } from "@/shared/hooks";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+
 import { useLoaderContext } from "@/shared/context";
+import { useAppTranslation } from "@/shared/hooks";
 
 export const SortingFilter = () => {
     const { t } = useAppTranslation("common");

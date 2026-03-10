@@ -1,15 +1,18 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
-import { useAppTranslation } from "@/shared/hooks";
 import {
     Mail,
     Phone,
     MapPin,
     ArrowUpRight
 } from "lucide-react";
-import { Logo } from "../../common";
+
+import { Link } from "@/i18n/routing";
 import { paths } from "@/shared/config";
+import { useAppTranslation } from "@/shared/hooks";
+
+import { Logo } from "../../common";
+
 
 export const Footer = () => {
     const { t } = useAppTranslation("common");

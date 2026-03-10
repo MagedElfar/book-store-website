@@ -1,10 +1,11 @@
 'use client'
 
-import { cn } from "@/lib/utils";
-import { Badge, Button } from "@/shared/components";
-import { useAppTranslation } from "@/shared/hooks";
-import { CheckCircle2, XCircle, Share2, Heart, ShoppingCart, Plus, Minus } from "lucide-react";
+import { ShoppingCart, Plus, Minus } from "lucide-react";
 import { useState } from "react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/shared/components";
+import { useAppTranslation } from "@/shared/hooks";
 
 interface Props {
     stock: number

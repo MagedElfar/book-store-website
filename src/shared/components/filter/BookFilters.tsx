@@ -1,7 +1,9 @@
 "use client";
 import { Filter, RotateCcw } from "lucide-react";
-import { FilterFields } from "./FilterFields";
+
 import { useAppTranslation, useBookFilters } from "@/shared/hooks";
+
+import { FilterFields } from "./FilterFields";
 
 export const BookFilters = (props: { hideAuthors?: boolean; hideCategories?: boolean }) => {
     const { t } = useAppTranslation("common");

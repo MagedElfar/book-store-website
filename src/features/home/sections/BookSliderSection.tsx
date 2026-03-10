@@ -1,19 +1,16 @@
+/* eslint-disable react-hooks/refs */
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Book } from "@/features/books/types";
-import { BookCard } from "@/features/books";
+import { useEffect, useRef, useState } from "react";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-import styles from "./../styles/book-slider.module.css";
+import { BookCard, type Book } from "@/features/books";
 import { SectionTitle } from "@/shared/components";
 import { useAppTranslation } from "@/shared/hooks";
+
+import styles from "./../styles/book-slider.module.css";
 
 interface BestSellersSectionProps {
     books: Book[];
@@ -60,9 +57,10 @@ export const BookSliderSection = ({ books, title }: BestSellersSectionProps) => 
                                 spaceBetween={20}
                                 slidesPerView={1.3}
                                 onBeforeInit={(swiper) => {
-                                    // @ts-ignore - نربط الأسهم يدوياً قبل الـ Initialization
+                                    // @ts-expect-error - نربط الأسهم يدوياً قبل الـ Initialization
                                     swiper.params.navigation.prevEl = prevRef.current;
-                                    // @ts-ignore
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-expect-error
                                     swiper.params.navigation.nextEl = nextRef.current;
                                 }}
                                 navigation={{

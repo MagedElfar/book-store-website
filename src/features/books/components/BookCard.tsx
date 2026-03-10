@@ -1,8 +1,9 @@
 "use client"
 
+import { Star, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Star, ShoppingCart, TrendingUp } from "lucide-react";
+
 import type { Book } from "@/features/books/types";
 import { useAppTranslation } from "@/shared/hooks";
 import { formatPrice } from "@/shared/utils";

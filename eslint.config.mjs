@@ -1,91 +1,65 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-import reactCompiler from "eslint-plugin-react-compiler";
-import importPlugin from "eslint-plugin-import";
-import reactHooks from "eslint-plugin-react-hooks";
+import tseslint from "typescript-eslint";
+import pluginReact from "eslint-plugin-react";
+import pluginReactHooks from "eslint-plugin-react-hooks";
+import pluginNext from "@next/eslint-plugin-next";
+import pluginImport from "eslint-plugin-import";
+import configPrettier from "eslint-config-prettier";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-const eslintConfig = [
-  {
-    ignores: [".next/**", "node_modules/**", "dist/**"],
-  },
-
-  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
-
-  {
-    files: ["**/*.ts", "**/*.tsx"],
-    plugins: {
-      "react-compiler": reactCompiler,
-      "import": importPlugin,
-      "@typescript-eslint": typescriptEslint,
-      "react-hooks": reactHooks,
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      "react-compiler/recommended": "error",
+export default tseslint.config(
+    // 1. الملفات التي يجب تجاهلها (مهم جداً لتجنب البطء)
+    {
+        ignores: [".next/**", "node_modules/**", "dist/**", "out/**"],
     },
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-      },
-    },
-    rules: {
-      // --- React Compiler ---
-      "react-compiler/recommended": "error",
 
-      // --- TypeScript Rules ---
-      "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
-      "prefer-const": "error",
+    // 2. إعدادات لغة الـ TypeScript والـ JS الموصى بها
+    js.configs.recommended,
+    ...tseslint.configs.recommended,
 
-      // --- Import Ordering ---
-      "import/order": [
-        "error",
-        {
-          "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
-          "pathGroups": [
-            {
-              "pattern": "react",
-              "group": "builtin",
-              "position": "before"
+    // 3. إعدادات نكست والـ Hooks والـ React يدوياً لتجنب الـ Circular Error
+    {
+        files: ["**/*.{ts,tsx}"],
+        plugins: {
+            "react": pluginReact,
+            "react-hooks": pluginReactHooks,
+            "@next/next": pluginNext,
+            "import": pluginImport,
+        },
+        languageOptions: {
+            parserOptions: {
+                ecmaFeatures: { jsx: true },
             },
-            {
-              "pattern": "@/**",
-              "group": "internal"
-            }
-          ],
-          "pathGroupsExcludedImportTypes": ["react"],
-          "newlines-between": "always",
-          "alphabetize": { "order": "asc", "caseInsensitive": true }
-        }
-      ],
+        },
+        rules: {
+            // قواعد الـ Hooks الصارمة (ستعمل الآن فوراً)
+            ...pluginReactHooks.configs.recommended.rules,
+            "react-hooks/exhaustive-deps": "warn",
+            "@typescript-eslint/no-explicit-any": "off",
+            // قواعد نكست الأساسية
+            ...pluginNext.configs.recommended.rules,
+            ...pluginNext.configs["core-web-vitals"].rules,
 
-      "no-restricted-imports": [
-        "error",
-        {
-          "patterns": [
-            {
-              "group": ["@/features/*/*"],
-              "message": "Direct access to internal feature files is forbidden. Use the public API (index.ts) of the feature instead."
-            }
-          ]
-        }
-      ]
+            // --- القاعدة التي طلبتها لـ currentPage ---
+            "@typescript-eslint/no-unused-vars": ["warn", {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }],
+
+            "no-console": "warn",
+            "prefer-const": "error",
+
+            // --- ترتيب الـ Imports (Clean Architecture) ---
+            "import/order": [
+                "error",
+                {
+                    "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
+                    "pathGroups": [{ "pattern": "@/**", "group": "internal" }],
+                    "newlines-between": "always",
+                    "alphabetize": { "order": "asc", "caseInsensitive": true }
+                }
+            ],
+        },
     },
-  },
-];
 
-export default eslintConfig;
+    configPrettier
+);

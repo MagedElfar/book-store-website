@@ -1,8 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
 import { Filter, X, RotateCcw } from "lucide-react";
-import { FilterFields } from "./FilterFields";
+import { useState, useEffect } from "react";
+
 import { useAppTranslation, useBookFilters } from "@/shared/hooks";
+
+import { FilterFields } from "./FilterFields";
+
 
 export const MobileBookFilters = (props: any) => {
     const [isOpen, setIsOpen] = useState(false);

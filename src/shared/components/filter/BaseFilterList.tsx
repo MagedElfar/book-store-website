@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { Search, Check, Loader2, ChevronDown } from "lucide-react";
+import { useDebounce } from 'minimal-shared/hooks';
+import { useEffect, useRef, useState } from "react";
+
+import { INFINITE_RECORDED_LIMIT } from "@/shared/config";
+import { useAppTranslation } from "@/shared/hooks";
 import { useInfiniteLookup } from "@/shared/hooks/useInfiniteLookup";
 import { GetManyResponse } from "@/shared/types";
-import { useAppTranslation } from "@/shared/hooks";
-import { useDebounce } from 'minimal-shared/hooks';
-import { APP_CLIENT_INTERNALS } from "next/dist/shared/lib/constants";
-import { INFINITE_RECORDED_LIMIT } from "@/shared/config";
 
 interface BaseFilterListProps<T> {
     title: string;
@@ -61,7 +61,7 @@ export function BaseFilterList<T>({
                 behavior: "smooth"
             });
         }
-    }, [items.length, isFetchingNextPage]);
+    }, [items.length, isFetchingNextPage, limit]);
 
     return (
         <div className="space-y-4">

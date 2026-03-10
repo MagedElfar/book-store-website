@@ -1,14 +1,12 @@
 import { LangSwitcher, ThemeToggle } from "@/shared/components";
+
 import { Logo } from "../../common";
-import { Category } from "@/features/categories";
 import { CartIcon, SearchBar, UserAccountBox } from "../components";
 import { MobileMenuButton } from "../components/MobileMenuButton";
 
-interface Props {
-    navCategories: Category[]
-}
 
-export const TopBar = ({ navCategories }: Props) => {
+
+export const TopBar = () => {
     return (
         <div className="h-16 md:h-20 border-b sticky top-0 z-50 bg-slate-50/95 dark:bg-zinc-950/95 backdrop-blur-md shadow-sm flex items-center">
             <div className="container mx-auto px-4 flex items-center justify-between gap-4">

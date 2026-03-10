@@ -1,9 +1,10 @@
+import { AUTHOR_INFINITE_QUERY, getAuthorsClient } from "@/features/authors";
+import { CATEGORY_INFINITE_QUERY, getCategoriesClient } from "@/features/categories";
+import { getTagsClient, TAG_INFINITE_QUERY } from "@/features/tags";
 import { useAppTranslation, useBookFilters } from "@/shared/hooks";
+
 import { BaseFilterList } from "./BaseFilterList";
 import { PriceFilter } from "./PriceFilter";
-import { CATEGORY_INFINITE_QUERY, getCategoriesClient } from "@/features/categories";
-import { AUTHOR_INFINITE_QUERY, getAuthorsClient } from "@/features/authors";
-import { getTagsClient, TAG_INFINITE_QUERY } from "@/features/tags";
 
 export const FilterFields = ({ hideAuthors, hideCategories }: { hideAuthors?: boolean, hideCategories?: boolean }) => {
     const { t } = useAppTranslation("common");
@@ -72,6 +73,7 @@ export const FilterFields = ({ hideAuthors, hideCategories }: { hideAuthors?: bo
             {/* Price Filter */}
             <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 pb-4">
                 <PriceFilter
+                    key={`${searchParams.get("min_price")}-${searchParams.get("max_price")}`}
                     title={t("filters.price")}
                     minKey="min_price"
                     maxKey="max_price"

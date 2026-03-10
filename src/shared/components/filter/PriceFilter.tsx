@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
 import { useAppTranslation } from "@/shared/hooks";
 
 interface PriceFilterProps {
@@ -18,10 +19,13 @@ export const PriceFilter = ({ title, minKey, maxKey, updateParams, initialMin, i
     const [min, setMin] = useState(initialMin || "");
     const [max, setMax] = useState(initialMax || "");
 
-    useEffect(() => {
+    const [prevInitial, setPrevInitial] = useState({ min: initialMin, max: initialMax });
+
+    if (initialMin !== prevInitial.min || initialMax !== prevInitial.max) {
+        setPrevInitial({ min: initialMin, max: initialMax });
         setMin(initialMin || "");
         setMax(initialMax || "");
-    }, [initialMin, initialMax]);
+    }
 
     const handleApply = () => {
         updateParams({
@@ -47,7 +51,6 @@ export const PriceFilter = ({ title, minKey, maxKey, updateParams, initialMin, i
                     <button
                         onClick={handleApply}
                         className="text-[10px] cursor-pointer font-bold text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
-
                     >
                         {t("common.apply")}
                     </button>

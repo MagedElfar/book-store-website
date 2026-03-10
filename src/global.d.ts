@@ -1,5 +1,5 @@
-import { routing } from '@/i18n/routing';
 import { messagesData } from '@/i18n/messages';
+import { routing } from '@/i18n/routing';
 
 type Messages = typeof messagesData.en;
 
@@ -11,7 +11,7 @@ declare module 'next-intl' {
 }
 
 declare global {
-    interface IntlMessages extends Messages { }
+    type IntlMessages = Messages
 }
 
 export { };

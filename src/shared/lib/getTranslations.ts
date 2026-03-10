@@ -1,4 +1,5 @@
 import { getTranslations, getLocale } from 'next-intl/server';
+
 import { AppNamespace } from "@/shared/hooks/use-translation";
 
 export async function getAppTranslation<N extends AppNamespace>(namespace?: N) {

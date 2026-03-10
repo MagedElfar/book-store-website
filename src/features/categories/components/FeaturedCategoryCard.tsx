@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
 import { Category } from "@/features/categories/types";
 import { paths } from "@/shared/config";
 import { useAppTranslation } from "@/shared/hooks";
@@ -17,31 +18,30 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
     return (
         <Link
             href={paths.categories.details(category.slug)}
-            className="group flex flex-col items-center gap-4 transition-transform duration-300"
+            className="group flex flex-col items-center gap-2 md:gap-4 transition-transform duration-300 w-full overflow-hidden"
             title={name}
         >
             {/* Image Wrapper */}
-            <div className="relative w-[100px] h-[100px] md:w-[125px] md:h-[125px] 
+            <div className="relative w-full aspect-square max-w-[90px] sm:max-w-[110px] md:max-w-[125px]
                             rounded-full overflow-hidden border-2 border-transparent 
                             bg-gray-100 dark:bg-zinc-900 
-                            transition-all duration-500 cubic-bezier(0.175, 0.885, 0.32, 1.275)
-                            group-hover:translate-y-[-8px] group-hover:border-blue-600 
-                            group-hover:shadow-[0_15px_30px_-10px_rgba(37,99,235,0.3)]">
+                            transition-all duration-500
+                            group-hover:translate-y-[-4px] group-hover:border-blue-600 
+                            group-hover:shadow-lg">
 
                 <Image
                     src={category?.image_url || "/images/img-ph.jpg"}
                     alt={name}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100px, 125px"
+                    sizes="(max-width: 640px) 90px, (max-width: 1024px) 110px, 125px"
                 />
             </div>
 
             {/* Category Name */}
-            <span className="text-sm md:text-base font-bold text-center 
+            <span className="text-[10px] xs:text-xs md:text-sm font-bold text-center 
                              text-gray-700 dark:text-zinc-200 
-                             transition-colors duration-300 
-                             group-hover:text-blue-600 line-clamp-1 max-w-full px-2">
+                             line-clamp-1 w-full px-1">
                 {name}
             </span>
         </Link>

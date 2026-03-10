@@ -1,7 +1,8 @@
 "use client"
 
-import { useMobileMenu } from "@/store/use-mobile-menu";
 import { Menu } from "lucide-react";
+
+import { useMobileMenu } from "@/store/use-mobile-menu";
 
 export function MobileMenuButton() {
     const openMenu = useMobileMenu((state) => state.open);

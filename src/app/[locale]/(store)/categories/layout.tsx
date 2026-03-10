@@ -2,18 +2,24 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 import { prefetchInfiniteAuthors } from "@/features/authors";
-import { prefetchInfiniteCategory } from "@/features/categories";
 import { prefetchInfiniteTags } from "@/features/tags";
 import { GlobalLoadingProvider } from "@/providers/GlobalLoaderProvider";
 
-export default async function BooksLayout({ children }: { children: React.ReactNode }) {
-    const queryClient = new QueryClient();
+interface Props {
+    params: Promise<{ slug?: string }>
+    children: React.ReactNode
+}
 
-    await Promise.all([
-        prefetchInfiniteCategory(queryClient),
-        prefetchInfiniteAuthors(queryClient),
-        prefetchInfiniteTags(queryClient)
-    ])
+export default async function CategoriesLayout({ children, params }: Props) {
+    const queryClient = new QueryClient();
+    const { slug } = await params
+
+    if (slug) {
+        await Promise.all([
+            prefetchInfiniteAuthors(queryClient),
+            prefetchInfiniteTags(queryClient)
+        ])
+    }
 
     return (
         <GlobalLoadingProvider>

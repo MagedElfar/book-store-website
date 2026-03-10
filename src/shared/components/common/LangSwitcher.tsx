@@ -1,9 +1,10 @@
 "use client";
 
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/routing";
-import { useParams } from "next/navigation";
 import { Globe } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useLocale } from "next-intl";
+
+import { usePathname, useRouter } from "@/i18n/routing";
 
 export function LangSwitcher() {
     const locale = useLocale();
@@ -15,7 +16,8 @@ export function LangSwitcher() {
         const nextLocale = locale === "en" ? "ar" : "en";
 
         router.replace(
-            // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             { pathname, params },
             { locale: nextLocale }
         );

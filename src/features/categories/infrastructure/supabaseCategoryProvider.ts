@@ -1,8 +1,9 @@
-import { supabaseFetch } from "@/shared/utils/supabase/fetch-client";
-import { CategoriesParams, Category, CategoryApiProvider } from "../types";
-import { GetManyResponse } from "@/shared/types";
 import { API_RECORDED_LIMIT } from "@/shared/config";
 import { supabaseClient } from "@/shared/lib/supabase";
+import { GetManyResponse } from "@/shared/types";
+import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/supabase/fetch-client";
+
+import { CategoriesParams, Category, CategoryApiProvider } from "../types";
 
 export const supabaseCategoryProvider: CategoryApiProvider = {
     getCategories: async function (params: CategoriesParams): Promise<GetManyResponse<Category>> {
@@ -112,8 +113,8 @@ export const supabaseCategoryProvider: CategoryApiProvider = {
     },
 
 
-    getCategoryBySlug: async function (slug: string): Promise<Category> {
-        const data = await supabaseFetch<Category[]>("categories", {
+    getCategoryBySlug: async function (slug: string): Promise<Category | null> {
+        const data = await supabaseFetchSingle<Category>("categories", {
             params: {
                 slug: `eq.${slug}`,
                 is_active: "eq.true",
@@ -123,10 +124,9 @@ export const supabaseCategoryProvider: CategoryApiProvider = {
             revalidate: 86400
         });
 
-        if (!data || data.length === 0) {
-            throw new Error("Category not found");
-        }
+        if (!data) return null;
 
-        return data[0];
+
+        return data;
     },
 };

@@ -1,4 +1,5 @@
 import { supabaseClient } from "@/shared/lib/supabase";
+
 import type {
     Tag,
     TagApiProvider,
@@ -11,7 +12,6 @@ export const supabaseTagProvider: TagApiProvider = {
     getTagsClient: async function (params: TagsParams) {
         const {
             search,
-            is_active,
             sortBy = "newest",
             page = 1,
             limit = 10

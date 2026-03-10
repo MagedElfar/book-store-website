@@ -1,14 +1,16 @@
+import { Metadata } from "next";
+
 import { BookListSection, getBooKsApi, mapQuerySearchParamsToBookSearchParams } from "@/features/books";
 import { PageLayout, SectionHeader } from "@/shared/components";
 import { getAppTranslation } from "@/shared/lib";
 import { calcTotalPages } from "@/shared/utils";
-import { Metadata } from "next";
 
+interface Props {
+    searchParams: Promise<Record<string, string>>
+}
 
-export async function generateMetadata({ searchParams }: { searchParams: Promise<Record<string, string>> }): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
     const { t } = await getAppTranslation("books");
-    const params = await searchParams;
-
 
     return {
         title: `${t("title.books")}`,
@@ -24,7 +26,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     };
 }
 
-export default async function BooksPage({ searchParams }: { searchParams: Record<string, string> }) {
+export default async function BooksPage({ searchParams }: Props) {
     const { t } = await getAppTranslation("books");
 
     const params = await searchParams;

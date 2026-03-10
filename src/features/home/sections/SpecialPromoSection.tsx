@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { useAppTranslation } from "@/shared/hooks";
+import Image from "next/image";
+
 import { Link } from "@/i18n/routing";
 import { paths } from "@/shared/config";
+import { useAppTranslation } from "@/shared/hooks";
 
 export const SpecialPromoSection = () => {
     const { t } = useAppTranslation("home");

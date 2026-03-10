@@ -12,7 +12,7 @@ export function SectionHeader({ title, description, children }: Props) {
             <h1 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
                 {title}
             </h1>
-            {description && <p className="text-slate-500 dark:text-zinc-400 max-w-md">
+            {description && <p className="text-slate-500 dark:text-zinc-400 max-w-2xl">
                 {description}
             </p>}
         </div>

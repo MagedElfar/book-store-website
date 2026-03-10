@@ -1,7 +1,8 @@
 "use client";
 
 import DOMPurify from "dompurify";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
+
 import { cn } from "@/lib/utils";
 
 interface HtmlContentProps {
@@ -10,13 +11,13 @@ interface HtmlContentProps {
 }
 
 export const HtmlContent = ({ html, className }: HtmlContentProps) => {
-    const [sanitized, setSanitized] = useState<string>("");
 
-    useEffect(() => {
-        if (html) {
-            setSanitized(DOMPurify.sanitize(html));
-        }
+    const sanitized = useMemo(() => {
+        if (!html) return "";
+        return typeof window !== "undefined" ? DOMPurify.sanitize(html) : "";
     }, [html]);
+
+    if (!html) return null;
 
     if (!html) return null;
 

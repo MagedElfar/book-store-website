@@ -6,6 +6,7 @@ export const env = {
 
 if (!env.supabaseUrl || !env.supabaseKey) {
     if (typeof window !== "undefined") {
+        // eslint-disable-next-line no-console
         console.warn("⚠️ Supabase Client-side variables are missing!");
     }
 }

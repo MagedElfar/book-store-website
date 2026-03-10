@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
 import { X } from "lucide-react";
+import { useEffect } from "react";
+
 import { cn } from "@/lib/utils";
-import { useAppTranslation } from "@/shared/hooks";
 import { LangSwitcher, ThemeToggle } from "@/shared/components";
-import { NavItems } from "./NavItems";
+import { useAppTranslation } from "@/shared/hooks";
 import { useMobileMenu } from "@/store/use-mobile-menu";
-import { SearchBar } from "../components";
+
+import { NavItems } from "./NavItems";
 import { Logo } from "../../common";
+import { SearchBar } from "../components";
 
 interface MobileMenuProps {
     categories: any[];

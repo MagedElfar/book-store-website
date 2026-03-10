@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Thumbs, EffectFade } from "swiper/modules";
+import { useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
+import { FreeMode, Navigation, Thumbs, EffectFade } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { cn } from "@/lib/utils";
 
 import style from "./../styles/book-gallery-section.module.css";
-import { cn } from "@/lib/utils";
 
 interface BookGalleryProps {
     coverImage: string | null;

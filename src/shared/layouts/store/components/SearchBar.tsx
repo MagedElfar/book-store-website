@@ -1,9 +1,10 @@
 "use client";
 
 import { Search, X } from "lucide-react";
-import { useState, useTransition } from "react";
-import { useAppTranslation } from "@/shared/hooks";
+import { useState } from "react";
+
 import { cn } from "@/lib/utils";
+import { useAppTranslation } from "@/shared/hooks";
 
 interface SearchBarProps {
     isMobile?: boolean;

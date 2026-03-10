@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { useMemo, useCallback } from "react";
+
 import { usePathname, useRouter } from "@/i18n/routing";
 
 export type AppNamespace = keyof IntlMessages;

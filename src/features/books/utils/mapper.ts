@@ -1,6 +1,7 @@
-import { ensureArray } from "@/shared/utils";
-import { BookParams } from "../types";
 import { API_RECORDED_LIMIT } from "@/shared/config";
+import { ensureArray } from "@/shared/utils";
+
+import { BookParams } from "../types";
 
 export function mapQuerySearchParamsToBookSearchParams(params: Record<string, string>, limit: number = API_RECORDED_LIMIT): BookParams {
     return {

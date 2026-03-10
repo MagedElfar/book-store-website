@@ -1,6 +1,7 @@
 "use client";
 
 import { LibraryBig, RotateCcw } from "lucide-react";
+
 import { useAppTranslation, useBookFilters } from "@/shared/hooks";
 
 interface EmptyStateProps {

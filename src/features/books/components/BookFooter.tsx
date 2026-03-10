@@ -1,7 +1,8 @@
 "use client"
 
-import { useAppTranslation } from '@/shared/hooks'
 import { Info } from 'lucide-react'
+
+import { useAppTranslation } from '@/shared/hooks'
 
 export function BookFooter() {
     const { t } = useAppTranslation("books")

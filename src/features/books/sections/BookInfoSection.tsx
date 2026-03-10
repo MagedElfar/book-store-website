@@ -1,16 +1,17 @@
 "use client";
 
 import { useAppTranslation } from "@/shared/hooks";
-import { Book } from "../types";
+
 import { BookActions, BookDetails, BookFooter, BookHeaderActions, BookTitleSection } from "../components";
 import BookSpecifications from "../components/BookSpecifications";
+import { Book } from "../types";
 
 interface BookInfoSectionProps {
     book: Book;
 }
 
 export const BookInfoSection = ({ book }: BookInfoSectionProps) => {
-    const { t, getLocalizedValue, lang } = useAppTranslation("books");
+    const { getLocalizedValue } = useAppTranslation("books");
 
     const title = getLocalizedValue(book, "title");
     const description = getLocalizedValue(book, "description");

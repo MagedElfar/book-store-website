@@ -1,8 +1,9 @@
-import { supabaseFetch } from "@/shared/utils";
-import { AuthorApiProvider, AuthorsParams, Author } from "../types";
 import { API_RECORDED_LIMIT } from "@/shared/config";
-import { GetManyResponse } from "@/shared/types";
 import { supabaseClient } from "@/shared/lib/supabase";
+import { GetManyResponse } from "@/shared/types";
+import { supabaseFetch } from "@/shared/utils";
+
+import { AuthorApiProvider, AuthorsParams, Author } from "../types";
 
 export const supabaseAuthorProvider: AuthorApiProvider = {
 
@@ -54,7 +55,6 @@ export const supabaseAuthorProvider: AuthorApiProvider = {
     getAuthorsClient: async function (params: AuthorsParams = {}) {
         const {
             search,
-            is_active,
             sortBy = "newest",
             page = 1,
             limit = 10
@@ -91,7 +91,6 @@ export const supabaseAuthorProvider: AuthorApiProvider = {
 
         const { data, error, count } = await query;
 
-        console.log("count = ", count)
 
         if (error) throw new Error(error.message);
 

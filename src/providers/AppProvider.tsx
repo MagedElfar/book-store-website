@@ -1,10 +1,13 @@
 "use client";
 
-import { ReactNode } from "react";
 import { NextIntlClientProvider, AbstractIntlMessages } from "next-intl";
-import { ThemeProvider } from "./ThemeProvider";
+import { ReactNode } from "react";
+
+
 import { SupportedLang } from "@/shared/types";
+
 import { ReactQueryProvider } from "./ReactQueryProvider";
+import { ThemeProvider } from "./ThemeProvider";
 
 interface ProvidersProps {
     children: ReactNode;

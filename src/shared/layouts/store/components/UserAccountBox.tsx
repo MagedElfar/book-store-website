@@ -1,13 +1,14 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
-import { User, LogOut, Settings, LayoutDashboard } from "lucide-react";
+import { User, LogOut, Settings } from "lucide-react";
 import { useState } from "react";
+
+import { Link } from "@/i18n/routing";
 import { useAppTranslation } from "@/shared/hooks";
 
 export const UserAccountBox = () => {
     const { t } = useAppTranslation("common");
-    const [user, setUser] = useState<any>(null);
+    const [user] = useState<any>(null);
 
     if (!user) {
         return (

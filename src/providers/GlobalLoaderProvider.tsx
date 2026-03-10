@@ -1,8 +1,9 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState, createContext, useContext } from "react";
 import { Loader2 } from "lucide-react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useState } from "react";
+
 import { LoaderContext } from "@/shared/context";
 
 export function GlobalLoadingProvider({ children }: { children: React.ReactNode }) {
@@ -10,9 +11,13 @@ export function GlobalLoadingProvider({ children }: { children: React.ReactNode 
     const searchParams = useSearchParams();
     const [isUpdating, setIsUpdating] = useState(false);
 
-    useEffect(() => {
+    const [prevUrl, setPrevUrl] = useState(pathname + searchParams.toString());
+    const currentUrl = pathname + searchParams.toString();
+
+    if (currentUrl !== prevUrl) {
+        setPrevUrl(currentUrl);
         setIsUpdating(false);
-    }, [pathname, searchParams]);
+    }
 
     return (
         <LoaderContext.Provider value={{ setIsUpdating }}>

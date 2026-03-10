@@ -1,7 +1,8 @@
 // app/[locale]/books/layout.tsx
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { prefetchInfiniteCategory } from "@/features/categories";
+
 import { prefetchInfiniteAuthors } from "@/features/authors";
+import { prefetchInfiniteCategory } from "@/features/categories";
 import { prefetchInfiniteTags } from "@/features/tags";
 import { GlobalLoadingProvider } from "@/providers/GlobalLoaderProvider";
 

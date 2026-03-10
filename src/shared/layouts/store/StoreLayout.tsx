@@ -1,4 +1,5 @@
 import { Category } from "@/features/categories";
+
 import { MobileMenu, StoreHeader } from "./sections";
 import { Footer } from "./sections/Footer";
 

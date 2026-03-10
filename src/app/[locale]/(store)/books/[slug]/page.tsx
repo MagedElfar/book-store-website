@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { BookGallerySection, BookInfoSection, getBooBySlugApi } from "@/features/books";
 import { PageLayout } from "@/shared/components";
 import { getAppTranslation } from "@/shared/lib";
@@ -10,7 +11,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const { t, getLocalizedValue, lang } = await getAppTranslation("books")
+    const { getLocalizedValue, lang } = await getAppTranslation("books")
     const book = await getBooBySlugApi(slug);
 
     if (!book) return { title: "Book Not Found" };
@@ -48,7 +49,6 @@ export default async function SingleBookPage({ params }: Props) {
     const book = await getBooBySlugApi(slug);
 
     if (!book) notFound();
-
 
     return (
         <PageLayout>

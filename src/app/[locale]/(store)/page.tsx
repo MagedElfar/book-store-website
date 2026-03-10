@@ -1,11 +1,11 @@
+import { Metadata } from "next";
+
 import { getAuthors } from "@/features/authors";
 import { getBannersApi } from "@/features/banners";
 import { getBooKsApi } from "@/features/books";
 import { getCategories } from "@/features/categories";
 import { BookSliderSection, HeroSection, FeaturedCategoriesSection, SpecialPromoSection, AuthorsSection } from "@/features/home/sections";
 import { getAppTranslation } from "@/shared/lib";
-import { Metadata } from "next";
-import Image from "next/image";
 
 
 export async function generateMetadata(): Promise<Metadata> {

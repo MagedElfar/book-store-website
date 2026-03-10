@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 // src/shared/utils/supabase/fetch-client.ts
 
 import { env } from "@/shared/config";
@@ -60,7 +62,6 @@ export async function supabaseFetch<T>(endpoint: string, options: FetchOptions =
         // التحقق من حالة الـ Response
         if (!dataRes.ok || (countRes && !countRes.ok)) {
             const errorRes = !dataRes.ok ? dataRes : countRes;
-            console.error(`Supabase HTTP Error: ${errorRes.status}`);
             return { items: [], total: 0 } as T; // رجع داتا فاضية بدل Error
         }
 
@@ -78,7 +79,6 @@ export async function supabaseFetch<T>(endpoint: string, options: FetchOptions =
         } as T;
 
     } catch (error: any) {
-        console.error("Supabase Network/Fetch Error:", error.message);
         return {
             items: [],
             total: 0

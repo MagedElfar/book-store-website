@@ -1,7 +1,8 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import { Banner, BannerItem } from "@/features/banners";
 
 import styles from "./../styles/hero.module.css";

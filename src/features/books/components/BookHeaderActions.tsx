@@ -1,9 +1,9 @@
 'use client'
 
-import { cn } from "@/lib/utils";
+import { CheckCircle2, XCircle, Share2, Heart } from "lucide-react";
+
 import { Badge } from "@/shared/components";
 import { useAppTranslation } from "@/shared/hooks";
-import { CheckCircle2, XCircle, Share2, Heart } from "lucide-react";
 
 interface Props {
     stock: number

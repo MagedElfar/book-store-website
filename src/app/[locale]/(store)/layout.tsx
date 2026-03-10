@@ -1,7 +1,8 @@
+import { Metadata } from "next";
+
 import { getCategories } from "@/features/categories";
 import { StoreLayout } from "@/shared/layouts";
 import { getAppTranslation } from "@/shared/lib";
-import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
     const { t } = await getAppTranslation("common");

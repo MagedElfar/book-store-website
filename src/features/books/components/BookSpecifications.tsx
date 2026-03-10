@@ -1,12 +1,13 @@
 "use client"
 
+import { TagIcon } from "lucide-react"
+
 import { Tag } from "@/features/tags"
 import { Link } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
 import { Badge, HtmlContent } from "@/shared/components"
 import { paths } from "@/shared/config"
 import { useAppTranslation } from "@/shared/hooks"
-import { TagIcon } from "lucide-react"
 
 interface Props {
   isbn?: string | null,

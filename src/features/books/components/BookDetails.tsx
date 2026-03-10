@@ -1,8 +1,9 @@
 "use client"
 
+import { Star } from "lucide-react"
+
 import { useAppTranslation } from "@/shared/hooks"
 import { formatPrice } from "@/shared/utils"
-import { Star } from "lucide-react"
 
 interface Props {
     rating: number,

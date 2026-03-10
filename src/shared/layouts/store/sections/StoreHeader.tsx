@@ -1,6 +1,7 @@
 import { Category } from "@/features/categories";
-import { TopBar } from "./TopBar";
+
 import { BottomBar } from "./BottomBar";
+import { TopBar } from "./TopBar";
 
 interface Props {
     navCategories: Category[]
@@ -9,7 +10,7 @@ interface Props {
 export const StoreHeader = ({ navCategories }: Props) => {
     return (
         <header className="sticky top-0 z-50 w-full">
-            <TopBar navCategories={navCategories} />
+            <TopBar />
             <BottomBar navCategories={navCategories} />
         </header>
     );

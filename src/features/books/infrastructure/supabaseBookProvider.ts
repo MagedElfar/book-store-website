@@ -1,6 +1,7 @@
-import type { BookApiProvider, Book, BookParams } from "../types";
 import type { GetManyResponse } from "@/shared/types";
 import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/supabase/fetch-client";
+
+import type { BookApiProvider, Book, BookParams } from "../types";
 
 export const supabaseBookProvider: BookApiProvider = {
 

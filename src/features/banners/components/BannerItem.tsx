@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Banner } from "../types";
-import { useAppTranslation } from "@/shared/hooks";
+
 import { cn } from "@/lib/utils";
+import { useAppTranslation } from "@/shared/hooks";
+
+import { Banner } from "../types";
 
 interface BannerItemProps {
     banner: Banner;

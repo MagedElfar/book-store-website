@@ -1,6 +1,7 @@
 import { Category } from "@/features/categories";
-import { NavItems } from "./NavItems";
 import { cn } from "@/lib/utils";
+
+import { NavItems } from "./NavItems";
 
 interface Props {
     navCategories: Category[]

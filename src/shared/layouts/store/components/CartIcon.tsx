@@ -1,11 +1,12 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
 import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
+import { Link } from "@/i18n/routing";
+
 export const CartIcon = () => {
-    const [itemsCount, setItemsCount] = useState(5);
+    const [itemsCount] = useState(5);
 
     return (
         <Link
