@@ -17,7 +17,7 @@ import { useAppTranslation } from '@/shared/hooks';
 import { Logo } from '@/shared/layouts';
 import { errorMapper } from '@/shared/utils';
 
-import { AuthHeader } from '../components/AuthHeader';
+import { AuthHeader } from '../components';
 import { useAuthActions } from '../hooks/useAuthActions';
 import { LoginSchema, type LoginSchemaType } from '../schema';
 
