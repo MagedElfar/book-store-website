@@ -17,3 +17,4 @@ export function ensureArray(value: any) {
 export function calcTotalPages(total: number, limit: number = API_RECORDED_LIMIT) {
     return Math.ceil(total / limit);
 }
+

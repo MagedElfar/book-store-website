@@ -33,7 +33,7 @@ export const paths = {
 
 
     auth: {
-        login: "/login",
-        register: "/register",
+        login: "/sign-in",
+        register: "/sign-up",
     },
 };

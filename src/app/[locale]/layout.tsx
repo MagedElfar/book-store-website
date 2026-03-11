@@ -19,10 +19,25 @@ const cairo = Cairo({
   subsets: ["arabic"],
 });
 
-export const metadata: Metadata = {
-  title: "My Store",
-  description: "E-commerce store built with Next.js 15",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getAppTranslation("common");
+
+  return {
+    title: {
+      template: `%s | ${t("nav.menuTitle")}`,
+      default: t("nav.menuTitle"),
+    },
+    description: t("footer.description"),
+    metadataBase: new URL("https://your-domain.com"),
+    alternates: {
+      canonical: "/",
+    },
+    openGraph: {
+      type: "website",
+      siteName: t("nav.menuTitle"),
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

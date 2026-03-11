@@ -1,28 +1,7 @@
-import { Metadata } from "next";
 
 import { getCategories } from "@/features/categories";
 import { StoreLayout } from "@/shared/layouts";
 import { getAppTranslation } from "@/shared/lib";
-
-export async function generateMetadata(): Promise<Metadata> {
-    const { t } = await getAppTranslation("common");
-
-    return {
-        title: {
-            template: `%s | ${t("nav.menuTitle")}`,
-            default: t("nav.menuTitle"),
-        },
-        description: t("footer.description"),
-        metadataBase: new URL("https://your-domain.com"),
-        alternates: {
-            canonical: "/",
-        },
-        openGraph: {
-            type: "website",
-            siteName: t("nav.menuTitle"),
-        },
-    };
-}
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
 

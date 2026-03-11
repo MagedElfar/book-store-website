@@ -1,4 +1,6 @@
 
+import { Metadata } from "next";
+
 import { AuthorCard, getAuthors } from "@/features/authors";
 import { EmptyState, PageLayout, Pagination, SearchFilter, SectionHeader } from "@/shared/components";
 import { API_SPECIFICATION_LIMIT } from "@/shared/config";
@@ -9,8 +11,28 @@ interface Props {
     searchParams: Promise<Record<string, string>>
 }
 
+export async function generateMetadata(): Promise<Metadata> {
+    const { t, lang } = await getAppTranslation("authors");
+
+    return {
+        title: t("authors"),
+        description: t("title.authDesc"),
+        openGraph: {
+            title: t("title.authors"),
+            description: t("title.authDesc"),
+            type: "website",
+            locale: lang,
+        },
+        twitter: {
+            card: "summary",
+            title: t("title.authors"),
+            description: t("title.authDesc"),
+        }
+    };
+}
+
 export default async function AuthorPage({ searchParams }: Props) {
-    const { t } = await getAppTranslation("authors");
+    const { t, lang } = await getAppTranslation("authors");
 
     const params = await searchParams;
     const searchQuery = (params.search as string) || "";
@@ -20,6 +42,7 @@ export default async function AuthorPage({ searchParams }: Props) {
     const authors = await getAuthors({
         limit,
         page: currentPage,
+        lang,
         sortBy: "alpha",
         ...(searchQuery && {
             search: searchQuery
@@ -38,7 +61,7 @@ export default async function AuthorPage({ searchParams }: Props) {
             />
 
 
-            <div className="grid  gap-10 lg:gap-16">
+            <div className="grid  gap-10 lg:gap-12">
                 <div>
                     <SearchFilter key={searchQuery} />
                 </div>

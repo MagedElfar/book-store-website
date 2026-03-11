@@ -1,3 +1,5 @@
+import authAR from "@/features/auth/locales/ar.json";
+import authEN from "@/features/auth/locales/en.json";
 import authorsAr from "@/features/authors/locales/ar.json"
 import authorsEN from "@/features/authors/locales/en.json"
 import booksAr from "@/features/books/locales/ar.json"
@@ -15,13 +17,15 @@ export const messagesData = {
         home: homeEn,
         books: booksEn,
         categories: categoriesEN,
-        authors: authorsEN
+        authors: authorsEN,
+        auth: authEN,
     },
     ar: {
         common: CommonAr,
         home: homeAr,
         books: booksAr,
         categories: categoriesAr,
-        authors: authorsAr
+        authors: authorsAr,
+        auth: authAR,
     },
 } as const;

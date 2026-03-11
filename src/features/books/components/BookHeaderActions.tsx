@@ -2,7 +2,7 @@
 
 import { CheckCircle2, XCircle, Share2, Heart } from "lucide-react";
 
-import { Badge } from "@/shared/components";
+import { Badge } from "@/shared/components/shadcn/badge";
 import { useAppTranslation } from "@/shared/hooks";
 
 interface Props {

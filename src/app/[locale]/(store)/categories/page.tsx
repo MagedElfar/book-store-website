@@ -1,4 +1,6 @@
 
+import { Metadata } from "next";
+
 import { ListCategoryCard, getCategories } from "@/features/categories";
 import { EmptyState, PageLayout, Pagination, SearchFilter, SectionHeader } from "@/shared/components";
 import { API_SPECIFICATION_LIMIT } from "@/shared/config";
@@ -9,8 +11,24 @@ interface Props {
     searchParams: Promise<Record<string, string>>
 }
 
+export async function generateMetadata(): Promise<Metadata> {
+
+    const { t, lang } = await getAppTranslation("categories");
+
+    return {
+        title: t("categories"),
+        description: t("title.catDesc"),
+        openGraph: {
+            title: t("title.categories"),
+            description: t("title.catDesc"),
+            type: "website",
+            locale: lang,
+        }
+    };
+}
+
 export default async function CategoriesPage({ searchParams }: Props) {
-    const { t } = await getAppTranslation("categories");
+    const { t, lang } = await getAppTranslation("categories");
 
     const params = await searchParams;
     const searchQuery = (params.search as string) || "";
@@ -20,6 +38,7 @@ export default async function CategoriesPage({ searchParams }: Props) {
     const categories = await getCategories({
         limit,
         page: currentPage,
+        lang,
         sortBy: "alpha",
         ...(searchQuery && {
             search: searchQuery
@@ -27,7 +46,6 @@ export default async function CategoriesPage({ searchParams }: Props) {
     })
 
     const totalPages = calcTotalPages(categories.total || 0, limit)
-
 
     return (
         <PageLayout>
@@ -38,7 +56,7 @@ export default async function CategoriesPage({ searchParams }: Props) {
             />
 
 
-            <div className="grid  gap-10 lg:gap-16">
+            <div className="grid  gap-10 lg:gap-12">
                 <div>
                     <SearchFilter key={searchQuery} />
                 </div>

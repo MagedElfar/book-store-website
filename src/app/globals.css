@@ -167,6 +167,14 @@
     width: var(--swiper-bullet-active-width) !important;
     background-color: var(--swiper-bullet-active-bg) !important;
   }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: none;
+  }
 }
 
 .scrollbar-hide::-webkit-scrollbar {

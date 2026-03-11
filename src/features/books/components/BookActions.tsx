@@ -4,7 +4,7 @@ import { ShoppingCart, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/shared/components";
+import { Button } from "@/shared/components/shadcn/button";
 import { useAppTranslation } from "@/shared/hooks";
 
 interface Props {
@@ -57,7 +57,7 @@ export function BookActions({ stock }: Props) {
                 )}
 
                 <Button
-                    size="xl"
+                    size="lg"
                     disabled={!isInStock}
                     className={cn(
                         "flex-1 h-[56px] gap-3 shadow-xl border-none rounded-xl active:scale-[0.98] transition-all font-bold text-lg",

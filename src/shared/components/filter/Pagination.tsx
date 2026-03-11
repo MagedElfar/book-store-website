@@ -48,7 +48,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
     };
 
     return (
-        <div className="flex items-center justify-center gap-2 mt-12 pb-10">
+        <div className="flex items-center justify-center gap-2 pb-10">
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}

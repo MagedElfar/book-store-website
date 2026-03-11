@@ -3,7 +3,7 @@
 import { Author } from "@/features/authors";
 import { Category } from "@/features/categories";
 import { Link } from "@/i18n/routing";
-import { Badge } from "@/shared/components";
+import { Badge } from "@/shared/components/shadcn/badge";
 import { paths } from "@/shared/config";
 import { useAppTranslation } from "@/shared/hooks";
 

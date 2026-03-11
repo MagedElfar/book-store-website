@@ -72,5 +72,21 @@
   "offers": {
     "title": "Offers",
     "description": "Discounts up to 50% Off"
+  },
+  "actions": {
+    "submit": "Submit",
+    "selectOption": "Select an option"
+  },
+  "placeHolders": {
+    "choseDate": "Chose date",
+    "select_country": "Select country"
+  },
+  "labels": {
+    "country": "Country"
+  },
+  "countries": {
+    "eg": "Egypt",
+    "sa": "Saudi Arabia",
+    "ae": "United Arab Emirates"
   }
 }

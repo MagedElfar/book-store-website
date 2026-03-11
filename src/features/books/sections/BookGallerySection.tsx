@@ -18,7 +18,6 @@ interface BookGalleryProps {
 export const BookGallerySection = ({ coverImage, images = [] }: BookGalleryProps) => {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
-    // ترتيب الصور: الغلاف أولاً، ثم باقي الصور بدون تكرار الغلاف لو موجود في الـ Array
     const allImages = [
         ...(coverImage ? [{ image_url: coverImage, display_order: -1 }] : []),
         ...images.filter(img => img.image_url !== coverImage) // منع التكرار
