@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormState } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 import { cn } from '@/lib/utils';
@@ -17,26 +17,26 @@ interface Props {
     className?: string;
     contentClassName?: string;
     buttonClassName?: string;
-    isLoading?: boolean;
 }
 
-export function FormContainer({ children, submitText, contentClassName, className, buttonClassName, isLoading }: Props) {
+export function FormContainer({ children, submitText, contentClassName, className, buttonClassName }: Props) {
     const { t } = useAppTranslation("common");
     const cardRef = useRef<HTMLDivElement>(null);
 
     const {
-        formState: { isSubmitting, errors },
-    } = useFormContext();
+        isSubmitting, errors
+    } = useFormState();
 
     const isUploading = Object.values(errors).some(err => err?.message === "uploading");
-    const activeLoading = isLoading || isSubmitting;
 
     useEffect(() => {
+
         const firstErrorPath = getFirstErrorPath(errors)?.split('.')?.[0];
 
         getAllErrorMessages(errors).forEach((err, index) => {
             setTimeout(() => toast.error(err), index * 100);
         });
+
 
         if (firstErrorPath) {
             const fieldElement =
@@ -50,7 +50,6 @@ export function FormContainer({ children, submitText, contentClassName, classNam
                     block: 'center',
                 });
 
-                // تأثير الهز (Shake) باستخدام Tailwind animation
                 fieldElement.classList.add('animate-shake');
 
                 setTimeout(() => {
@@ -74,13 +73,13 @@ export function FormContainer({ children, submitText, contentClassName, classNam
 
                 <Button
                     type="submit"
-                    disabled={activeLoading || isUploading}
+                    disabled={isSubmitting || isUploading}
                     className={cn(
                         "w-full sm:w-[250px] rounded-full h-12 font-bold text-lg transition-all active:scale-95",
                         buttonClassName
                     )}
                 >
-                    {activeLoading ? (
+                    {isSubmitting ? (
                         <div className="flex items-center gap-2">
                             <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
                             {submitText || t("actions.submit")}

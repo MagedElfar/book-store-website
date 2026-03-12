@@ -1,5 +1,5 @@
 import type { AuthApiProvider } from "@/features/auth/types/api-provider";
-import type { LoginApiRequest } from "@/features/auth/types/request";
+import type { LoginApiRequest, SignupApiRequest } from "@/features/auth/types/request";
 import type { AuthResponse } from "@/features/auth/types/response";
 import { supabaseClient } from "@/shared/lib/supabase";
 
@@ -18,6 +18,41 @@ export const supabaseAuthProvider: AuthApiProvider = {
         if (error || !data.session || !data.user) {
             throw new Error(error?.message || "Login failed");
         }
+
+        const user = await this.getCurrentUser();
+
+        return {
+            accessToken: data.session.access_token,
+            refreshToken: data.session.refresh_token,
+            user
+        };
+    },
+
+    signup: async function (payload: SignupApiRequest) {
+
+        const { email, password, ...profile } = payload;
+
+        const { data, error } = await supabaseClient.auth.signUp({
+            email,
+            password,
+        });
+
+        if (error) throw new Error(error.message);
+
+        const userId = data.user?.id;
+
+        if (!userId || !data || !data?.session) throw new Error("Error while creating new user");
+
+        const { error: profileError } = await supabaseClient
+            .from("profiles")
+            .insert({
+                id: userId,
+                email,
+                role: "user",
+                ...profile,
+            });
+
+        if (profileError) throw new Error(profileError.message);
 
         const user = await this.getCurrentUser();
 

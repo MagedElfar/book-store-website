@@ -1,16 +1,18 @@
 "use client";
 
 import { User, LogOut, Settings } from "lucide-react";
-import { useState } from "react";
 
+import { useAuthActions, useAuthState } from "@/features/auth/hooks";
 import { Link } from "@/i18n/routing";
 import { useAppTranslation } from "@/shared/hooks";
 
 export const UserAccountBox = () => {
     const { t } = useAppTranslation("common");
-    const [user] = useState<any>(null);
 
-    if (!user) {
+    const { isAuthenticated, user } = useAuthState()
+    const { logout } = useAuthActions()
+
+    if (!isAuthenticated) {
         return (
             <Link
                 href="/login"
@@ -32,8 +34,8 @@ export const UserAccountBox = () => {
 
             <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-zinc-950 border border-gray-100 dark:border-zinc-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
                 <div className="px-4 py-2 border-b dark:border-zinc-800 mb-2">
-                    <p className="text-sm font-bold truncate">{user.name || "User Name"}</p>
-                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                    <p className="text-sm font-bold truncate">{user?.full_name || "User Name"}</p>
+                    <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
                 </div>
 
                 <Link
@@ -45,7 +47,7 @@ export const UserAccountBox = () => {
                 </Link>
 
                 <button
-                    onClick={() => {/* logic logout */ }}
+                    onClick={logout}
                     className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors mt-2 border-t dark:border-zinc-800"
                 >
                     <LogOut size={16} />

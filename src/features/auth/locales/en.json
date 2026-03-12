@@ -1,6 +1,8 @@
 {
+  "signup": "Signup",
   "signin": "Signin",
   "signinBtn": "Login",
+  "signupBtn": "Signup",
   "forgetPassword": "Forget password",
   "restPassword": "Rest password",
   "forgetPasswordBtn": "Send",
@@ -17,17 +19,17 @@
   "label": {
     "password": "Password",
     "email": "Email",
-    "rememberMe": "Remember me",
     "fullName": "Full name",
     "phone": "Phone",
-    "confirmPassword": "Confirm password"
+    "avatar": "User avatar",
+    "Role": "Role",
+    "rememberMe": "Remember me"
   },
   "placeHolder": {
     "password": "Please enter your password",
     "email": "Please enter your email",
     "fullName": "Please enter your full name",
-    "phone": "Please enter your phone",
-    "confirmPassword": "Confirm password"
+    "phone": "Please enter your phone"
   },
   "validation": {
     "invalid_email": "Invalid email",
@@ -38,8 +40,9 @@
     "phone": "Phone is required",
     "password_required": "Password is required",
     "password_min": "Password should be {{length}} character at least",
-    "confirm_password_required": "Confirm password is required",
-    "passwords_do_not_match": "Passwords mismatch"
+    "avatar_invalid": "Invalid avatar",
+    "role_required": "Role is required",
+    "role_invalid": "Invalid role selected"
   },
   "errorContent": {
     "resetLinkInvalid": {

@@ -8,12 +8,15 @@ import {
     type ReactNode,
 } from "react";
 
+import { useRouter } from "@/i18n/routing";
+import { paths } from "@/shared/config";
+
 import * as authApi from "../api";
 import { rolePermissions } from "../constants";
 import { AuthActionsContext } from "../context/AuthActionsContext";
 import { authReducer } from "../context/authReducer";
 import { AuthStateContext } from "../context/AuthStateContext";
-import type { Role, User } from "../types";
+import type { Role, SignupApiRequest, User } from "../types";
 import type { AuthState } from "../types/auth-context";
 
 interface Props {
@@ -33,6 +36,8 @@ export function AuthProvider({ children }: Props) {
         authReducer,
         initialState
     );
+
+    const router = useRouter()
 
     const extractRolePermissions = (
         user: User | null
@@ -135,6 +140,27 @@ export function AuthProvider({ children }: Props) {
                 });
             },
 
+            signup: async (
+                data: SignupApiRequest,
+                remapUser?: (
+                    user: User
+                ) => User
+            ) => {
+                const response =
+                    await authApi.signup(data);
+
+                let user = response.user;
+
+                if (remapUser) {
+                    user = remapUser(user);
+                }
+
+                dispatch({
+                    type: "LOGIN",
+                    payload: user,
+                });
+            },
+
             logout: async () => {
                 await authApi.logout();
 
@@ -142,13 +168,8 @@ export function AuthProvider({ children }: Props) {
                     type: "LOGOUT",
                 });
 
-                dispatch({
-                    type: "SET_ROLE_PERMISSIONS",
-                    payload: {
-                        role: "guest",
-                        permissions: [],
-                    },
-                });
+                router.replace(paths.auth.login)
+
             },
 
             updateUser: async (
@@ -163,7 +184,7 @@ export function AuthProvider({ children }: Props) {
                 dispatch({
                     type: "UPDATE_USER",
                     payload: data,
-                });
+                })
 
                 const updatedUser = {
                     ...state.user,
@@ -187,7 +208,7 @@ export function AuthProvider({ children }: Props) {
                 });
             },
         }),
-        [state.user]
+        [router, state.user]
     );
 
     /**
