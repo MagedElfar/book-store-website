@@ -8,10 +8,11 @@ import {
 } from "lucide-react";
 
 import { Link } from "@/i18n/routing";
-import { paths } from "@/shared/config";
-import { useAppTranslation } from "@/shared/hooks";
+import { paths } from "@/shared/config/paths";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
-import { Logo } from "../../common";
+import { Logo } from "../../common/Logo";
+
 
 
 export const Footer = () => {

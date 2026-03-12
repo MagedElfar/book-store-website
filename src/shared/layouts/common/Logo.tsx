@@ -11,7 +11,7 @@ interface LogoProps {
 export const Logo = ({ width = 40, height = 40, className = "" }: LogoProps) => {
     return (
         <Link href="/" className={`inline-block ${className}`}>
-            <div className="relative">
+            <div className="relative flex justify-center">
                 <Image
                     src="/images/logo.png"
                     alt="Bookstore Logo"

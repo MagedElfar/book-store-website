@@ -3,14 +3,11 @@
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Banner, BannerItem } from "@/features/banners";
+
+import { BannerItem } from "@/features/banners/components/BannerItem";
+import { Banner } from "@/features/banners/types/banner";
 
 import styles from "./../styles/hero.module.css";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 
 interface HeroSectionProps {
     banners: Banner[];

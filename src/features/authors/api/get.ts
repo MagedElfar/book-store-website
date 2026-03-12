@@ -1,5 +1,5 @@
-import { authorApiProvider } from "../constants";
-import type { AuthorsParams } from "../types";
+import { authorApiProvider } from "../constants/api";
+import { AuthorsParams } from "../types/request";
 
 export const getAuthorBySlug = (slug: string) => authorApiProvider.getAuthorBySlug(slug);
 

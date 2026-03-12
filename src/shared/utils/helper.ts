@@ -1,5 +1,5 @@
-import { API_RECORDED_LIMIT } from "../config";
-import type { SupportedLang } from "../types";
+import { API_RECORDED_LIMIT } from "../config/constants";
+import { SupportedLang } from "../types/common";
 
 export function formatPrice(price: number, lang: SupportedLang = "en") {
     return new Intl.NumberFormat(lang === "ar" ? "ar-EG" : "en-US", {

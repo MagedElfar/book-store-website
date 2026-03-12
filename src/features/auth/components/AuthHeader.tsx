@@ -1,8 +1,8 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
 import { Button } from "@/shared/components/shadcn/button";
+import { cn } from "@/shared/lib/utils";
 
 interface AuthHeaderProps {
     title: string;

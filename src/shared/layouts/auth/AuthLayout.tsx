@@ -1,4 +1,5 @@
-import { LangSwitcher, ThemeToggle } from "@/shared/components";
+import { LangSwitcher } from "@/shared/components/common/LangSwitcher";
+import { ThemeToggle } from "@/shared/components/common/ThemeToggle";
 
 interface Props {
     children: React.ReactNode;

@@ -1,7 +1,9 @@
-import type { GetManyResponse } from "@/shared/types";
-import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/supabase/fetch-client";
+import { GetManyResponse } from "@/shared/types/response";
+import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/fetch-client";
 
-import type { BookApiProvider, Book, BookParams } from "../types";
+import { BookApiProvider } from "../types/api";
+import { Book } from "../types/book";
+import { BookParams } from "../types/request";
 
 export const supabaseBookProvider: BookApiProvider = {
 

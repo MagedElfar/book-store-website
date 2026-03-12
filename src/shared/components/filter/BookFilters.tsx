@@ -1,7 +1,8 @@
 "use client";
 import { Filter, RotateCcw } from "lucide-react";
 
-import { useAppTranslation, useBookFilters } from "@/shared/hooks";
+import { useBookFilters } from "@/shared/hooks/use-book-filters";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
 import { FilterFields } from "./FilterFields";
 

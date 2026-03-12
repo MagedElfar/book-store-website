@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { BookGallerySection, BookInfoSection, getBooBySlugApi } from "@/features/books";
-import { PageLayout } from "@/shared/components";
-import { getAppTranslation } from "@/shared/lib";
+import { getBooBySlugApi } from "@/features/books/api/get";
+import { BookGallerySection } from "@/features/books/sections/BookGallerySection";
+import { BookInfoSection } from "@/features/books/sections/BookInfoSection";
+import { PageLayout } from "@/shared/components/layout/PageLayout";
+import { getAppTranslation } from "@/shared/lib/getTranslations";
 
 interface Props {
     params: Promise<{ slug: string; locale: string }>;

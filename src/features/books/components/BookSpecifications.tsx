@@ -2,13 +2,13 @@
 
 import { TagIcon } from "lucide-react"
 
-import { Tag } from "@/features/tags"
+import { Tag } from "@/features/tags/types/tag"
 import { Link } from "@/i18n/routing"
-import { cn } from "@/lib/utils"
-import { HtmlContent } from "@/shared/components"
 import { Badge } from "@/shared/components/shadcn/badge"
-import { paths } from "@/shared/config"
-import { useAppTranslation } from "@/shared/hooks"
+import { HtmlContent } from "@/shared/components/ui/HtmlContent"
+import { paths } from "@/shared/config/paths"
+import { useAppTranslation } from "@/shared/hooks/use-translation"
+import { cn } from "@/shared/lib/utils"
 
 interface Props {
   isbn?: string | null,

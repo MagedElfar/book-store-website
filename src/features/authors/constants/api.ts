@@ -1,5 +1,5 @@
-import { supabaseAuthorProvider } from "../infrastructure";
-import type { AuthorApiProvider } from "../types";
+import { supabaseAuthorProvider } from "../infrastructure/supabaseAuthorProvider";
+import { AuthorApiProvider } from "../types/api";
 
 export const authorApiProvider: AuthorApiProvider = supabaseAuthorProvider;
 

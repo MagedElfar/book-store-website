@@ -1,9 +1,10 @@
 import { QueryClient } from "@tanstack/react-query";
 
-import { INFINITE_RECORDED_LIMIT } from "@/shared/config";
+import { INFINITE_RECORDED_LIMIT } from "@/shared/config/constants";
 
-import { getTagsClient } from "../api";
-import { TAG_INFINITE_QUERY } from "../constants";
+import { getTagsClient } from "../api/get";
+import { TAG_INFINITE_QUERY } from "../constants/api";
+
 
 export const prefetchInfiniteTags = (queryClient: QueryClient) => queryClient.prefetchInfiniteQuery({
     queryKey: [...TAG_INFINITE_QUERY, ""],

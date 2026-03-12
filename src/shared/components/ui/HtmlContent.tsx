@@ -3,7 +3,7 @@
 import DOMPurify from "dompurify";
 import { useMemo } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 interface HtmlContentProps {
     html: string | null | undefined;

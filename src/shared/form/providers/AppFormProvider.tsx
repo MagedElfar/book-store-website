@@ -2,7 +2,7 @@
 
 import { FormProvider, type UseFormReturn, type FieldValues } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 export type FormProps<T extends FieldValues> = {
   onSubmit: (data: T) => void;

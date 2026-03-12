@@ -1,4 +1,4 @@
-import { authApiProvider } from "../constants"
+import { authApiProvider } from "../constants/api"
 import type { LoginApiRequest } from "../types/request"
 import type { AuthResponse } from "../types/response"
 import { SignupApiRequest } from './../types/request';

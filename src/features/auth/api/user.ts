@@ -1,4 +1,4 @@
-import { authApiProvider } from "../constants";
+import { authApiProvider } from "../constants/api";
 import type { User } from "../types/user";
 
 export const getUserProfile = () => authApiProvider.getCurrentUser()

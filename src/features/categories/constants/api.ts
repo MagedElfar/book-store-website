@@ -1,5 +1,5 @@
-import { supabaseCategoryProvider } from "../infrastructure";
-import type { CategoryApiProvider } from "../types";
+import { supabaseCategoryProvider } from "../infrastructure/supabaseCategoryProvider";
+import { CategoryApiProvider } from "../types/api";
 
 export const categoryApiProvider: CategoryApiProvider = supabaseCategoryProvider;
 

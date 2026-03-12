@@ -3,9 +3,9 @@
 import React from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
 import { Label } from "@/shared/components/shadcn/label";
 import { RadioGroup, RadioGroupItem } from "@/shared/components/shadcn/radio-group";
+import { cn } from "@/shared/lib/utils";
 
 export type RadioOption = {
     label: string;

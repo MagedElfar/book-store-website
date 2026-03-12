@@ -1,4 +1,5 @@
-import type { GetManyResponse } from "@/shared/types";
+
+import { GetManyResponse } from "@/shared/types/response";
 
 import { Category } from "./category";
 import type { CategoriesParams } from "./request";

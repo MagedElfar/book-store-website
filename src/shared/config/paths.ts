@@ -13,9 +13,11 @@ export const paths = {
 
     account: {
         root: "/account",
-        profile: "/account/profile",
+        password: "/account/password",
         orders: "/account/orders",
-        wishlist: "/account/wishlist",
+        addresses: "/account/addresses",
+        email: "/account/email",
+        verified: "/account/verified"
     },
     categories: {
         root: "/categories",
@@ -35,5 +37,7 @@ export const paths = {
     auth: {
         login: "/sign-in",
         register: "/sign-up",
+        forgetPassword: "/forget-password",
+        restPassword: "/rest-password"
     },
 };

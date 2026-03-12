@@ -3,14 +3,16 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
 
-import { cn } from "@/lib/utils";
-import { LangSwitcher, ThemeToggle } from "@/shared/components";
-import { useAppTranslation } from "@/shared/hooks";
+
+import { LangSwitcher } from "@/shared/components/common/LangSwitcher";
+import { ThemeToggle } from "@/shared/components/common/ThemeToggle";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { cn } from "@/shared/lib/utils";
 import { useMobileMenu } from "@/store/use-mobile-menu";
 
 import { NavItems } from "./NavItems";
-import { Logo } from "../../common";
-import { SearchBar } from "../components";
+import { Logo } from "../../common/Logo";
+import { SearchBar } from "../components/SearchBar";
 
 interface MobileMenuProps {
     categories: any[];

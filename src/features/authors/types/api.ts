@@ -1,4 +1,5 @@
-import type { GetManyResponse } from "@/shared/types";
+
+import { GetManyResponse } from "@/shared/types/response";
 
 import type { Author } from "./author";
 import type { AuthorsParams } from "./request";

@@ -1,5 +1,5 @@
-import { supabaseBookProvider } from "../infrastructure";
-import type { BookApiProvider } from "../types";
+import { supabaseBookProvider } from "../infrastructure/supabaseBookProvider";
+import { BookApiProvider } from "../types/api";
 
 export const bookApiProvider: BookApiProvider = supabaseBookProvider;
 

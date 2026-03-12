@@ -3,9 +3,9 @@
 import { ShoppingCart, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/shared/components/shadcn/button";
-import { useAppTranslation } from "@/shared/hooks";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { cn } from "@/shared/lib/utils";
 
 interface Props {
     stock: number

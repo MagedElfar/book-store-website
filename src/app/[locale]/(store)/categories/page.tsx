@@ -1,11 +1,17 @@
 
 import { Metadata } from "next";
 
-import { ListCategoryCard, getCategories } from "@/features/categories";
-import { EmptyState, PageLayout, Pagination, SearchFilter, SectionHeader } from "@/shared/components";
-import { API_SPECIFICATION_LIMIT } from "@/shared/config";
-import { getAppTranslation } from "@/shared/lib";
-import { calcTotalPages } from "@/shared/utils";
+import { getCategories } from "@/features/categories/api/get";
+import { ListCategoryCard } from "@/features/categories/components/ListCategoryCard";
+import { EmptyState } from "@/shared/components/common/EmptyState";
+import { Pagination } from "@/shared/components/filter/Pagination";
+import { SearchFilter } from "@/shared/components/filter/SearchFilter";
+import { PageLayout } from "@/shared/components/layout/PageLayout";
+import { SectionHeader } from "@/shared/components/layout/SectionHeader";
+import { API_SPECIFICATION_LIMIT } from "@/shared/config/constants";
+import { getAppTranslation } from "@/shared/lib/getTranslations";
+import { calcTotalPages } from "@/shared/utils/helper";
+
 
 interface Props {
     searchParams: Promise<Record<string, string>>

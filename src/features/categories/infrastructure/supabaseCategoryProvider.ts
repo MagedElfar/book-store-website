@@ -1,9 +1,11 @@
-import { API_RECORDED_LIMIT } from "@/shared/config";
-import { supabaseClient } from "@/shared/lib/supabase";
-import { GetManyResponse } from "@/shared/types";
-import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/supabase/fetch-client";
+import { API_RECORDED_LIMIT } from "@/shared/config/constants";
+import { supabaseClient } from "@/shared/lib/supabaseClient";
+import { GetManyResponse } from "@/shared/types/response";
+import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/fetch-client";
 
-import { CategoriesParams, Category, CategoryApiProvider } from "../types";
+import { CategoryApiProvider } from "../types/api";
+import { Category } from "../types/category";
+import { CategoriesParams } from "../types/request";
 
 export const supabaseCategoryProvider: CategoryApiProvider = {
     getCategories: async function (params: CategoriesParams): Promise<GetManyResponse<Category>> {

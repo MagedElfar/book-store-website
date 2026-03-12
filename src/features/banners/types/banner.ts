@@ -1,5 +1,3 @@
-// src/features/banners/types/index.ts
-
 export type VerticalPos = 'top' | 'middle' | 'bottom';
 export type HorizontalPos = 'start' | 'center' | 'end';
 

@@ -9,15 +9,16 @@ import {
 } from "react";
 
 import { useRouter } from "@/i18n/routing";
-import { paths } from "@/shared/config";
+import { paths } from "@/shared/config/paths";
 
-import * as authApi from "../api";
-import { rolePermissions } from "../constants";
+import { login, signup, logout } from "../api/actions";
+import { getCurrentUser, updateUserProfile } from "../api/user";
 import { AuthActionsContext } from "../context/AuthActionsContext";
 import { authReducer } from "../context/authReducer";
 import { AuthStateContext } from "../context/AuthStateContext";
-import type { Role, SignupApiRequest, User } from "../types";
 import type { AuthState } from "../types/auth-context";
+import { SignupApiRequest } from "../types/request";
+import { User } from "../types/user";
 
 interface Props {
     children: ReactNode;
@@ -27,8 +28,6 @@ const initialState: AuthState = {
     user: null,
     isAuthenticated: false,
     isLoading: true,
-    role: "guest",
-    permissions: [],
 };
 
 export function AuthProvider({ children }: Props) {
@@ -39,18 +38,6 @@ export function AuthProvider({ children }: Props) {
 
     const router = useRouter()
 
-    const extractRolePermissions = (
-        user: User | null
-    ) => {
-        const role: Role =
-            (user?.role as Role) ?? "guest";
-
-        const permissions =
-            rolePermissions[role] ?? [];
-
-        return { role, permissions };
-    };
-
     /**
      * restore session on app start
      */
@@ -58,7 +45,7 @@ export function AuthProvider({ children }: Props) {
         (async () => {
             try {
                 const user =
-                    await authApi.getCurrentUser();
+                    await getCurrentUser();
 
                 if (user) {
                     dispatch({
@@ -66,19 +53,6 @@ export function AuthProvider({ children }: Props) {
                         payload: user,
                     });
 
-                    const {
-                        role,
-                        permissions,
-                    } =
-                        extractRolePermissions(user);
-
-                    dispatch({
-                        type: "SET_ROLE_PERMISSIONS",
-                        payload: {
-                            role,
-                            permissions,
-                        },
-                    });
                 } else {
                     dispatch({
                         type: "SET_LOADING",
@@ -109,7 +83,7 @@ export function AuthProvider({ children }: Props) {
                 ) => User
             ) => {
                 const response =
-                    await authApi.login({
+                    await login({
                         email,
                         password,
                     });
@@ -124,20 +98,6 @@ export function AuthProvider({ children }: Props) {
                     type: "LOGIN",
                     payload: user,
                 });
-
-                const {
-                    role,
-                    permissions,
-                } =
-                    extractRolePermissions(user);
-
-                dispatch({
-                    type: "SET_ROLE_PERMISSIONS",
-                    payload: {
-                        role,
-                        permissions,
-                    },
-                });
             },
 
             signup: async (
@@ -147,7 +107,7 @@ export function AuthProvider({ children }: Props) {
                 ) => User
             ) => {
                 const response =
-                    await authApi.signup(data);
+                    await signup(data);
 
                 let user = response.user;
 
@@ -162,7 +122,7 @@ export function AuthProvider({ children }: Props) {
             },
 
             logout: async () => {
-                await authApi.logout();
+                await logout();
 
                 dispatch({
                     type: "LOGOUT",
@@ -176,7 +136,7 @@ export function AuthProvider({ children }: Props) {
                 id: string,
                 data: Partial<User>
             ) => {
-                await authApi.updateUserProfile(
+                await updateUserProfile(
                     id,
                     data
                 );
@@ -185,30 +145,9 @@ export function AuthProvider({ children }: Props) {
                     type: "UPDATE_USER",
                     payload: data,
                 })
-
-                const updatedUser = {
-                    ...state.user,
-                    ...data,
-                } as User;
-
-                const {
-                    role,
-                    permissions,
-                } =
-                    extractRolePermissions(
-                        updatedUser
-                    );
-
-                dispatch({
-                    type: "SET_ROLE_PERMISSIONS",
-                    payload: {
-                        role,
-                        permissions,
-                    },
-                });
             },
         }),
-        [router, state.user]
+        [router]
     );
 
     /**

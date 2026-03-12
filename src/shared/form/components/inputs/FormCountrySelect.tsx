@@ -3,7 +3,6 @@
 import React from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
 import { Label } from "@/shared/components/shadcn/label";
 import {
     Select,
@@ -12,9 +11,9 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/shared/components/shadcn/select";
-import { COUNTRIES } from "@/shared/config";
-import { useAppTranslation } from "@/shared/hooks";
-
+import { COUNTRIES } from "@/shared/config/constants";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { cn } from "@/shared/lib/utils";
 export interface FormCountrySelectProps {
     name: string;
     label?: string;

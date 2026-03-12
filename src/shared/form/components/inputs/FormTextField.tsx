@@ -3,9 +3,9 @@
 import React from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
 import { Input } from "@/shared/components/shadcn/input";
 import { Label } from "@/shared/components/shadcn/label";
+import { cn } from "@/shared/lib/utils";
 
 export interface FormTextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;

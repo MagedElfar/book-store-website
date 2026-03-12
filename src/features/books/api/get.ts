@@ -1,5 +1,5 @@
-import { bookApiProvider } from "../constants";
-import type { BookParams } from "../types";
+import { bookApiProvider } from "../constants/api"
+import { BookParams } from "../types/request"
 
 export const getBooBySlugApi = (slug: string) => bookApiProvider.getBookBySlug(slug)
 

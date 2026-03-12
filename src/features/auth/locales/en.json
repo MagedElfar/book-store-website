@@ -23,13 +23,15 @@
     "phone": "Phone",
     "avatar": "User avatar",
     "Role": "Role",
-    "rememberMe": "Remember me"
+    "rememberMe": "Remember me",
+    "confirmPassword": "Confirm password"
   },
   "placeHolder": {
     "password": "Please enter your password",
     "email": "Please enter your email",
     "fullName": "Please enter your full name",
-    "phone": "Please enter your phone"
+    "phone": "Please enter your phone",
+    "confirmPassword": "Confirm password"
   },
   "validation": {
     "invalid_email": "Invalid email",
@@ -39,10 +41,11 @@
     "invalid_phone": "Invalid phone",
     "phone": "Phone is required",
     "password_required": "Password is required",
-    "password_min": "Password should be {{length}} character at least",
+    "password_min": "Password should be {length} character at least",
     "avatar_invalid": "Invalid avatar",
     "role_required": "Role is required",
-    "role_invalid": "Invalid role selected"
+    "role_invalid": "Invalid role selected",
+    "passwords_do_not_match": "Passwords do not match"
   },
   "errorContent": {
     "resetLinkInvalid": {

@@ -3,8 +3,8 @@
 import { Search, X } from "lucide-react";
 import { useState } from "react";
 
-import { cn } from "@/lib/utils";
-import { useAppTranslation } from "@/shared/hooks";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { cn } from "@/shared/lib/utils";
 
 interface SearchBarProps {
     isMobile?: boolean;

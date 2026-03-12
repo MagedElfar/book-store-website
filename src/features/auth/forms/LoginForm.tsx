@@ -6,21 +6,19 @@ import { toast } from 'react-toastify';
 
 import { Link, useRouter } from '@/i18n/routing';
 import { Button } from "@/shared/components/shadcn/button";
-import { paths } from '@/shared/config';
-import {
-    AppFormProvider,
-    FormCheckbox,
-    FormContainer,
-    FormPasswordField,
-    FormTextField
-} from '@/shared/form';
-import { useAppTranslation } from '@/shared/hooks';
-import { Logo } from '@/shared/layouts';
-import { errorMapper } from '@/shared/utils';
+import { paths } from '@/shared/config/paths';
+import { FormCheckbox } from '@/shared/form/components/inputs/FormCheckbox';
+import { FormPasswordField } from '@/shared/form/components/inputs/FormPasswordField';
+import { FormTextField } from '@/shared/form/components/inputs/FormTextField';
+import { FormContainer } from '@/shared/form/components/layout/FormContainer';
+import { AppFormProvider } from '@/shared/form/providers/AppFormProvider';
+import { useAppTranslation } from '@/shared/hooks/use-translation';
+import { Logo } from '@/shared/layouts/common/Logo';
+import { errorMapper } from '@/shared/utils/error';
 
-import { AuthHeader } from '../components';
+import { AuthHeader } from '../components/AuthHeader';
 import { useAuthActions } from '../hooks/useAuthActions';
-import { LoginSchema, type LoginSchemaType } from '../schema';
+import { LoginSchemaType, LoginSchema } from '../schema/LoginSchema';
 
 export function LoginForm() {
     const { login } = useAuthActions();
@@ -95,7 +93,7 @@ export function LoginForm() {
                             asChild
                             className="px-0 font-medium text-xs text-blue-600 hover:text-blue-500 underline-offset-4"
                         >
-                            <Link href="/auth/forget-password">
+                            <Link href={paths.auth.forgetPassword}>
                                 {t("forgetPassword")}
                             </Link>
                         </Button>

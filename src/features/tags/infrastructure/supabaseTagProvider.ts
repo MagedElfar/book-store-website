@@ -1,10 +1,8 @@
-import { supabaseClient } from "@/shared/lib/supabase";
+import { supabaseClient } from "@/shared/lib/supabaseClient";
 
-import type {
-    Tag,
-    TagApiProvider,
-    TagsParams
-} from "../types";
+import { TagApiProvider } from "../types/api";
+import { TagsParams } from "../types/request";
+import { Tag } from "../types/tag";
 
 export const supabaseTagProvider: TagApiProvider = {
 

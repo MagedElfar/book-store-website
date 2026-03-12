@@ -1,6 +1,6 @@
-import type { Author } from "@/features/authors";
-import type { Category } from "@/features/categories";
-import type { Tag } from "@/features/tags";
+import { Author } from "@/features/authors/types/author";
+import { Category } from "@/features/categories/types/category";
+import { Tag } from "@/features/tags/types/tag";
 
 export interface BookImage {
     id?: string;

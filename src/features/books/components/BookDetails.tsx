@@ -2,8 +2,9 @@
 
 import { Star } from "lucide-react"
 
-import { useAppTranslation } from "@/shared/hooks"
-import { formatPrice } from "@/shared/utils"
+import { useAppTranslation } from "@/shared/hooks/use-translation"
+import { formatPrice } from "@/shared/utils/helper"
+
 
 interface Props {
     rating: number,

@@ -75,7 +75,14 @@
   },
   "actions": {
     "submit": "Submit",
-    "selectOption": "Select an option"
+    "selectOption": "Select an option",
+    "title": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "loadMore": "Load more",
+    "deleting": "Deleting...",
+    "cancel": "Cancel"
   },
   "placeHolders": {
     "choseDate": "Chose date",
@@ -88,5 +95,38 @@
     "eg": "Egypt",
     "sa": "Saudi Arabia",
     "ae": "United Arab Emirates"
+  },
+  "dropzone": {
+    "defaultMessage": "Drag and drop files here or click to select",
+    "multiple": "You can select multiple files",
+    "single": "Select only one file",
+    "supported": "Supported formats: {{formats}}",
+    "uploadFailed": "Upload failed",
+    "uploadSuccess": "Uploaded successfully",
+    "retry": "Retry",
+    "removeExisting": "Please remove the existing image before uploading a new one.",
+    "fileTooLarge": "File \"{name}\" exceeds the maximum size of {{size}} MB",
+    "activeMessage": "Drop the files here...",
+    "uploadedFile": "Uploaded file"
+  },
+  "errorFallback": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred",
+    "reload": "Reload Page",
+    "noRecords": "Failed to load data",
+    "noRecordsMsg": "An unexpected error occurred while fetching records.",
+    "tryAgain": "Try Again"
+  },
+  "forbidden": {
+    "title": "Access Forbidden",
+    "message": "You do not have permission to access this resource",
+    "action": "Go Back"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "The page you are looking for does not exist or has been moved",
+    "action": "Go Home",
+    "noRecords": "No records found",
+    "noRecordsMsg": "There is no data matching the current filters."
   }
 }

@@ -1,8 +1,12 @@
-import { LangSwitcher, ThemeToggle } from "@/shared/components";
 
-import { Logo } from "../../common";
-import { CartIcon, SearchBar, UserAccountBox } from "../components";
+import { LangSwitcher } from "@/shared/components/common/LangSwitcher";
+import { ThemeToggle } from "@/shared/components/common/ThemeToggle";
+
+import { Logo } from "../../common/Logo";
+import { CartIcon } from "../components/CartIcon";
 import { MobileMenuButton } from "../components/MobileMenuButton";
+import { SearchBar } from "../components/SearchBar";
+import { UserAccountBox } from "../components/UserAccountBox";
 
 
 

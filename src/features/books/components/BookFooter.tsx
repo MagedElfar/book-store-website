@@ -2,7 +2,8 @@
 
 import { Info } from 'lucide-react'
 
-import { useAppTranslation } from '@/shared/hooks'
+import { useAppTranslation } from '@/shared/hooks/use-translation'
+
 
 export function BookFooter() {
     const { t } = useAppTranslation("books")

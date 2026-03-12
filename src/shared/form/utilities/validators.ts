@@ -1,8 +1,9 @@
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { z } from "zod";
 
-import type { PasswordValidatorOptions } from "@/shared/types";
-import { normalizePhone } from "@/shared/utils";
+import { PasswordValidatorOptions } from "@/shared/types/validation";
+import { normalizePhone } from "@/shared/utils/country-utils";
+
 
 export const phoneValidator = (message: string = "Invalid phone number") =>
     z

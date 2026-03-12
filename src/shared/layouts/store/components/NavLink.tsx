@@ -1,7 +1,7 @@
 "use client";
 
 import { Link, usePathname } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 interface NavLinkProps {
     href: string;

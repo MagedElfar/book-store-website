@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { PASSWORD_MIN_LENGTH } from "@/shared/config";
-import { emailValidator, passwordValidator } from "@/shared/form";
+import { PASSWORD_MIN_LENGTH } from '@/shared/config/constants';
+import { emailValidator, passwordValidator } from '@/shared/form/utilities/validators';
 
 export const LoginSchema = (t: any) => z
     .object({

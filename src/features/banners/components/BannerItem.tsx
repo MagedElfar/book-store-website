@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
-import { cn } from "@/lib/utils";
-import { useAppTranslation } from "@/shared/hooks";
+import { Link } from "@/i18n/routing";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { cn } from "@/shared/lib/utils";
 
-import { Banner } from "../types";
+import { Banner } from "../types/banner";
+
 
 interface BannerItemProps {
     banner: Banner;

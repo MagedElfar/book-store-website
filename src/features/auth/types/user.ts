@@ -1,4 +1,8 @@
-import type { Role } from "./role";
+export type Role =
+    | "guest"
+    | "user"
+    | "support"
+    | "admin"
 
 export interface User {
     id: string;

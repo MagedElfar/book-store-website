@@ -5,8 +5,9 @@ import { useDebounce } from "minimal-shared/hooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
-import { useLoaderContext } from "@/shared/context";
-import { useAppTranslation } from "@/shared/hooks";
+import { useLoaderContext } from "@/shared/context/LoaderContext";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+
 
 interface SearchBarProps {
     searchKey?: string;

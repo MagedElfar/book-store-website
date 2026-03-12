@@ -2,11 +2,13 @@
 
 import { Star, ShoppingCart } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
-import type { Book } from "@/features/books/types";
-import { useAppTranslation } from "@/shared/hooks";
-import { formatPrice } from "@/shared/utils";
+import { Link } from "@/i18n/routing";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { formatPrice } from "@/shared/utils/helper";
+
+import { Book } from "../types/book";
+
 
 interface BookCardProps {
     book: Book;

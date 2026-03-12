@@ -1,8 +1,9 @@
 // app/[locale]/books/layout.tsx
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-import { prefetchInfiniteAuthors } from "@/features/authors";
-import { prefetchInfiniteTags } from "@/features/tags";
+import { prefetchInfiniteAuthors } from "@/features/authors/lib/react-query";
+import { prefetchInfiniteTags } from "@/features/tags/lib/react-query";
+
 
 interface Props {
     children: React.ReactNode

@@ -1,5 +1,0 @@
-export * from "./HeroSection"
-export * from "./BookSliderSection"
-export * from "./FeaturedCategoriesSection"
-export * from "./SpecialPromoSection"
-export * from "./AuthorsSection"

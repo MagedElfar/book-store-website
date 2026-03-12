@@ -1,5 +1,5 @@
-import { categoryApiProvider } from "../constants";
-import type { CategoriesParams } from "../types";
+import { categoryApiProvider } from "../constants/api";
+import { CategoriesParams } from "../types/request";
 
 export const getCategoryBySlug = (slug: string) => categoryApiProvider.getCategoryBySlug(slug);
 

@@ -1,6 +1,7 @@
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
-import { useLoaderContext } from "@/shared/context";
+import { useLoaderContext } from "../context/LoaderContext";
+
 
 export const useBookFilters = () => {
     const { setIsUpdating } = useLoaderContext();

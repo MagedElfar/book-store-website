@@ -3,9 +3,9 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
 import { Checkbox } from "@/shared/components/shadcn/checkbox";
 import { Label } from "@/shared/components/shadcn/label";
+import { cn } from "@/shared/lib/utils";
 
 export interface FormCheckboxProps {
     name: string;

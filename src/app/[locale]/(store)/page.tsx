@@ -1,12 +1,15 @@
 import { Metadata } from "next";
 
-import { getAuthors } from "@/features/authors";
-import { getBannersApi } from "@/features/banners";
-import { getBooKsApi } from "@/features/books";
-import { getCategories } from "@/features/categories";
-import { BookSliderSection, HeroSection, FeaturedCategoriesSection, SpecialPromoSection, AuthorsSection } from "@/features/home/sections";
-import { getAppTranslation } from "@/shared/lib";
-
+import { getAuthors } from "@/features/authors/api/get";
+import { getBannersApi } from "@/features/banners/api/get";
+import { getBooKsApi } from "@/features/books/api/get";
+import { getCategories } from "@/features/categories/api/get";
+import { AuthorsSection } from "@/features/home/sections/AuthorsSection";
+import { BookSliderSection } from "@/features/home/sections/BookSliderSection";
+import { FeaturedCategoriesSection } from "@/features/home/sections/FeaturedCategoriesSection";
+import { HeroSection } from "@/features/home/sections/HeroSection";
+import { SpecialPromoSection } from "@/features/home/sections/SpecialPromoSection";
+import { getAppTranslation } from "@/shared/lib/getTranslations";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getAppTranslation("home");

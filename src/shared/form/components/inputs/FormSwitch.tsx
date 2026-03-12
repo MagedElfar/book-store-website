@@ -2,9 +2,9 @@
 
 import { useFormContext, Controller } from 'react-hook-form'
 
-import { cn } from "@/lib/utils"
 import { Label } from '@/shared/components/shadcn/label';
 import { Switch } from '@/shared/components/shadcn/switch';
+import { cn } from "@/shared/lib/utils";
 
 interface Props {
     label: string;

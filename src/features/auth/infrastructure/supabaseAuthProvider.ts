@@ -1,7 +1,8 @@
 import type { AuthApiProvider } from "@/features/auth/types/api-provider";
 import type { LoginApiRequest, SignupApiRequest } from "@/features/auth/types/request";
 import type { AuthResponse } from "@/features/auth/types/response";
-import { supabaseClient } from "@/shared/lib/supabase";
+import { paths } from "@/shared/config/paths";
+import { supabaseClient } from "@/shared/lib/supabaseClient";
 
 import type { User } from "../types/user";
 
@@ -147,10 +148,10 @@ export const supabaseAuthProvider: AuthApiProvider = {
 
     forgotPassword: async function (email: string) {
 
-        // const redirectTo = `${window.location.origin}${paths.auth.restPassword}`;
+        const redirectTo = window !== undefined ? `${window.location.origin}${paths.auth.restPassword}` : "";
 
         const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-            redirectTo: "",
+            redirectTo,
         });
 
         if (error) throw new Error(error.message);;

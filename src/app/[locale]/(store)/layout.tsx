@@ -1,7 +1,6 @@
-
-import { getCategories } from "@/features/categories";
-import { StoreLayout } from "@/shared/layouts";
-import { getAppTranslation } from "@/shared/lib";
+import { getCategories } from "@/features/categories/api/get";
+import { StoreLayout } from "@/shared/layouts/store/StoreLayout";
+import { getAppTranslation } from "@/shared/lib/getTranslations";
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
 

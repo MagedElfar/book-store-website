@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { useAppTranslation } from "@/shared/hooks";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
 interface PriceFilterProps {
     title: string;

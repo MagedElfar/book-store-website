@@ -1,5 +1,5 @@
-import { supabaseTagProvider } from "../infrastructure";
-import type { TagApiProvider } from "../types";
+import { supabaseTagProvider } from "../infrastructure/supabaseTagProvider";
+import { TagApiProvider } from "../types/api";
 
 export const tagApiProvider: TagApiProvider = supabaseTagProvider;
 

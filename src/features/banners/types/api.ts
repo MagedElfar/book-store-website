@@ -1,4 +1,5 @@
-import type { GetManyResponse } from "@/shared/types";
+
+import { GetManyResponse } from "@/shared/types/response";
 
 import type { Banner } from "./banner";
 import type { BannersParams } from "./request";

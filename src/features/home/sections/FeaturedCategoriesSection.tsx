@@ -1,6 +1,6 @@
-import { CategoryCard } from "@/features/categories";
-import { Category } from "@/features/categories/types";
-import { SectionTitle } from "@/shared/components";
+import { CategoryCard } from "@/features/categories/components/FeaturedCategoryCard";
+import { Category } from "@/features/categories/types/category";
+import { SectionTitle } from "@/shared/components/ui/SectionTitle";
 
 interface FeaturedCategoriesProps {
     categories: Category[];

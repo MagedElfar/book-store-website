@@ -6,9 +6,10 @@ import { useEffect, useRef, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { BookCard, type Book } from "@/features/books";
-import { SectionTitle } from "@/shared/components";
-import { useAppTranslation } from "@/shared/hooks";
+import { BookCard } from "@/features/books/components/BookCard";
+import { Book } from "@/features/books/types/book";
+import { SectionTitle } from "@/shared/components/ui/SectionTitle";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
 import styles from "./../styles/book-slider.module.css";
 

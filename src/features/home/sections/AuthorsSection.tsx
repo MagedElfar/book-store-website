@@ -1,5 +1,6 @@
-import { Author, AuthorCard } from "@/features/authors";
-import { SectionTitle } from "@/shared/components";
+import { AuthorCard } from "@/features/authors/components/AuthorCard";
+import { Author } from "@/features/authors/types/author";
+import { SectionTitle } from "@/shared/components/ui/SectionTitle";
 
 interface AuthorsProps {
     authors: Author[];

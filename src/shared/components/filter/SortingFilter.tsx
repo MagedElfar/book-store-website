@@ -3,8 +3,8 @@
 import { ChevronDown } from "lucide-react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
-import { useLoaderContext } from "@/shared/context";
-import { useAppTranslation } from "@/shared/hooks";
+import { useLoaderContext } from "@/shared/context/LoaderContext";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
 export const SortingFilter = () => {
     const { t } = useAppTranslation("common");

@@ -1,12 +1,14 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { BookListSection, getBooKsApi, mapQuerySearchParamsToBookSearchParams } from "@/features/books";
-import { CategoryHeader, getCategoryBySlug } from "@/features/categories";
-import { PageLayout } from "@/shared/components";
-import { getAppTranslation } from "@/shared/lib";
-import { calcTotalPages } from "@/shared/utils";
-
+import { getBooKsApi } from "@/features/books/api/get";
+import { BookListSection } from "@/features/books/sections/BookListSection";
+import { mapQuerySearchParamsToBookSearchParams } from "@/features/books/utils/mapper";
+import { getCategoryBySlug } from "@/features/categories/api/get";
+import { CategoryHeader } from "@/features/categories/sections/CategoryHeader";
+import { PageLayout } from "@/shared/components/layout/PageLayout";
+import { getAppTranslation } from "@/shared/lib/getTranslations";
+import { calcTotalPages } from "@/shared/utils/helper";
 
 interface Props {
     params: Promise<{ slug: string; }>;

@@ -1,9 +1,9 @@
 import { QueryClient } from "@tanstack/react-query";
 
-import { INFINITE_RECORDED_LIMIT } from "@/shared/config";
+import { INFINITE_RECORDED_LIMIT } from "@/shared/config/constants";
 
-import { getCategoriesClient } from "../api";
-import { CATEGORY_INFINITE_QUERY } from "../constants";
+import { getCategoriesClient } from "../api/get";
+import { CATEGORY_INFINITE_QUERY } from "../constants/api";
 
 export const prefetchInfiniteCategory = (queryClient: QueryClient) => queryClient.prefetchInfiniteQuery({
     queryKey: [...CATEGORY_INFINITE_QUERY, ""],

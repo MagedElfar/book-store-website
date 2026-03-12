@@ -5,12 +5,12 @@ import { Calendar as CalendarIcon } from "lucide-react";
 import React from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/shared/components/shadcn/button";
 import { Calendar } from "@/shared/components/shadcn/calendar";
 import { Label } from "@/shared/components/shadcn/label";
 import { PopoverTrigger, PopoverContent, Popover } from "@/shared/components/shadcn/popover";
-import { useAppTranslation } from "@/shared/hooks";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { cn } from "@/shared/lib/utils";
 
 export interface FormDatePickerProps {
     name: string;

@@ -4,25 +4,22 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import { Link, useRouter } from '@/i18n/routing';
-import { Button } from "@/shared/components/shadcn/button";
-import { paths } from '@/shared/config';
-import {
-    AppFormProvider,
-    FormCheckbox,
-    FormContainer,
-    FormPasswordField,
-    FormPhoneInput,
-    FormTextField
-} from '@/shared/form';
-import { useAppTranslation } from '@/shared/hooks';
-import { Logo } from '@/shared/layouts';
-import { errorMapper } from '@/shared/utils';
+import { useRouter } from '@/i18n/routing';
+import { paths } from '@/shared/config/paths';
+import { FormCheckbox } from '@/shared/form/components/inputs/FormCheckbox';
+import { FormPasswordField } from '@/shared/form/components/inputs/FormPasswordField';
+import { FormPhoneInput } from '@/shared/form/components/inputs/FormPhoneInput';
+import { FormTextField } from '@/shared/form/components/inputs/FormTextField';
+import { FormContainer } from '@/shared/form/components/layout/FormContainer';
+import { AppFormProvider } from '@/shared/form/providers/AppFormProvider';
+import { useAppTranslation } from '@/shared/hooks/use-translation';
+import { Logo } from '@/shared/layouts/common/Logo';
+import { errorMapper } from '@/shared/utils/error';
 
-import { AuthHeader } from '../components';
+import { AuthHeader } from '../components/AuthHeader';
 import { useAuthActions } from '../hooks/useAuthActions';
-import { SignupSchema, type SignupSchemaType } from '../schema';
-import { SignupApiRequest } from '../types';
+import { SignupSchemaType, SignupSchema } from '../schema/SignupSchema';
+import { SignupApiRequest } from '../types/request';
 
 export function SignupForm() {
     const { signup } = useAuthActions();

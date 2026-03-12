@@ -3,7 +3,7 @@
 import { CheckCircle2, XCircle, Share2, Heart } from "lucide-react";
 
 import { Badge } from "@/shared/components/shadcn/badge";
-import { useAppTranslation } from "@/shared/hooks";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
 interface Props {
     stock: number

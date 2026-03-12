@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Category } from "@/features/categories/types";
-import { paths } from "@/shared/config";
-import { useAppTranslation } from "@/shared/hooks";
+import { paths } from "@/shared/config/paths";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+
+import { Category } from "../types/category";
 
 interface CategoryCardProps {
     category: Category;

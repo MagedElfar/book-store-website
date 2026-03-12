@@ -4,8 +4,9 @@ import { NextIntlClientProvider, AbstractIntlMessages } from "next-intl";
 import { ReactNode } from "react";
 import { Slide, ToastContainer } from 'react-toastify';
 
-import { AuthProvider } from "@/features/auth/providers";
-import { SupportedLang } from "@/shared/types";
+
+import { AuthProvider } from "@/features/auth/providers/AuthProvider";
+import { SupportedLang } from "@/shared/types/common";
 
 import { ReactQueryProvider } from "./ReactQueryProvider";
 import { ThemeProvider } from "./ThemeProvider";

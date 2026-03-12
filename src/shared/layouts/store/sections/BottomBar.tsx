@@ -1,5 +1,5 @@
-import { Category } from "@/features/categories";
-import { cn } from "@/lib/utils";
+import { Category } from "@/features/categories/types/category";
+import { cn } from "@/shared/lib/utils";
 
 import { NavItems } from "./NavItems";
 

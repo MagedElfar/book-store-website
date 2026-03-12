@@ -4,7 +4,8 @@ import { Loader2 } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-import { LoaderContext } from "@/shared/context";
+import { LoaderContext } from "@/shared/context/LoaderContext";
+
 
 export function GlobalLoadingProvider({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();

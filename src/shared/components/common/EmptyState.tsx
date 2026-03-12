@@ -2,7 +2,9 @@
 
 import { LibraryBig, RotateCcw } from "lucide-react";
 
-import { useAppTranslation, useBookFilters } from "@/shared/hooks";
+import { useBookFilters } from "@/shared/hooks/use-book-filters";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+
 
 interface EmptyStateProps {
     title?: string;

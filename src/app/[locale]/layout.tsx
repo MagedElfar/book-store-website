@@ -3,9 +3,9 @@ import { Geist, Cairo } from "next/font/google";
 import { getMessages } from "next-intl/server";
 
 import "./../globals.css";
-import { AppProvider } from "@/providers";
+import { AppProvider } from "@/providers/AppProvider";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
-import { SupportedLang } from "@/shared/types";
+import { SupportedLang } from "@/shared/types/common";
 
 
 

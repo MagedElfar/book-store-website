@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 
-import { useAppTranslation } from '@/shared/hooks';
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
-import { Category } from '../types'
+import { Category } from "../types/category";
 
 interface Props {
     category: Category

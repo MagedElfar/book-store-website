@@ -1,8 +1,11 @@
-import { BookFilters, EmptyState, MobileBookFilters } from "@/shared/components";
-import { SortingFilter, Pagination } from "@/shared/components";
+import { EmptyState } from "@/shared/components/common/EmptyState";
+import { BookFilters } from "@/shared/components/filter/BookFilters";
+import { MobileBookFilters } from "@/shared/components/filter/MobileBookFilters";
+import { Pagination } from "@/shared/components/filter/Pagination";
+import { SortingFilter } from "@/shared/components/filter/SortingFilter";
 
-import { BookCard } from "../components";
-import { Book } from "../types";
+import { BookCard } from "../components/BookCard";
+import { Book } from "../types/book";
 
 interface BookListSectionProps {
     books: {

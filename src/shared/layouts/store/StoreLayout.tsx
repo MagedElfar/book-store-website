@@ -1,7 +1,9 @@
-import { Category } from "@/features/categories";
 
-import { MobileMenu, StoreHeader } from "./sections";
+import { Category } from "@/features/categories/types/category";
+
 import { Footer } from "./sections/Footer";
+import { MobileMenu } from "./sections/MobileMenu";
+import { StoreHeader } from "./sections/StoreHeader";
 
 interface StoreLayoutProps {
     children: React.ReactNode

@@ -1,9 +1,11 @@
-import { API_RECORDED_LIMIT } from "@/shared/config";
-import { supabaseClient } from "@/shared/lib/supabase";
-import { GetManyResponse } from "@/shared/types";
-import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils";
+import { API_RECORDED_LIMIT } from "@/shared/config/constants";
+import { supabaseClient } from "@/shared/lib/supabaseClient";
+import { GetManyResponse } from "@/shared/types/response";
+import { supabaseFetch, supabaseFetchSingle } from "@/shared/utils/fetch-client";
 
-import { AuthorApiProvider, AuthorsParams, Author } from "../types";
+import { AuthorApiProvider } from "../types/api";
+import { Author } from "../types/author";
+import { AuthorsParams } from "../types/request";
 
 export const supabaseAuthorProvider: AuthorApiProvider = {
 

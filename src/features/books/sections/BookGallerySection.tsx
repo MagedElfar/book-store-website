@@ -6,7 +6,7 @@ import type { Swiper as SwiperType } from "swiper";
 import { FreeMode, Navigation, Thumbs, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 import style from "./../styles/book-gallery-section.module.css";
 

@@ -1,4 +1,4 @@
-import { Category } from "@/features/categories";
+import { Category } from "@/features/categories/types/category";
 
 import { BottomBar } from "./BottomBar";
 import { TopBar } from "./TopBar";

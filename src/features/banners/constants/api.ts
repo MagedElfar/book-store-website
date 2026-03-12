@@ -1,5 +1,5 @@
-import { supabaseBannerProvider } from "../infrastructure";
-import type { BannerApiProvider } from "../types";
+import { supabaseBannerProvider } from "../infrastructure/supabaseBannerProvider";
+import { BannerApiProvider } from "../types/api";
 
 export const bannerApiProvider: BannerApiProvider = supabaseBannerProvider;
 

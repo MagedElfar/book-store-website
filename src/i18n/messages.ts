@@ -1,3 +1,7 @@
+import accountAr from "@/features/account/locales/ar.json"
+import accountEN from "@/features/account/locales/en.json"
+import addressesAr from "@/features/addresses/locales/ar.json"
+import addressesEN from "@/features/addresses/locales/en.json"
 import authAR from "@/features/auth/locales/ar.json";
 import authEN from "@/features/auth/locales/en.json";
 import authorsAr from "@/features/authors/locales/ar.json"
@@ -19,6 +23,8 @@ export const messagesData = {
         categories: categoriesEN,
         authors: authorsEN,
         auth: authEN,
+        account: accountEN,
+        addresses: addressesEN
     },
     ar: {
         common: CommonAr,
@@ -27,5 +33,7 @@ export const messagesData = {
         categories: categoriesAr,
         authors: authorsAr,
         auth: authAR,
+        account: accountAr,
+        addresses: addressesAr
     },
 } as const;

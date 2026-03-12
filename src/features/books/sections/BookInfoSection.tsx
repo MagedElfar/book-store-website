@@ -1,10 +1,14 @@
 "use client";
 
-import { useAppTranslation } from "@/shared/hooks";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
-import { BookActions, BookDetails, BookFooter, BookHeaderActions, BookTitleSection } from "../components";
+import { BookActions } from "../components/BookActions";
+import { BookDetails } from "../components/BookDetails";
+import { BookFooter } from "../components/BookFooter";
+import { BookHeaderActions } from "../components/BookHeaderActions";
 import BookSpecifications from "../components/BookSpecifications";
-import { Book } from "../types";
+import { BookTitleSection } from "../components/BookTitleSection";
+import { Book } from "../types/book";
 
 interface BookInfoSectionProps {
     book: Book;

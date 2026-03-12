@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
-import { paths } from "@/shared/config";
-import { useAppTranslation } from "@/shared/hooks";
+import { Link } from "@/i18n/routing";
+import { paths } from "@/shared/config/paths";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
-import { Author } from "../types";
+import { Author } from "../types/author";
+
+
 
 interface AuthorCardProps {
     author: Author;

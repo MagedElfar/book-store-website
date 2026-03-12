@@ -4,12 +4,13 @@ import { useEffect, useRef, type ReactNode } from 'react';
 import { useFormState } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import { cn } from '@/lib/utils';
 import { Button } from '@/shared/components/shadcn/button';
 import { Card } from '@/shared/components/shadcn/card';
-import { useAppTranslation } from '@/shared/hooks';
+import { useAppTranslation } from '@/shared/hooks/use-translation';
+import { cn } from '@/shared/lib/utils';
 
-import { getAllErrorMessages, getFirstErrorPath } from '../../utilities';
+import { getFirstErrorPath, getAllErrorMessages } from '../../utilities/errors';
+
 
 interface Props {
     children: ReactNode;

@@ -2,11 +2,12 @@
 
 import { Fragment } from "react";
 
-import { cn } from "@/lib/utils";
 import { paths } from "@/shared/config/paths";
-import { useAppTranslation } from "@/shared/hooks";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { cn } from "@/shared/lib/utils";
 
-import { NavLink } from "../components";
+import { NavLink } from "../components/NavLink";
+
 
 interface NavItemsProps {
     categories: any[];

@@ -1,9 +1,12 @@
 import { Metadata } from "next";
 
-import { BookListSection, getBooKsApi, mapQuerySearchParamsToBookSearchParams } from "@/features/books";
-import { PageLayout, SectionHeader } from "@/shared/components";
-import { getAppTranslation } from "@/shared/lib";
-import { calcTotalPages } from "@/shared/utils";
+import { getBooKsApi } from "@/features/books/api/get";
+import { BookListSection } from "@/features/books/sections/BookListSection";
+import { mapQuerySearchParamsToBookSearchParams } from "@/features/books/utils/mapper";
+import { PageLayout } from "@/shared/components/layout/PageLayout";
+import { SectionHeader } from "@/shared/components/layout/SectionHeader";
+import { getAppTranslation } from "@/shared/lib/getTranslations";
+import { calcTotalPages } from "@/shared/utils/helper";
 
 interface Props {
     searchParams: Promise<Record<string, string>>

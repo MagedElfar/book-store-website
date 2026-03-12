@@ -1,7 +1,11 @@
-import { AUTHOR_INFINITE_QUERY, getAuthorsClient } from "@/features/authors";
-import { CATEGORY_INFINITE_QUERY, getCategoriesClient } from "@/features/categories";
-import { getTagsClient, TAG_INFINITE_QUERY } from "@/features/tags";
-import { useAppTranslation, useBookFilters } from "@/shared/hooks";
+import { getAuthorsClient } from "@/features/authors/api/get";
+import { AUTHOR_INFINITE_QUERY } from "@/features/authors/constants/api";
+import { getCategoriesClient } from "@/features/categories/api/get";
+import { CATEGORY_INFINITE_QUERY } from "@/features/categories/constants/api";
+import { getTagsClient } from "@/features/tags/api/get";
+import { TAG_INFINITE_QUERY } from "@/features/tags/constants/api";
+import { useBookFilters } from "@/shared/hooks/use-book-filters";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
 import { BaseFilterList } from "./BaseFilterList";
 import { PriceFilter } from "./PriceFilter";

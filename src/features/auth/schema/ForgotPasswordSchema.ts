@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
-import { emailValidator } from "@/shared/form";
+import { emailValidator } from '@/shared/form/utilities/validators';
+
 
 export const ForgotPasswordSchema = (t: any) => z
     .object({

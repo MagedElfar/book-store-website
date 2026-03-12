@@ -1,4 +1,4 @@
-import type { SupportedLang } from "@/shared/types";
+import type { SupportedLang } from "@/shared/types/common";
 
 export interface BookParams {
     search?: string;

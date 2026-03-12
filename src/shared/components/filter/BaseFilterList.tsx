@@ -4,10 +4,10 @@ import { Search, Check, Loader2, ChevronDown } from "lucide-react";
 import { useDebounce } from 'minimal-shared/hooks';
 import { useEffect, useRef, useState } from "react";
 
-import { INFINITE_RECORDED_LIMIT } from "@/shared/config";
-import { useAppTranslation } from "@/shared/hooks";
+import { INFINITE_RECORDED_LIMIT } from "@/shared/config/constants";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 import { useInfiniteLookup } from "@/shared/hooks/useInfiniteLookup";
-import { GetManyResponse } from "@/shared/types";
+import { GetManyResponse } from "@/shared/types/response";
 
 interface BaseFilterListProps<T> {
     title: string;

@@ -1,10 +1,8 @@
-import { GetManyResponse } from "@/shared/types";
-import { supabaseFetch } from "@/shared/utils/supabase";
+import { GetManyResponse } from "@/shared/types/response";
+import { supabaseFetch } from "@/shared/utils/fetch-client";
 
-import type {
-    Banner,
-    BannerApiProvider
-} from "../types";
+import { BannerApiProvider } from "../types/api";
+import { Banner } from "../types/banner";
 
 export const supabaseBannerProvider: BannerApiProvider = {
     getBanners: async function () {

@@ -1,11 +1,12 @@
 "use client"
 
-import { Author } from "@/features/authors";
-import { Category } from "@/features/categories";
+
+import { Author } from "@/features/authors/types/author";
+import { Category } from "@/features/categories/types/category";
 import { Link } from "@/i18n/routing";
 import { Badge } from "@/shared/components/shadcn/badge";
-import { paths } from "@/shared/config";
-import { useAppTranslation } from "@/shared/hooks";
+import { paths } from "@/shared/config/paths";
+import { useAppTranslation } from "@/shared/hooks/use-translation";
 
 interface Props {
     title: string,

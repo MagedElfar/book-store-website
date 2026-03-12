@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 
-import { Author } from "@/features/authors";
-import { useAppTranslation } from '@/shared/hooks';
+import { useAppTranslation } from "@/shared/hooks/use-translation";
+
+import { Author } from "../types/author";
+
 
 interface Props {
     author: Author

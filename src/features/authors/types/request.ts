@@ -1,4 +1,4 @@
-import type { SupportedLang } from "@/shared/types";
+import { SupportedLang } from "@/shared/types/common";
 
 export type AuthorsParams = {
     search?: string;

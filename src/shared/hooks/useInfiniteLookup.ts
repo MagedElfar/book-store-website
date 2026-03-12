@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { INFINITE_RECORDED_LIMIT } from "../config";
-import type { GetManyResponse } from "../types";
+import { INFINITE_RECORDED_LIMIT } from "../config/constants";
+import { GetManyResponse } from "../types/response";
 
 export function useInfiniteLookup<T, R extends GetManyResponse<T> = GetManyResponse<T>>(
     queryKey: any[],
