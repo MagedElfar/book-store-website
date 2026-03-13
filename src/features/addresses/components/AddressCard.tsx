@@ -50,16 +50,15 @@ export function AddressCard({ address, onEdit, onDelete, onSetDefault, isSelecte
         <Card
             className={cn(
                 "h-full border-muted-foreground/10 shadow-sm overflow-hidden transition-all relative",
-                isSelected && "ring-2 ring-primary border-primary bg-primary/[0.01]",
+                isSelected && "ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20",
                 address.is_default && !isSelected && "border-primary/30"
             )}
         >
             {isSelected && (
-                <div className="absolute top-2 right-2 z-20 bg-primary text-white rounded-full p-1 shadow-md">
+                <div className="absolute top-2 right-2 z-20 bg-emerald-500 text-white rounded-full p-1 shadow-md animate-in zoom-in duration-300">
                     <Check className="w-4 h-4" />
                 </div>
             )}
-
             <CardContent className="p-5">
                 <div className="flex justify-between items-start mb-4">
                     <div className="space-y-1.5">

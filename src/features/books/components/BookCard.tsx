@@ -3,9 +3,13 @@
 import { Star, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
+import { useAuthState } from "@/features/auth/hooks/useAuthState";
+import { useGetCartItemByBook } from "@/features/cart/hooks/useGetCartItemByBook";
 import { Link } from "@/i18n/routing";
+import { Button } from "@/shared/components/shadcn/button";
 import { useAppTranslation } from "@/shared/hooks/use-translation";
 import { formatPrice } from "@/shared/utils/helper";
+import { useCartStore } from "@/store/use-cart-store";
 
 import { Book } from "../types/book";
 
@@ -17,7 +21,10 @@ interface BookCardProps {
 export const BookCard = ({ book }: BookCardProps) => {
 
     const { getLocalizedValue, dir, lang } = useAppTranslation();
+    const { user } = useAuthState()
+    const addItem = useCartStore((state) => state.addItem);
     const title = getLocalizedValue(book, "title");
+
 
     const hasSale = book.sale_price && book.sale_price < book.price;
     const discountPercentage = hasSale
@@ -25,6 +32,13 @@ export const BookCard = ({ book }: BookCardProps) => {
         : 0;
 
     const highlightedTags = book.tags?.filter(tag => tag.is_pained) || [];
+
+    const handleAddToCart = async (e: React.MouseEvent) => {
+        e.preventDefault()
+        await addItem(book, user?.id)
+    }
+
+    const isInCart = !!useGetCartItemByBook(book.id)
 
     return (
         <div className="group relative flex flex-col w-full bg-white dark:bg-zinc-900 rounded-xl border border-gray-100 dark:border-zinc-800 shadow-sm hover:shadow-xl dark:hover:shadow-zinc-950/50 transition-all duration-300 overflow-hidden">
@@ -112,12 +126,14 @@ export const BookCard = ({ book }: BookCardProps) => {
                         )}
                     </div>
 
-                    <button
+                    <Button
+                        onClick={handleAddToCart}
                         className="flex items-center justify-center w-9 h-9 bg-gray-900 dark:bg-blue-600 text-white rounded-full hover:bg-blue-600 dark:hover:bg-blue-500 hover:scale-110 transition-all duration-300 shadow-lg shadow-gray-200 dark:shadow-none"
                         aria-label="Add to cart"
+                        disabled={isInCart}
                     >
                         <ShoppingCart size={16} />
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

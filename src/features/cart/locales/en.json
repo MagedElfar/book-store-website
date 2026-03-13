@@ -1,0 +1,20 @@
+{
+  "title": "Shopping Cart",
+  "emptyMessage": "Your cart is currently empty",
+  "continueShopping": "Continue Shopping",
+  "subtotal": "Subtotal",
+  "checkout": "Proceed to Checkout",
+  "items": {
+    "one": "1 item",
+    "other": "{{count}} items"
+  },
+  "actions": {
+    "remove": "Remove",
+    "update": "Update quantity"
+  },
+  "feedback": {
+    "added": "Book added to cart successfully",
+    "updated": "Quantity updated",
+    "removed": "Book removed from cart"
+  }
+}

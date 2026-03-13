@@ -3,18 +3,38 @@
 import { ShoppingCart, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
+import { useAuthState } from "@/features/auth/hooks/useAuthState";
+import { useGetCartItemByBook } from "@/features/cart/hooks/useGetCartItemByBook";
 import { Button } from "@/shared/components/shadcn/button";
 import { useAppTranslation } from "@/shared/hooks/use-translation";
 import { cn } from "@/shared/lib/utils";
+import { useCartStore } from "@/store/use-cart-store";
+
+import { Book } from "../types/book";
 
 interface Props {
-    stock: number
+    stock: number,
+    book: Book
 }
 
-export function BookActions({ stock }: Props) {
+export function BookActions({ stock, book }: Props) {
+    const updateQuantity = useCartStore(s => s.updateQuantity)
+    const addItem = useCartStore(s => s.addItem)
+    const item = useGetCartItemByBook(book.id)
+
+    const { user } = useAuthState()
     const { t } = useAppTranslation("books");
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(item?.quantity || 1);
     const isInStock = stock > 0;
+
+    const handleAddToCart = () => {
+        const userId = user?.id
+        if (item) {
+            updateQuantity(book.id, quantity, userId)
+        } else {
+            addItem(book, userId)
+        }
+    }
 
     return (
         <div className="flex flex-col gap-4 mt-6">
@@ -25,7 +45,7 @@ export function BookActions({ stock }: Props) {
                             <button
                                 onClick={() => setQuantity(q => Math.max(1, q - 1))}
                                 disabled={quantity <= 1}
-                                className="p-2 cursor-pointer  hover:bg-white dark:hover:bg-zinc-800 rounded-lg transition-colors text-slate-600 disabled:opacity-20"
+                                className="p-2 cursor-pointer hover:bg-white dark:hover:bg-zinc-800 rounded-lg transition-colors text-slate-600 disabled:opacity-20"
                             >
                                 <Minus className="w-4 h-4" />
                             </button>
@@ -59,6 +79,7 @@ export function BookActions({ stock }: Props) {
                 <Button
                     size="lg"
                     disabled={!isInStock}
+                    onClick={handleAddToCart}
                     className={cn(
                         "flex-1 h-[56px] gap-3 shadow-xl border-none rounded-xl active:scale-[0.98] transition-all font-bold text-lg",
                         isInStock
@@ -69,7 +90,7 @@ export function BookActions({ stock }: Props) {
                     {isInStock ? (
                         <>
                             <ShoppingCart className="w-6 h-6" />
-                            {t("details.addToCart")}
+                            {item ? t("details.updateCart") : t("details.addToCart")}
                         </>
                     ) : (
                         t("details.outOfStock")
@@ -77,6 +98,5 @@ export function BookActions({ stock }: Props) {
                 </Button>
             </div>
         </div>
-
     );
-};
+}

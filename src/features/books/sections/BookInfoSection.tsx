@@ -1,7 +1,9 @@
 "use client";
 
 import { useAppTranslation } from "@/shared/hooks/use-translation";
+import { useCartStore } from "@/store/use-cart-store";
 
+import BookActionFallback from "../components/BookActionFallback";
 import { BookActions } from "../components/BookActions";
 import { BookDetails } from "../components/BookDetails";
 import { BookFooter } from "../components/BookFooter";
@@ -16,6 +18,7 @@ interface BookInfoSectionProps {
 
 export const BookInfoSection = ({ book }: BookInfoSectionProps) => {
     const { getLocalizedValue } = useAppTranslation("books");
+    const isCartLoading = useCartStore(s => s.isLoading)
 
     const title = getLocalizedValue(book, "title");
     const description = getLocalizedValue(book, "description");
@@ -48,7 +51,7 @@ export const BookInfoSection = ({ book }: BookInfoSectionProps) => {
                 tags={tags}
             />
 
-            <BookActions stock={book.stock} />
+            {isCartLoading ? <BookActionFallback /> : <BookActions stock={book.stock} book={book} />}
 
             <BookFooter />
 

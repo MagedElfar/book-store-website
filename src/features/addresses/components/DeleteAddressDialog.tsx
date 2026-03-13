@@ -28,14 +28,13 @@ interface Props {
     onClose: () => void;
     onSuccess?: () => void;
     addressId: string;
-    userId: string;
 }
 
-export function DeleteAddressDialog({ open, onClose, addressId, userId, onSuccess }: Props) {
+export function DeleteAddressDialog({ open, onClose, addressId, onSuccess }: Props) {
     const { t: tAddress } = useAppTranslation("addresses");
     const { t: tCommon } = useAppTranslation("common");
 
-    const { mutateAsync: deleteAddress, isPending } = useDeleteAddress(userId);
+    const { mutateAsync: deleteAddress, isPending } = useDeleteAddress();
 
     const handleConfirm = async (e: React.MouseEvent) => {
         e.preventDefault();

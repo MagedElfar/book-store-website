@@ -10,13 +10,14 @@ export const paths = {
     checkout: "/checkout",
     wishlist: "/wishlist",
     offers: "/offers",
+    checkoutSuccess: (orderId: number) => `/checkout/success?orderId=${orderId}`,
 
     account: {
         root: "/account",
         password: "/account/password",
         orders: "/account/orders",
         addresses: "/account/addresses",
-        email: "/account/email",
+        settings: "/account/settings",
         verified: "/account/verified"
     },
     categories: {

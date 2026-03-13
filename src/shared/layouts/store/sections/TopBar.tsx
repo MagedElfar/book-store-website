@@ -1,9 +1,9 @@
 
+import { CartDrawer } from "@/features/cart/components/CartDrawer";
 import { LangSwitcher } from "@/shared/components/common/LangSwitcher";
 import { ThemeToggle } from "@/shared/components/common/ThemeToggle";
 
 import { Logo } from "../../common/Logo";
-import { CartIcon } from "../components/CartIcon";
 import { MobileMenuButton } from "../components/MobileMenuButton";
 import { SearchBar } from "../components/SearchBar";
 import { UserAccountBox } from "../components/UserAccountBox";
@@ -32,7 +32,7 @@ export const TopBar = () => {
                     </div>
 
                     <div className="flex items-center gap-2 md:gap-3">
-                        <CartIcon />
+                        <CartDrawer />
                         <UserAccountBox />
                     </div>
 

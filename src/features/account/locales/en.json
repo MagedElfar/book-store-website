@@ -1,12 +1,14 @@
 {
   "myAccount": "My Account",
   "manageAccountSubtitle": "Manage your account settings and orders",
+  "settings": "Account settings",
   "nav": {
     "profile": "Profile",
     "addresses": "Addresses",
     "orders": "Orders",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "settings": "Settings"
   },
   "email": "Change my email",
   "password": "Change my password",

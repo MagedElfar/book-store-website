@@ -32,6 +32,8 @@ export function ChangePasswordForm() {
         defaultValues,
     });
 
+    const { reset } = methods
+
     const onsubmit = async (data: ChangePasswordSchemaType) => {
         const { oldPassword, newPassword } = data
         try {
@@ -40,6 +42,7 @@ export function ChangePasswordForm() {
 
             toast.success(t("feedBack.successPasswordUpdate"))
 
+            reset()
         } catch (error) {
             errorMapper(error).forEach(err => toast.error(err))
         }
@@ -50,7 +53,13 @@ export function ChangePasswordForm() {
             <FormContainer
                 contentClassName='items-center'
                 buttonClassName='sm:w-full'
+                className='space-y-4'
             >
+
+                <h3 className="text-xl font-bold tracking-tight text-foreground">
+                    {t("password")}
+                </h3>
+
 
                 <FormPasswordField
                     name="oldPassword"

@@ -18,12 +18,17 @@ export function useDialog<T>(initialState: DialogState<T> = { type: null }) {
         setDialog({ type: "delete", data });
     }, []);
 
+
+    const openView = useCallback((data: T) => {
+        setDialog({ type: "view", data });
+    }, []);
+
     const closeDialog = useCallback(() => {
         setDialog({ type: null });
     }, []);
 
     const data = useMemo(() => {
-        if (dialog.type === "edit" || dialog.type === "delete") {
+        if (dialog.type === "edit" || dialog.type === "delete" || dialog.type === "view") {
             return dialog.data ?? null;
         }
         return null;
@@ -35,6 +40,7 @@ export function useDialog<T>(initialState: DialogState<T> = { type: null }) {
         isCreate: dialog.type === "create",
         isEdit: dialog.type === "edit",
         isDelete: dialog.type === "delete",
+        isView: dialog.type === "view",
 
         data,
 
@@ -42,14 +48,8 @@ export function useDialog<T>(initialState: DialogState<T> = { type: null }) {
         openEdit,
         openDelete,
         closeDialog,
+        openView,
         setDialog,
-    }), [
-        dialog,
-        data,
-        openCreate,
-        openEdit,
-        openDelete,
-        closeDialog
-    ]);
+    }), [dialog, data, openCreate, openEdit, openDelete, closeDialog, openView]);
 
 }

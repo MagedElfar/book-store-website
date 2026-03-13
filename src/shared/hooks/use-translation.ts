@@ -14,7 +14,7 @@ export function useAppTranslation<N extends AppNamespace>(namespace?: N) {
     const pathname = usePathname();
 
     const lang = locale as "en" | "ar";
-    const dir = lang === "ar" ? "rtl" : "ltr";
+    const dir: "rtl" | "ltr" = lang === "ar" ? "rtl" : "ltr";
 
     const getLocalizedValue = useCallback(
         <T extends Record<string, any>>(

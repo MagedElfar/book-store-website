@@ -8,10 +8,14 @@ import authorsAr from "@/features/authors/locales/ar.json"
 import authorsEN from "@/features/authors/locales/en.json"
 import booksAr from "@/features/books/locales/ar.json"
 import booksEn from "@/features/books/locales/en.json"
+import cartAr from "@/features/cart/locales/ar.json"
+import cartEN from "@/features/cart/locales/en.json"
 import categoriesAr from "@/features/categories/locales/ar.json"
 import categoriesEN from "@/features/categories/locales/en.json"
 import homeAr from "@/features/home/locales/ar.json"
 import homeEn from "@/features/home/locales/en.json"
+import ordersAr from "@/features/orders/locales/ar.json"
+import ordersEn from "@/features/orders/locales/en.json"
 import CommonAr from "@/shared/locales/ar.json"
 import CommonEn from "@/shared/locales/en.json"
 
@@ -24,7 +28,9 @@ export const messagesData = {
         authors: authorsEN,
         auth: authEN,
         account: accountEN,
-        addresses: addressesEN
+        addresses: addressesEN,
+        cart: cartEN,
+        order: ordersEn
     },
     ar: {
         common: CommonAr,
@@ -34,6 +40,8 @@ export const messagesData = {
         authors: authorsAr,
         auth: authAR,
         account: accountAr,
-        addresses: addressesAr
+        addresses: addressesAr,
+        cart: cartAr,
+        order: ordersAr
     },
 } as const;

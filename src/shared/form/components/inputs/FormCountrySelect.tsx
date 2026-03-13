@@ -52,7 +52,7 @@ export const FormCountrySelect: React.FC<FormCountrySelectProps> = ({
                         <SelectTrigger
                             id={name}
                             className={cn(
-                                "h-12 rounded-xl transition-all focus:ring-2",
+                                "w-full h-12 rounded-xl transition-all focus:ring-2",
                                 error
                                     ? "border-red-500 focus:ring-red-500/20"
                                     : "border-zinc-200 focus:border-blue-500 focus:ring-blue-500/20 dark:border-zinc-800"

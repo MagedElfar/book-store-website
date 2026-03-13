@@ -45,7 +45,12 @@ export function EmailForm() {
             <FormContainer
                 contentClassName='items-center'
                 buttonClassName='sm:w-full'
+                className='space-y-4'
             >
+
+                <h3 className="text-xl font-bold tracking-tight text-foreground">
+                    {t("email")}
+                </h3>
 
                 <FormTextField
                     name="email"

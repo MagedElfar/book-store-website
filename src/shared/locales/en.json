@@ -46,7 +46,8 @@
     "tags": "Tags",
     "min": "Min",
     "max": "Max",
-    "price": "Price"
+    "price": "Price",
+    "apply": "Show results"
   },
   "common": {
     "login": "Login",
