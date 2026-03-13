@@ -30,7 +30,6 @@ const MapPickerField = dynamic(() => import('@/shared/components/map/MapPickerFi
 });
 
 interface Props {
-    usId?: string;
     address?: UserAddress | null;
     onSuccess?: () => void;
 }
@@ -79,6 +78,7 @@ export function AddressForm({ address, onSuccess }: Props) {
             <FormContainer
                 submitText={address ? t("actions.saveAddress") : t("actions.addAddress")}
                 className="w-full"
+                contentClassName='items-center'
             >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-1">
 

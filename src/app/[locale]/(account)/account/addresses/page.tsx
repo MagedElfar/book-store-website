@@ -1,9 +1,8 @@
 
 import { AddressesView } from '@/features/addresses/views/AddressesView'
-import { getAppTranslation } from '@/shared/lib/getTranslations'
 
 
-export default async function AddressesPage() {
+export default function AddressesPage() {
     return (
         <>
             <AddressesView />

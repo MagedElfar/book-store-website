@@ -54,12 +54,9 @@ export function AccountLayout({ children }: { children: React.ReactNode }) {
                         </div>
                     </aside>
 
-                    {/* Content Area: يأخذ باقي الأعمدة (9 أعمدة) */}
-                    <main className="md:col-span-8 lg:col-span-9">
-                        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-10 shadow-sm min-h-[400px] md:min-h-[600px]">
-                            {children}
-                        </div>
-                    </main>
+                    <div className="md:col-span-8 lg:col-span-9 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-7 shadow-sm min-h-[400px] md:min-h-[600px]">
+                        {children}
+                    </div>
 
                 </div>
             </div>

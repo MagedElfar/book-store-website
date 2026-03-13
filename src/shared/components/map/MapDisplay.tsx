@@ -1,19 +1,20 @@
+// src/shared/components/map/MapDisplay.tsx
 "use client";
 
 import L from 'leaflet';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-import { StaticImageData } from 'next/image';
+import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 
+// استيراد الـ CSS ضروري جداً
 import 'leaflet/dist/leaflet.css';
 
-const DefaultIcon = L.icon({
-    iconUrl: (markerIcon as StaticImageData).src || (markerIcon as unknown as string),
-    shadowUrl: (markerShadow as StaticImageData).src || (markerShadow as unknown as string),
+// حل مشكلة الأيقونات في Leaflet مع Next.js بشكل احترافي
+const DefaultIcon = typeof window !== 'undefined' ? L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
-});
+}) : null;
 
 interface Props {
     lat: number;
@@ -22,6 +23,21 @@ interface Props {
 }
 
 export default function MapDisplayView({ lat, lng, height = 200 }: Props) {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setIsMounted(true);
+
+        return () => {
+            setIsMounted(false);
+        };
+    }, []);
+
+    if (!isMounted) {
+        return <div style={{ height, width: '100%' }} className="bg-muted animate-pulse rounded-lg" />;
+    }
+
     return (
         <div
             className="w-full overflow-hidden border rounded-lg border-border"
@@ -38,7 +54,7 @@ export default function MapDisplayView({ lat, lng, height = 200 }: Props) {
                 className="w-full h-full z-0"
             >
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <Marker position={[lat, lng]} icon={DefaultIcon} />
+                {DefaultIcon && <Marker position={[lat, lng]} icon={DefaultIcon} />}
             </MapContainer>
         </div>
     );

@@ -17,16 +17,15 @@ interface Props {
     open: boolean;
     onClose: () => void;
     address?: UserAddress | null;
-    userId: string;
 }
 
-export function AddressFormDialog({ open, onClose, address, userId }: Props) {
+export function AddressFormDialog({ open, onClose, address }: Props) {
     const { t } = useAppTranslation("addresses");
 
-    console.log("tttt")
+
     return (
         <Dialog open={open} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+            <DialogContent className="sm:max-w-2xl  max-h-[90vh] overflow-y-auto no-scrollbar">
                 <DialogHeader>
                     <DialogTitle className="text-xl font-bold tracking-tight">
                         {address ? t("titles.EditAdders") : t("titles.createAddress")}
@@ -42,7 +41,6 @@ export function AddressFormDialog({ open, onClose, address, userId }: Props) {
                     <AddressForm
                         address={address}
                         onSuccess={onClose}
-                        usId={userId}
                     />
                 </div>
             </DialogContent>

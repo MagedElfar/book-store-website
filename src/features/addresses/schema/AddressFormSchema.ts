@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { string, z } from "zod";
 
 import { phoneValidator } from "@/shared/form/utilities/validators";
 
@@ -12,7 +12,7 @@ export const AddressFormSchema = (
             .nonempty({ message: t("validation.full_name_required") })
             .min(2, { message: t("validation.full_name_min") }),
 
-        phone: phoneValidator(t("validation.phone")).optional().nullable(),
+        phone: string().nullish(),
 
         country: z
             .string()
