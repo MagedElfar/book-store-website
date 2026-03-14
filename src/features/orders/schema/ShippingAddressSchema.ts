@@ -11,7 +11,7 @@ export const ShippingAddressSchema = (t: any) =>
         street_address: z
             .string()
             .nonempty({ message: t("validation.address_required") })
-            .min(10, { message: t("validation.address_min") }),
+            .min(3, { message: t("validation.address_min") }),
     });
 
 export type ShippingAddressFormType = z.infer<ReturnType<typeof ShippingAddressSchema>>;
