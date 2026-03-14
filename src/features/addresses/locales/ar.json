@@ -1,54 +1,61 @@
 {
+  "myAddress": "عناوين الإقامة",
   "titles": {
-    "createAddress": "إنشاء عنوان",
+    "createAddress": "إضافة عنوان جديد",
     "EditAdders": "تعديل العنوان"
   },
   "validation": {
-    "full_name_required": "اسم العنوان مطلوب (مثلاً: المنزل، العمل)",
-    "full_name_min": "يجب أن يكون اسم العنوان حرفين على الأقل",
+    "full_name_required": "اسم العنوان مطلوب",
+    "full_name_min": "اسم العنوان يجب أن يكون حرفين على الأقل",
     "phone": "يرجى إدخال رقم هاتف صحيح",
     "country_required": "الدولة مطلوبة",
     "city_required": "المدينة مطلوبة",
-    "street_required": "تفاصيل العنوان مطلوبة",
-    "street_min": "يجب أن تكون تفاصيل العنوان 5 أحرف على الأقل",
+    "street_required": "تفاصيل الشارع مطلوبة",
+    "street_min": "تفاصيل الشارع يجب أن تكون 5 أحرف على الأقل",
     "location_required": "يرجى تحديد الموقع على الخريطة",
     "role_invalid": "الدور المختار غير صالح"
   },
   "labels": {
-    "fullName": "اسم العنوان",
+    "fullName": "اسم العنوان (مثلاً: المنزل، العمل)",
     "phone": "رقم الهاتف",
     "country": "الدولة",
     "city": "المدينة",
-    "streetAddress": "عنوان الشارع / التفاصيل",
+    "streetAddress": "عنوان الشارع",
     "isDefault": "تعيين كعنوان افتراضي",
     "location": "الموقع",
     "default": "افتراضي"
   },
   "placeHolder": {
     "fullName": "أدخل اسم العنوان",
-    "phone": "مثلاً: 01xxxxxxxxx",
-    "country": "مثلاً: مصر",
-    "city": "مثلاً: القاهرة",
-    "streetAddress": "أدخل اسم الشارع، رقم المبنى، ورقم الشقة"
+    "phone": "مثال: +20 123 456 7890",
+    "country": "مثال: مصر",
+    "city": "مثال: القاهرة",
+    "streetAddress": "أدخل اسم الشارع، رقم البناية، ورقم الشقة"
   },
   "feedback": {
     "successCreateAddress": "تم إضافة العنوان بنجاح",
     "successUpdateAddress": "تم تحديث العنوان بنجاح",
     "successDeleteAddress": "تم حذف العنوان بنجاح",
-    "confirmDelete": "هل أنت متأكد من رغبتك في حذف هذا العنوان؟"
+    "confirmDelete": "هل أنت متأكد من رغبتك في حذف هذا العنوان؟",
+    "successSetDefault": "تم التعيين كافتراضي بنجاح"
   },
   "info": {
-    "provideAddressDetails": "قم بملء التفاصيل أدناه لإضافة موقع توصيل جديد لهذا المستخدم",
-    "noAddresses": "لم يتم العثور على عناوين لهذا المستخدم."
+    "provideAddressDetails": "قم بتعبئة التفاصيل أدناه لإضافة موقع توصيل جديد لهذا المستخدم",
+    "noAddresses": "لا توجد عناوين مسجلة لهذا المستخدم."
   },
   "actions": {
     "addAddress": "إضافة عنوان جديد",
     "editAddress": "تعديل العنوان",
     "deleteAddress": "حذف العنوان",
-    "saveAddress": "حفظ العنوان"
+    "saveAddress": "حفظ العنوان",
+    "setAsDefault": "تعيين كافتراضي"
   },
   "dialogs": {
     "deleteTitle": "حذف العنوان",
     "deleteDescription": "هل أنت متأكد من رغبتك في حذف هذا العنوان؟ لا يمكن التراجع عن هذا الإجراء."
+  },
+  "descriptions": {
+    "editYourAddress": "تعديل تفاصيل عنوانك",
+    "addNewAddress": "إضافة عنوان شحن جديد"
   }
 }

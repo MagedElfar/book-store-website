@@ -16,6 +16,8 @@ import homeAr from "@/features/home/locales/ar.json"
 import homeEn from "@/features/home/locales/en.json"
 import ordersAr from "@/features/orders/locales/ar.json"
 import ordersEn from "@/features/orders/locales/en.json"
+import reviewsAr from "@/features/reviews/locales/ar.json"
+import reviewsEn from "@/features/reviews/locales/en.json"
 import CommonAr from "@/shared/locales/ar.json"
 import CommonEn from "@/shared/locales/en.json"
 
@@ -30,7 +32,8 @@ export const messagesData = {
         account: accountEN,
         addresses: addressesEN,
         cart: cartEN,
-        order: ordersEn
+        order: ordersEn,
+        reviews: reviewsEn
     },
     ar: {
         common: CommonAr,
@@ -42,6 +45,7 @@ export const messagesData = {
         account: accountAr,
         addresses: addressesAr,
         cart: cartAr,
-        order: ordersAr
+        order: ordersAr,
+        reviews: reviewsAr
     },
 } as const;

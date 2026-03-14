@@ -1,7 +1,21 @@
 
+import { Metadata } from 'next';
+
 import { MyAccountForm } from '@/features/account/forms/MyAccountForm'
 import { getAppTranslation } from '@/shared/lib/getTranslations'
 
+export async function generateMetadata(): Promise<Metadata> {
+    const { t } = await getAppTranslation("account");
+
+    return {
+        title: t("myAccount"),
+        description: t("manageAccountSubtitle"),
+        robots: {
+            index: false,
+            follow: false,
+        }
+    };
+}
 
 export default async function AccountPage() {
     const { t } = await getAppTranslation("account")

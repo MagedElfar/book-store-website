@@ -1,0 +1,33 @@
+{
+  "reviews": {
+    "title": "Customer Reviews",
+    "add_review": "Write a Review",
+    "edit_review": "Edit Your Review",
+    "no_reviews": "No reviews yet. Be the first to review this book!",
+    "submit": "Submit Review",
+    "update": "Update Review",
+    "delete": "Delete Review",
+    "placeholder": "Write your thoughts about the book...",
+    "rating_label": "Your Rating",
+    "comment_label": "Your Comment (Optional)",
+    "success_add": "Thank you! Your review has been added.",
+    "success_update": "Your review has been updated successfully.",
+    "success_delete": "Your review has been deleted.",
+    "delete_confirm": "Are you sure you want to delete this review?",
+    "loadMore": "Load more reviews",
+    "loading": "Loading reviews...",
+    "your_review": "Your review",
+    "edit": "Edit",
+    "cancel_edit": "Cancel edit",
+    "login_required_title": "Share your thoughts",
+    "login_required_description": "You must be logged in to post a review for this book.",
+    "login": "Login"
+  },
+  "validation": {
+    "rating_required": "Please select a rating between 1 and 5 stars",
+    "rating_min": "Rating must be at least 1 star",
+    "rating_max": "Rating cannot exceed 5 stars",
+    "comment_max": "Comment cannot be longer than 1000 characters",
+    "already_reviewed": "You have already submitted a review for this book"
+  }
+}

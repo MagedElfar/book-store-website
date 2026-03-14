@@ -38,7 +38,8 @@ export const BookCard = ({ book }: BookCardProps) => {
         await addItem(book, user?.id)
     }
 
-    const isInCart = !!useGetCartItemByBook(book.id)
+    const cartItem = useGetCartItemByBook(book.id)
+    const isInCart = !!cartItem
 
     return (
         <div className="group relative flex flex-col w-full bg-white dark:bg-zinc-900 rounded-xl border border-gray-100 dark:border-zinc-800 shadow-sm hover:shadow-xl dark:hover:shadow-zinc-950/50 transition-all duration-300 overflow-hidden">

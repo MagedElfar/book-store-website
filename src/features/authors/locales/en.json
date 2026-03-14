@@ -1,9 +1,9 @@
 {
-  "authors": "Authors",
+  "authors": "المؤلفون",
   "title": {
-    "authors": "Our Authors",
-    "authDesc": "Meet the brilliant minds behind your favorite stories. Explore authors' profiles and discover their latest literary contributions."
+    "authors": "مؤلفونا",
+    "authDesc": "تعرف على العقول المبدعة وراء قصصك المفضلة. استكشف الملفات الشخصية للمؤلفين واكتشف أحدث مساهماتهم الأدبية."
   },
-  "searchPlaceholder": "Search for authors...",
-  "noResults": "No authors found"
+  "searchPlaceholder": "ابحث عن المؤلفين...",
+  "noResults": "لم يتم العثور على مؤلفين"
 }

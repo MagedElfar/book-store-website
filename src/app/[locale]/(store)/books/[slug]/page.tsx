@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getBooBySlugApi } from "@/features/books/api/get";
 import { BookGallerySection } from "@/features/books/sections/BookGallerySection";
 import { BookInfoSection } from "@/features/books/sections/BookInfoSection";
+import { BookReviewsSection } from "@/features/books/sections/BookReviewsSection";
 import { PageLayout } from "@/shared/components/layout/PageLayout";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 
@@ -67,6 +68,10 @@ export default async function SingleBookPage({ params }: Props) {
 
                 <div className="lg:col-span-7 flex flex-col gap-10">
                     <BookInfoSection book={book} />
+                </div>
+
+                <div className="lg:col-span-12">
+                    <BookReviewsSection bookId={book.id} />
                 </div>
             </div>
         </PageLayout>

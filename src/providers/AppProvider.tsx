@@ -24,7 +24,7 @@ export function AppProvider({ children, locale, messages }: ProvidersProps) {
                 <ReactQueryProvider>
                     <ThemeProvider
                         attribute="class"
-                        defaultTheme="system"
+                        defaultTheme="dark"
                         enableSystem
                         disableTransitionOnChange
                     >

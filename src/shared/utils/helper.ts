@@ -1,8 +1,11 @@
 import { API_RECORDED_LIMIT } from "../config/constants";
 import { SupportedLang } from "../types/common";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function formatPrice(price: number, lang: SupportedLang = "en") {
-    return new Intl.NumberFormat(lang === "ar" ? "ar-EG" : "en-US", {
+    // return new Intl.NumberFormat(lang === "ar" ? "ar-EG" : "en-US", {
+    return new Intl.NumberFormat("en-US", {
+
         style: "currency",
         currency: "USD",
     }).format(price);

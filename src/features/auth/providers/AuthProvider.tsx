@@ -102,7 +102,7 @@ export function AuthProvider({ children }: Props) {
 
                 setItems([]);
 
-                router.replace(paths.auth.login);
+                window.location.href = paths.auth.login;
             },
 
             updateUser: async (id: string, data: Partial<User>) => {
@@ -113,7 +113,7 @@ export function AuthProvider({ children }: Props) {
                 });
             },
         }),
-        [router, setItems]
+        [setItems]
     );
 
     return (
