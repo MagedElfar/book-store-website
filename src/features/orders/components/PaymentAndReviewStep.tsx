@@ -41,7 +41,7 @@ export function PaymentAndReviewStep() {
 
 
                 <FormTextAreaField
-                    name="notes"
+                    name="note"
                     placeholder={t("fields.orderNotes")}
                     rows={4}
                     className="bg-slate-50 dark:bg-zinc-900/50"
