@@ -1,6 +1,6 @@
 import { Skeleton } from "@/shared/components/shadcn/skeleton"
 
-export function SectionHeaderSkeleton() {
+export function SectionHeaderSkeleton({ withActions }: { withActions?: boolean }) {
     return (
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div className="space-y-3 flex-1">
@@ -12,9 +12,10 @@ export function SectionHeaderSkeleton() {
                 </div>
             </div>
 
-            <div className="shrink-0">
+            {withActions && <div className="shrink-0">
                 <Skeleton className="h-10 w-28 md:w-32 rounded-xl" />
-            </div>
+            </div>}
+
         </header>
     )
 }

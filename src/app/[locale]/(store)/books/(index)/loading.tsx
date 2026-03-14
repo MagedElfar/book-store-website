@@ -6,7 +6,7 @@ export default function LoadingBooksPage() {
     return (
         <PageLayout>
 
-            <SectionHeaderSkeleton />
+            <SectionHeaderSkeleton withActions />
 
             <BookListSectionSkeleton />
         </PageLayout>

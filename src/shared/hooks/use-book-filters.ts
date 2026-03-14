@@ -37,12 +37,12 @@ export const useBookFilters = () => {
             }
         }
         params.set("page", "1");
-        router.push(`${pathname}?${params.toString()}`, { scroll: true });
+        router.push(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
     const handleReset = () => {
         setIsUpdating(true);
-        router.push(pathname, { scroll: true });
+        router.push(pathname, { scroll: false });
     };
 
     const getActiveIds = (key: string) => {

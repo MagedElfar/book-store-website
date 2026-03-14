@@ -28,7 +28,7 @@ export const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
         const params = new URLSearchParams(searchParams.toString());
         params.set("page", page.toString());
 
-        router.push(`${pathname}?${params.toString()}`, { scroll: true });
+        router.push(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
     const getVisiblePages = () => {
