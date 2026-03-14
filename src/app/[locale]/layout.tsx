@@ -19,6 +19,10 @@ const cairo = Cairo({
   subsets: ["arabic"],
 });
 
+export function generateStaticParams() {
+  return [{ locale: "ar" }, { locale: "en" }];
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getAppTranslation("common");
 
