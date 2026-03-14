@@ -93,16 +93,15 @@ export const Footer = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="pt-8 border-t border-slate-200 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-sm text-slate-500 dark:text-zinc-500 font-medium">
+                    <p className="text-sm text-slate-700 dark:text-zinc-400 font-medium">
                         © {currentYear} {t("footer.copyRight")}
                     </p>
 
-                    <div className="flex items-center gap-6 text-[10px] font-bold text-slate-400 dark:text-zinc-600 uppercase tracking-[0.2em]">
-                        <span className="hover:text-slate-600 dark:hover:text-zinc-400 transition-colors cursor-default">Visa</span>
-                        <span className="hover:text-slate-600 dark:hover:text-zinc-400 transition-colors cursor-default">Mastercard</span>
-                        <span className="hover:text-slate-600 dark:hover:text-zinc-400 transition-colors cursor-default">Cash on Delivery</span>
+                    <div className="flex items-center gap-6 text-[10px] font-bold text-slate-600 dark:text-zinc-400 uppercase tracking-[0.2em]">
+                        <span className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-default">Visa</span>
+                        <span className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-default">Mastercard</span>
+                        <span className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-default">Cash on Delivery</span>
                     </div>
                 </div>
             </div>
@@ -115,9 +114,9 @@ const FooterLink = ({ href, children }: { href: string; children: React.ReactNod
     <li>
         <Link
             href={href}
-            className="group flex items-center gap-1 text-slate-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-500 transition-all duration-200"
+            className="group flex items-center gap-1 text-slate-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-500 transition-all duration-200"
         >
-            <span className="text-sm md:text-base">{children}</span>
+            <span className="text-sm md:text-base font-medium">{children}</span>
             <ArrowUpRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
         </Link>
     </li>
@@ -140,8 +139,8 @@ const ContactItem = ({ icon, label, value }: { icon: React.ReactNode; label: str
             {icon}
         </div>
         <div>
-            <p className="text-[10px] uppercase tracking-widest text-slate-400 dark:text-zinc-500 font-bold mb-0.5">{label}</p>
-            <p className="text-sm text-slate-700 dark:text-zinc-300 font-semibold">{value}</p>
+            <p className="text-[10px] uppercase tracking-widest text-slate-600 dark:text-zinc-400 font-bold mb-0.5">{label}</p>
+            <p className="text-sm text-slate-900 dark:text-zinc-100 font-semibold">{value}</p>
         </div>
     </div>
 );

@@ -29,7 +29,11 @@ export const CartDrawer = () => {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <Button className="cursor-pointer">
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="p-0 h-auto w-auto bg-transparent hover:bg-transparent cursor-pointer" // تصفير المسافات تماماً
+                >
                     <CartIcon />
                 </Button>
             </SheetTrigger>

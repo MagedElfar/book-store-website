@@ -60,7 +60,7 @@ export const BookCard = ({ book }: BookCardProps) => {
 
                 {/* Sale Badge */}
                 {hasSale && (
-                    <div className={`absolute top-2 ${dir === 'rtl' ? 'right-2' : 'left-2'} bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg z-10 uppercase tracking-tighter`}>
+                    <div className={`absolute top-2 ${dir === 'rtl' ? 'right-2' : 'left-2'} bg-red-600 text-white text-[12px] font-bold px-2 py-1 rounded-full shadow-lg z-10 uppercase tracking-tighter`}>
                         {discountPercentage}% {lang === 'ar' ? 'خصم' : 'OFF'}
                     </div>
                 )}
@@ -103,7 +103,7 @@ export const BookCard = ({ book }: BookCardProps) => {
                             {book.average_rating}
                         </span>
                     </div>
-                    <span className="text-[10px] text-gray-400 dark:text-zinc-500">
+                    <span className="text-[12px] text-gray-600 dark:text-zinc-400">
                         ({book.total_reviews} {lang === 'ar' ? 'مراجعة' : 'reviews'})
                     </span>
                 </div>
@@ -116,7 +116,7 @@ export const BookCard = ({ book }: BookCardProps) => {
                                 <span className="text-blue-600 dark:text-blue-400 font-extrabold text-lg tracking-tight">
                                     {formatPrice(book.sale_price!, lang)}
                                 </span>
-                                <span className="text-gray-400 dark:text-zinc-500 line-through text-[11px] -mt-1 font-medium">
+                                <span className="text-gray-600 dark:text-zinc-400 line-through text-[11px] -mt-1 font-medium">
                                     {formatPrice(book.price, lang)}
                                 </span>
                             </>
