@@ -5,7 +5,6 @@ import { Skeleton } from "@/shared/components/shadcn/skeleton";
 export default function AuthorsLoading() {
     return (
         <PageLayout>
-            {/* 1. محاكاة الهيدر (العنوان والوصف) */}
             <SectionHeaderSkeleton />
 
             <div className="grid gap-10 lg:gap-12 mt-8">
@@ -21,7 +20,6 @@ export default function AuthorsLoading() {
                     </div>
                 </div>
 
-                {/* 4. محاكاة الترقيم (Pagination) */}
                 <div className="flex justify-center mt-4">
                     <Skeleton className="h-10 w-64 rounded-md" />
                 </div>

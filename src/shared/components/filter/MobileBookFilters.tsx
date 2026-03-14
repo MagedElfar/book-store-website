@@ -27,7 +27,7 @@ export const MobileBookFilters = (props: any) => {
             <Sheet>
                 {/* 1. الزر الذي يفتح الـ Drawer */}
                 <SheetTrigger asChild>
-                    <button className="flex items-center justify-center gap-2 w-full py-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl font-bold px-3 shadow-sm active:scale-[0.98] transition-transform">
+                    <Button className="flex items-center justify-center gap-2 w-full py-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl font-bold px-3 shadow-sm active:scale-[0.98] transition-transform">
                         <Filter size={18} className="text-primary" />
                         {t("filters.title")}
                         {hasActiveFilters && (
@@ -36,7 +36,7 @@ export const MobileBookFilters = (props: any) => {
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                             </span>
                         )}
-                    </button>
+                    </Button>
                 </SheetTrigger>
 
                 <SheetContent

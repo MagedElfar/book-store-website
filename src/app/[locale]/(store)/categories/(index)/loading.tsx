@@ -8,7 +8,7 @@ export default function CategoriesLoading() {
             <SectionHeaderSkeleton />
 
             <div className="grid gap-10 lg:gap-12 mt-8">
-                <div className="max-w-md">
+                <div>
                     <Skeleton className="h-10 w-full rounded-md" />
                 </div>
 

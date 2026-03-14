@@ -29,9 +29,9 @@ export const CartDrawer = () => {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <div className="cursor-pointer">
+                <Button className="cursor-pointer">
                     <CartIcon />
-                </div>
+                </Button>
             </SheetTrigger>
 
             <SheetContent
