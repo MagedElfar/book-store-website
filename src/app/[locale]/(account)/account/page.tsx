@@ -4,8 +4,14 @@ import { Metadata } from 'next';
 import { MyAccountForm } from '@/features/account/forms/MyAccountForm'
 import { getAppTranslation } from '@/shared/lib/getTranslations'
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { t } = await getAppTranslation("account");
+interface Props {
+    params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { locale } = await params
+
+    const { t } = await getAppTranslation(locale, "account");
 
     return {
         title: t("myAccount"),
@@ -17,8 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function AccountPage() {
-    const { t } = await getAppTranslation("account")
+export default async function AccountPage({ params }: Props) {
+    const { locale } = await params
+    const { t } = await getAppTranslation(locale, "account")
     return (
         <>
             <div className="w-full mb-8 space-y-1">

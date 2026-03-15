@@ -3,8 +3,14 @@ import { Metadata } from "next";
 import { LoginForm } from "@/features/auth/forms/LoginForm";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { t } = await getAppTranslation("auth");
+interface Props {
+    params: Promise<{ locale: string }>
+}
+
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { locale } = await params
+    const { t } = await getAppTranslation(locale, "auth");
 
     return {
         title: t("signin"),

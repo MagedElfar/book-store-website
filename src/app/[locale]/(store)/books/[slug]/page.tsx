@@ -8,13 +8,21 @@ import { BookReviewsSection } from "@/features/books/sections/BookReviewsSection
 import { PageLayout } from "@/shared/components/layout/PageLayout";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 
+export const dynamicParams = true;
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+    return [];
+}
+
 interface Props {
     params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
-    const { getLocalizedValue, lang } = await getAppTranslation("books")
+    const { slug, locale } = await params;
+    const { getLocalizedValue, lang } = await getAppTranslation(locale, "books");
     const book = await getBooBySlugApi(slug);
 
     if (!book) return { title: "Book Not Found" };
@@ -29,10 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         .replace(/\s+/g, ' ')
         .trim();
 
-    // 2. قص النص لـ 160 حرف
     const truncatedDescription = cleanDescription.length > 160
         ? cleanDescription.substring(0, 157) + "..."
         : cleanDescription;
+
     return {
         title,
         description: truncatedDescription,
@@ -56,7 +64,6 @@ export default async function SingleBookPage({ params }: Props) {
     return (
         <PageLayout>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-
                 <div className="lg:col-span-5">
                     <div className="lg:sticky lg:top-28">
                         <BookGallerySection

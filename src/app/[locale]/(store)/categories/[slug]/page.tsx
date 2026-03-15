@@ -10,15 +10,16 @@ import { PageLayout } from "@/shared/components/layout/PageLayout";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 import { calcTotalPages } from "@/shared/utils/helper";
 
+
 interface Props {
-    params: Promise<{ slug: string; }>;
+    params: Promise<{ slug: string; locale: string }>;
     searchParams: Promise<Record<string, string>>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
+    const { slug, locale } = await params;
     const category = await getCategoryBySlug(slug);
-    const { getLocalizedValue, lang } = await getAppTranslation("categories");
+    const { getLocalizedValue, lang } = await getAppTranslation(locale, "categories");
 
     if (!category) return {};
 

@@ -7,11 +7,13 @@ import { getAppTranslation } from '@/shared/lib/getTranslations'
 
 interface Props {
     searchParams: Promise<Record<string, string>>
+    params: Promise<{ locale: string }>
 }
 
-export default async function Page({ searchParams }: Props) {
+export default async function Page({ searchParams, params }: Props) {
+    const { locale } = await params
     const { orderId } = await searchParams
-    const { t } = await getAppTranslation("order")
+    const { t } = await getAppTranslation(locale, "order")
     return (
         <PageLayout>
             <SuccessRedirect

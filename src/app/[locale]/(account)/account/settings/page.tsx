@@ -6,8 +6,13 @@ import { EmailForm } from '@/features/account/forms/EmailForm'
 import { Separator } from '@/shared/components/shadcn/separator'
 import { getAppTranslation } from '@/shared/lib/getTranslations'
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { t } = await getAppTranslation("account");
+interface Props {
+    params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { locale } = await params
+    const { t } = await getAppTranslation(locale, "account");
 
     return {
         title: t("settings"),
@@ -18,8 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function SettingsPage() {
-    const { t } = await getAppTranslation("account")
+export default async function SettingsPage({ params }: Props) {
+    const { locale } = await params
+    const { t } = await getAppTranslation(locale, "account");
     return (
         <div className='w-full space-y-8'>
             <h2 className="text-2xl font-bold tracking-tight text-foreground">

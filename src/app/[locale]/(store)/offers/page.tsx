@@ -8,12 +8,17 @@ import { SectionHeader } from "@/shared/components/layout/SectionHeader";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 import { calcTotalPages } from "@/shared/utils/helper";
 
+export const dynamic = 'force-dynamic';
+
 interface Props {
-    searchParams: Promise<Record<string, string>>
+    searchParams: Promise<Record<string, string>>,
+    params: Promise<{ locale: string }>
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { t } = await getAppTranslation("common");
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+    const { locale } = await params
+    const { t } = await getAppTranslation(locale, "common");
 
     return {
         title: t("offers.title"),
@@ -29,8 +34,11 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function OffersPage({ searchParams }: Props) {
-    const { t } = await getAppTranslation("common");
+export default async function OffersPage({ searchParams, params: pParams }: Props) {
+
+    const { locale } = await pParams
+
+    const { t } = await getAppTranslation(locale, "common");
 
     const params = await searchParams;
     const currentPage = Number(params.page) || 1;

@@ -5,9 +5,10 @@ import { AccountLayout } from "@/shared/layouts/account/AccountLayout";
 import { StoreLayout } from "@/shared/layouts/store/StoreLayout";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 
-export default async function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children, params }: { children: React.ReactNode, params: Promise<{ locale: string }> }) {
 
-    const { lang } = await getAppTranslation();
+    const { locale } = await params
+    const { lang } = await getAppTranslation(locale);
 
     const { items: navCategories } = await getCategories({
         is_in_nav: true,

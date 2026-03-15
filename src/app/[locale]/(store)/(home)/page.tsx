@@ -11,8 +11,13 @@ import { HeroSection } from "@/features/home/sections/HeroSection";
 import { SpecialPromoSection } from "@/features/home/sections/SpecialPromoSection";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { t } = await getAppTranslation("home");
+interface Props {
+  params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const { t } = await getAppTranslation(locale, "home");
 
   return {
     title: t("welcome"),
@@ -32,10 +37,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export const revalidate = 3600
-
-export default async function Home() {
-  const { t: tHome } = await getAppTranslation("home")
+export default async function Home({ params }: Props) {
+  const { locale } = await params
+  const { t: tHome } = await getAppTranslation(locale, "home")
 
   const [
     banners,

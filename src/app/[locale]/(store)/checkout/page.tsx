@@ -6,8 +6,13 @@ import { PageLayout } from "@/shared/components/layout/PageLayout";
 import { SectionHeader } from "@/shared/components/layout/SectionHeader";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { t } = await getAppTranslation("order");
+interface Props {
+    params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { locale } = await params
+    const { t } = await getAppTranslation(locale, "order");
 
     return {
         title: t("checkout"),
@@ -23,8 +28,10 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function CheckoutPage() {
-    const { t } = await getAppTranslation("order");
+export default async function CheckoutPage({ params }: Props) {
+    const { locale } = await params
+
+    const { t } = await getAppTranslation(locale, "order");
 
     return (
         <PageLayout>

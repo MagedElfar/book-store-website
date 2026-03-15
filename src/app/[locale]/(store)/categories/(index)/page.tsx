@@ -12,14 +12,15 @@ import { API_SPECIFICATION_LIMIT } from "@/shared/config/constants";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 import { calcTotalPages } from "@/shared/utils/helper";
 
-
+export const dynamic = 'force-dynamic';
 interface Props {
     searchParams: Promise<Record<string, string>>
+    params: Promise<{ slug: string; locale: string }>;
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-
-    const { t, lang } = await getAppTranslation("categories");
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { locale } = await params
+    const { t, lang } = await getAppTranslation(locale, "categories");
 
     return {
         title: t("categories"),
@@ -33,9 +34,10 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function CategoriesPage({ searchParams }: Props) {
-    const { t, lang } = await getAppTranslation("categories");
+export default async function CategoriesPage({ searchParams, params: pParams }: Props) {
+    const { locale } = await pParams
 
+    const { t, lang } = await getAppTranslation(locale, "categories");
     const params = await searchParams;
     const searchQuery = (params.search as string) || "";
     const limit = API_SPECIFICATION_LIMIT
@@ -55,7 +57,6 @@ export default async function CategoriesPage({ searchParams }: Props) {
 
     return (
         <PageLayout>
-            {/* 1. Header Section */}
             <SectionHeader
                 title={t("title.categories")}
                 description={t("title.catDesc")}

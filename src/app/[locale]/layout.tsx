@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
 import { Geist, Cairo } from "next/font/google";
 import { getMessages } from "next-intl/server";
-
 import "./../globals.css";
+import NextTopLoader from 'nextjs-toploader';
+import { ReactNode } from "react";
+
 import { AppProvider } from "@/providers/AppProvider";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 import { SupportedLang } from "@/shared/types/common";
 
+export function generateStaticParams() {
+  return [{ locale: "ar" }, { locale: "en" }];
+}
+
+interface Props {
+  children: ReactNode,
+  params: Promise<{ locale: string }>
+}
 
 
 const geistSans = Geist({
@@ -19,12 +29,15 @@ const cairo = Cairo({
   subsets: ["arabic"],
 });
 
-export function generateStaticParams() {
-  return [{ locale: "ar" }, { locale: "en" }];
-}
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { t } = await getAppTranslation("common");
+
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+
+  const { t } = await getAppTranslation(
+    locale,
+    "common");
 
   return {
     title: {
@@ -46,14 +59,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
+}: Props) {
   const { locale } = await params;
 
-  const { dir } = await getAppTranslation();
-  const messages = await getMessages();
+
+  const messages = await getMessages({ locale: locale as any });
+  const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
     <html
@@ -68,6 +79,17 @@ export default async function RootLayout({
           font-sans 
         `}
       >
+        <NextTopLoader
+          color="var(--loader-color)"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="none"
+        />
         <AppProvider locale={locale as SupportedLang} messages={messages}>
           {children}
         </AppProvider>

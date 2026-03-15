@@ -16,6 +16,7 @@ export const NavLink = ({ href, text, isMobile, onClick }: NavLinkProps) => {
 
     return (
         <Link
+            // prefetch={true}
             href={href}
             onClick={onClick}
             className={cn(

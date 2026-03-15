@@ -43,33 +43,36 @@ export function AuthProvider({ children }: Props) {
     const router = useRouter();
 
     useEffect(() => {
-        (async () => {
-            try {
+        if (typeof window !== "undefined") {
+            (async () => {
+                try {
 
-                await useCartStore.persist.rehydrate();
+                    await useCartStore.persist.rehydrate();
 
-                const user = await getCurrentUser();
+                    const user = await getCurrentUser();
 
-                if (user) {
-                    dispatch({
-                        type: "RESTORE_SESSION",
-                        payload: user,
-                    });
-                } else {
+                    if (user) {
+                        dispatch({
+                            type: "RESTORE_SESSION",
+                            payload: user,
+                        });
+                    } else {
+                        dispatch({
+                            type: "SET_LOADING",
+                            payload: false,
+                        });
+                        useCartStore.setState({ isLoading: false });
+                    }
+                } catch (error) {
                     dispatch({
                         type: "SET_LOADING",
                         payload: false,
                     });
                     useCartStore.setState({ isLoading: false });
                 }
-            } catch (error) {
-                dispatch({
-                    type: "SET_LOADING",
-                    payload: false,
-                });
-                useCartStore.setState({ isLoading: false });
-            }
-        })();
+            })();
+        }
+
     }, []);
 
     useEffect(() => {

@@ -1,12 +1,21 @@
-import { getTranslations, getLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { AppNamespace } from "@/shared/hooks/use-translation";
 
-export async function getAppTranslation<N extends AppNamespace>(namespace?: N) {
-    const t = await getTranslations(namespace);
-    const locale = await getLocale();
+import { SupportedLang } from '../types/common';
 
-    const lang = locale as "en" | "ar";
+export async function getAppTranslation<N extends AppNamespace>(
+    locale: string,
+    namespace?: N,
+) {
+
+    const lang = locale as SupportedLang
+
+    const t = await getTranslations({
+        locale: lang,
+        namespace
+    });
+
     const dir = lang === "ar" ? "rtl" : "ltr";
 
     /**

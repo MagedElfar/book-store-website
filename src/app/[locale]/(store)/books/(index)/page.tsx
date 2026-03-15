@@ -1,19 +1,25 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 import { getBooKsApi } from "@/features/books/api/get";
 import { BookListSection } from "@/features/books/sections/BookListSection";
 import { mapQuerySearchParamsToBookSearchParams } from "@/features/books/utils/mapper";
 import { PageLayout } from "@/shared/components/layout/PageLayout";
 import { SectionHeader } from "@/shared/components/layout/SectionHeader";
+import { BookListSectionSkeleton } from "@/shared/components/loading/BookListSectionSkeleton";
 import { getAppTranslation } from "@/shared/lib/getTranslations";
 import { calcTotalPages } from "@/shared/utils/helper";
 
+export const dynamic = 'force-dynamic';
+
 interface Props {
-    searchParams: Promise<Record<string, string>>
+    searchParams: Promise<Record<string, string>>,
+    params: Promise<{ locale: string }>
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { t } = await getAppTranslation("books");
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { locale } = await params
+    const { t } = await getAppTranslation(locale, "books");
 
     return {
         title: `${t("books")}`,
@@ -29,8 +35,9 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function BooksPage({ searchParams }: Props) {
-    const { t } = await getAppTranslation("books");
+export default async function BooksPage({ searchParams, params: pParams }: Props) {
+    const { locale } = await pParams
+    const { t } = await getAppTranslation(locale, "books");
 
     const params = await searchParams;
     const currentPage = Number(params.page) || 1;
@@ -48,7 +55,6 @@ export default async function BooksPage({ searchParams }: Props) {
                 title={t("title.books")}
                 description={t("title.booksDesc")}
             />
-
             <BookListSection
                 books={books}
                 currentPage={currentPage}

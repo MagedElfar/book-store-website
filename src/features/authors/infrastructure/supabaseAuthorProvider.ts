@@ -112,7 +112,7 @@ export const supabaseAuthorProvider: AuthorApiProvider = {
 
         const response = await supabaseFetchSingle<Author>("authors_with_counts", {
             params: queryParams,
-            revalidate: 3600,
+            revalidate: 43200,
             tags: [`author-${slug}`]
         });
 

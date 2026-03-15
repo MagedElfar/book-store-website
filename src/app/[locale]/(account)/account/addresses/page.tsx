@@ -4,8 +4,15 @@ import { Metadata } from 'next';
 import { AddressesView } from '@/features/addresses/views/AddressesView'
 import { getAppTranslation } from '@/shared/lib/getTranslations';
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { t } = await getAppTranslation("addresses");
+interface Props {
+    params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+    const { locale } = await params
+
+    const { t } = await getAppTranslation(locale, "addresses");
 
     return {
         title: t("myAddress"),
