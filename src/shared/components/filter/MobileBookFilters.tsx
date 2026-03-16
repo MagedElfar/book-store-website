@@ -27,13 +27,29 @@ export const MobileBookFilters = (props: any) => {
             <Sheet>
                 {/* 1. الزر الذي يفتح الـ Drawer */}
                 <SheetTrigger asChild>
-                    <Button className="flex items-center justify-center gap-2 w-full py-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl font-bold px-3 shadow-sm active:scale-[0.98] transition-transform">
-                        <Filter size={18} className="text-primary" />
-                        {t("filters.title")}
+                    <Button
+                        className="
+            flex items-center justify-center gap-2 w-full py-6
+            /* Light Mode: خلفية بيضاء ناصعة مع حدود واضحة */
+            bg-white text-slate-900 border-slate-200 shadow-sm
+            /* Dark Mode: خلفية رمادية فاتحة (Zinc-800) لتعطي تباين مع خلفية الصفحة السوداء */
+            dark:bg-zinc-800 dark:text-zinc-100 dark:border-zinc-700
+            /* Hovers: تفاعل ألوان حقيقي */
+            hover:bg-slate-50 dark:hover:bg-zinc-700/80
+            /* الـ Border: خليه واضح وحاد */
+            border rounded-2xl font-bold px-4 
+            /* التفاعل الحركي */
+            active:scale-[0.97] transition-all duration-200
+        "
+                    >
+                        <Filter size={18} className="text-primary stroke-[2.5px]" />
+
+                        <span className="text-[15px]">{t("filters.title")}</span>
+
                         {hasActiveFilters && (
-                            <span className="relative flex h-2 w-2">
+                            <span className="relative flex h-2.5 w-2.5">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 border border-white dark:border-zinc-800"></span>
                             </span>
                         )}
                     </Button>

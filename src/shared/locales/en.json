@@ -129,5 +129,33 @@
     "action": "Go Home",
     "noRecords": "No records found",
     "noRecordsMsg": "There is no data matching the current filters."
+  },
+  "about": {
+    "title": "About Our Bookstore",
+    "description": "Learn more about our journey, mission, and the values that drive us.",
+    "story_title": "Our Story",
+    "story_content": "Welcome to our premium bookstore. We started with a simple mission: to make high-quality knowledge accessible to everyone. Our collection is curated by experts to ensure that every book on our shelves adds value to your library.",
+    "mission_title": "Our Mission",
+    "mission_content": "To empower readers by providing a seamless platform for discovering and purchasing books that inspire growth and creativity.",
+    "values_title": "Our Values",
+    "values_content": "Quality over quantity, customer-centric experience, and supporting authors worldwide through a fair and transparent ecosystem."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have a question or need help? We'd love to hear from you.",
+    "get_in_touch": "Get in Touch",
+    "contact_info_desc": "Have questions about an order or a specific book? Our team is here to help.",
+    "form": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email Address",
+      "message": "How can we help you?",
+      "submit": "Send Message"
+    },
+    "info": {
+      "address": "123 Library Street, Book City",
+      "email": "support@bookstore.com",
+      "phone": "+1 (234) 567-890"
+    }
   }
 }
