@@ -4,3 +4,5 @@ import { BookApiProvider } from "../types/api";
 export const bookApiProvider: BookApiProvider = supabaseBookProvider;
 
 export const BOOK_QUERY_KEY = "books";
+
+export const BOOK_INFINITE_QUERY = [BOOK_QUERY_KEY, "infinite"]

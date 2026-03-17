@@ -72,7 +72,7 @@ export const MobileMenu = ({ categories }: MobileMenuProps) => {
                         <p className="text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-[0.1em]">
                             {t("nav.searchTitle")}
                         </p>
-                        <SearchBar isMobile />
+                        <SearchBar isMobile onClick={closeMenu} />
                     </div>
 
                     <div>
